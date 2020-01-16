@@ -4,12 +4,12 @@ from tqdm import tqdm
 FIELDS = ["ID", "PredictedConcepts"]
 
 
-def unique_tags(path_to_autotags):
+def unique_tags(path):
     """ Gets the unique tags from the auto tags file
 
     Parameters
     ----------
-    path_to_autotags : str
+    path : str
         Path to autotags file
 
     Returns
@@ -18,7 +18,7 @@ def unique_tags(path_to_autotags):
         Unique tags
     """
 
-    autotags = load_csv_as_dict(path_to_autotags, fieldnames=FIELDS)
+    autotags = load_csv_as_dict(path, fieldnames=FIELDS)
     concepts = set()
     for row in tqdm(autotags):
         predicted_concepts = [predicted_concept.split(":")[0] for predicted_concept in
