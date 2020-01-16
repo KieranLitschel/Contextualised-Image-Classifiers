@@ -1,7 +1,7 @@
 from yfcc100m.load import load_csv_as_dict
 from tqdm import tqdm
 
-FIELDS = ["PhotoID", "PredictedConcepts"]
+FIELDS = ["ID", "PredictedConcepts"]
 
 
 def unique_tags(path_to_autotags):
