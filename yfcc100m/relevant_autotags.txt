@@ -1,0 +1,1570 @@
+chipmunk,1
+chain-link,1
+hat,1
+arabian camel,1
+flag,1
+loft,1
+gorge,1
+hawk,1
+onion dome,1
+armored personnel carrier,1
+saint bernard,1
+undergarment,1
+scallop,1
+guitar,1
+buggy,1
+dial,1
+cross country riding,0
+magazine,1
+heron,1
+draft horse,1
+leaf,1
+boa constrictor,1
+organic pattern,0
+butterfly fish,1
+graffiti,1
+aqualung,1
+muffin,1
+bright,1
+field hockey,0
+blue,0
+bittern,1
+meadow,1
+gable,1
+lecture hall,1
+sea turtle,1
+snake,1
+computer circuit,1
+paddle,1
+fireplace,1
+brass instrument,1
+barn,1
+chicken,1
+cable,1
+clam,1
+skateboarding,0
+hand luggage,1
+yak,1
+steam engine,1
+carousel,1
+emu,1
+parasail,1
+mandrill,1
+trail bike,1
+outerwear,1
+handicraft,1
+tree,1
+colonnade,1
+freeway,1
+polo,0
+fortification,1
+frond,1
+lines,0
+gold,1
+ancient,0
+snorkel,1
+sunrise,0
+nail polish,1
+pants,1
+fuchsia,1
+motor,1
+helicopter,1
+arctic fox,1
+yurt,1
+wolf,1
+go-kart,1
+carriage,1
+pumpkin,1
+oar,1
+bean,1
+white admiral,1
+mexican sunflower,1
+beachwear,1
+boot,1
+building structure,1
+sand,1
+mixed drink,1
+trellis,1
+lens,1
+stag,1
+baseball,1
+foremast,1
+mosquito,1
+head,1
+plant,1
+ice rink,1
+tattoo,1
+car bumper,1
+farmer's market,1
+gothic arch,1
+teasel,1
+poster,1
+satin,0
+star shape,1
+lingerie,1
+tiger lily,1
+valley,1
+pizza,1
+mountain peak,1
+waterwheel,1
+earphone,1
+circuitry,1
+library,1
+speedskating,0
+graduation,0
+stonework,1
+camping,0
+house,1
+overpass,1
+cake,1
+pavilion,1
+capitol,1
+sandwich,1
+snowbank,1
+boxing,0
+plumbago,1
+waterfront,1
+grocery store,1
+rodeo,1
+microwave oven,1
+pastel,1
+zebra,1
+bald eagle,1
+bottle,1
+brussels carpet,1
+skylight,1
+guanaco,1
+wedding,0
+airframe,1
+temple,1
+backboard,1
+sculling,0
+cityscape,1
+cichlid,1
+tarpaulin,1
+headrest,1
+buffet,1
+stock car,1
+bird,1
+railroad track,1
+doe,1
+armored vehicle,1
+ice hockey,0
+turtle,1
+golf club,1
+ski,1
+roman arch,1
+atrium,1
+french fries,1
+rocking chair,1
+roller skating,1
+paper,1
+pigeon,1
+chaetodon,1
+new england aster,1
+military officer,1
+quirky,0
+giant clam,1
+apartment,1
+sandbox,1
+llama,1
+dancer,1
+sakura,1
+oil lamp,1
+squash,1
+bleeding heart,1
+big cat,1
+hamster,1
+hour hand,1
+adobe,1
+auto racing,0
+vegetable,1
+parasol,1
+black swan,1
+cappuccino,1
+pedestrian crossing,1
+pond,1
+amphora,1
+purple heather,1
+fort,1
+calliandra,1
+curtain,1
+strawberry,1
+football helmet,1
+ocean floor,1
+earring,1
+vivarium,1
+thistle,1
+chihuahua,1
+television,1
+autumn,0
+gerbil,1
+angora,1
+accordion,1
+artillery,1
+window,1
+porthole,1
+dandelion,1
+canyon,1
+girder,1
+display screen,1
+shellfish,1
+birdbath,1
+steeple,1
+chandelier,1
+batter,1
+cherry,1
+gaillardia,1
+ladybug,1
+diver,1
+eskimo dog,1
+cocotte,1
+carnation pink,0
+car mirror,1
+picador,1
+hearth,1
+amphibian,1
+crocodile,1
+surfing,0
+cow,1
+pistil,1
+garden,1
+sewing machine,1
+beach,1
+fabric,1
+needlework,1
+echinoderm,1
+sport,0
+diagonal,0
+elephant,1
+grizzly,1
+car wheel,1
+shelf stacks,1
+aster,1
+kiwi,1
+triangle,1
+rotor blade,1
+plywood,1
+open air market,1
+fuel injection,1
+brittle star,1
+radio,1
+jacket,1
+lemur,1
+breakfast table,1
+pink,0
+stagecoach,1
+pantheon,1
+deer,1
+purple,0
+pier,1
+ski pole,1
+cage,1
+room,0
+nigella,1
+solar cell,1
+sea trout,1
+aisle,1
+swimming trunks,1
+starfish,1
+rowing,0
+recreational vehicle,1
+prairie dog,1
+lock,1
+serene,0
+locomotive,1
+rope bridge,1
+billy goat,1
+gondola,1
+post,1
+wagon,1
+sea,1
+pasta,1
+flagon,1
+streetlight,1
+computer monitor,1
+bicycle,1
+cockatiel,1
+circuit,1
+bar,1
+apple tree,1
+armrest,1
+triptych,1
+rooster,1
+sidewalk,1
+piano,1
+coneflower,1
+drawing,1
+flying buttress,1
+ridge,1
+cereal bowl,1
+horse racing,0
+harvester,1
+tartan,0
+eagle,1
+carthorse,1
+willow,1
+basketball,1
+kingfisher,1
+traction engine,1
+duckling,1
+windshield,1
+hands,1
+baggage,1
+potter's wheel,1
+door knocker,1
+chest of drawers,1
+ensemble,1
+toilet,1
+cloud,1
+snow leopard,1
+lake,1
+phlox,1
+football,1
+stream,1
+patchwork,1
+alligator,1
+tamarin,1
+volcanic crater,1
+truck,1
+coliseum,1
+bowsprit,1
+floor,1
+ferry,1
+harness,1
+gargoyle,1
+fishing,0
+wood laminate,1
+moorhen,1
+primate,1
+banyan,1
+soldier,1
+passerine,1
+water tower,1
+cetacean,1
+indigo,1
+boa,1
+watchtower,1
+sunbath,1
+juice,1
+airliner,1
+handbag,1
+buckle,1
+art gallery,1
+lymphocyte,1
+panda,1
+necklace,1
+faucet,1
+potted plant,1
+bear,1
+spider orchid,1
+firearm,1
+bobcat,1
+beer bottle,1
+ship,1
+umbel,1
+frill,1
+carnivorous plant,1
+ferrari,1
+stone wall,1
+clock,1
+rhinoceros,1
+overalls,1
+sun parlor,1
+abutment,1
+hammock,1
+drapery,1
+department store,1
+canine,1
+daisy,1
+saddle,1
+meal,1
+stemma,1
+texture,0
+umbrella,1
+peach,1
+sea anemone,1
+step,1
+electric organ,1
+team sport,0
+gourd,1
+mountainside,1
+bridge,1
+drawer,1
+van,1
+animal,1
+demonstrator,1
+kangaroo,1
+aircraft engine,1
+villa1
+pinwheel,1
+overcast,0
+telephone,1
+ballpark,1
+pointed arch,1
+brickwork,1
+crew boat,1
+pelagic bird,1
+blouse,1
+lighthouse,1
+snail,1
+dashboard,1
+field mustard,1
+ape,1
+trench coat,1
+clownfish,1
+balloon flower,1
+jamb,1
+bulldozer,1
+cedar,1
+vanda,1
+blackandwhite,0
+hang glider,1
+cliff dwelling,1
+macaw,1
+skiing,0
+belfry,1
+clavier,1
+round arch,1
+seat belt,1
+moon,1
+lioness,1
+marigold,1
+cockatoo,1
+computer mouse,1
+stoneware,1
+jewelry chain,1
+card index,1
+beanie,1
+saucepan,1
+radome,1
+washbasin,1
+glacier lily,1
+support column,1
+hand rail,1
+sunset,0
+tea,1
+anemone fish,1
+plain,1
+polar bear,1
+soil,1
+ranch,1
+wire,1
+fuschia,1
+fragrant orchid,1
+minute hand,1
+rapeseed,1
+infrastructure,1
+walkway,1
+coast,1
+waterfowl,1
+acropolis,1
+gazelle,1
+drums,1
+knitwear,1
+closet,1
+contact sport,0
+gown,1
+scoreboard,1
+marathon,0
+hortensia,1
+restaurant,1
+macro,0
+bus,1
+camp chair,1
+toad,1
+lory,1
+arete,1
+kitchen ware,1
+african lily,1
+lionfish,1
+petunia,1
+sprocket,1
+lampshade,1
+ibex,1
+display window,1
+meerkat,1
+dendrobium,1
+barbecue,1
+wood fence,1
+resort,1
+pepper,1
+hand,1
+locust,1
+cruise ship,1
+pattern,0
+windmill,1
+ringlet,1
+gatehouse,1
+parade,1
+great hall,1
+print,1
+riverbank,1
+armchair,1
+canal boat,1
+cabbage,1
+carnivore,1
+snowdrift,1
+evening primrose,1
+hibiscus,1
+collared peccary,1
+snack bar,1
+dining,0
+tortoise,1
+flame,1
+illustration,1
+dresser,1
+spar,1
+geometric,0
+frock,1
+wood panels,1
+bull,1
+lantern,1
+hot air balloon,1
+shorts,1
+screw,1
+poker plant,1
+escarpment,1
+costume,1
+ocean liner,1
+hummingbird,1
+fashion,1
+condominium,1
+car,1
+tangle,0
+statue,1
+art,1
+spur gear,1
+screen,1
+black bear,1
+judo,0
+vase,1
+panicle,1
+symmetry,0
+tent,1
+life jacket,1
+vole,1
+spadix,1
+harness horse,1
+bed,1
+shirt,1
+photo border,1
+yard,1
+mouse,1
+playground,1
+anteater,1
+jump,0
+rose,1
+giraffe,1
+squirrel,1
+egg yolk,1
+golf,1
+taillight,1
+buck,1
+rowing boat,1
+birch,1
+stringed instrument,1
+casserole,1
+book,1
+iris,1
+highway,1
+brick red,0
+bluff,1
+field game,0
+web,1
+snag,0
+fractal,0
+vehicle,1
+greenhouse,1
+skunk,1
+mountain bike,1
+red panda,1
+blue jay,1
+red squirrel,1
+salad,1
+rock wall,1
+tulip,1
+apple,1
+floret,1
+sail boat,1
+signboard,1
+skyline,1
+campsite,1
+onion,1
+spider web,1
+waterfall,1
+dolmen,1
+sea urchin,1
+yellow,1
+cpu board,1
+water ski,1
+crimson,0
+gray horse,1
+rhododendron,1
+block,1
+boat racing,1
+golden retriever,1
+pool,1
+blackbird,1
+labrador,1
+lilac,0
+makeup,1
+gravestone,1
+rim,1
+token,1
+seagull,1
+store shelf,1
+sheep,1
+cycling,1
+fighter jet,1
+athletic shoe,1
+drum,1
+dressage,0
+poodle,1
+grid,1
+milk thistle,1
+jeans,1
+capuchin,1
+freight car,1
+clasp,1
+snowboard,1
+mountain ridge,1
+chromatic,0
+abbey,1
+orange daisy,1
+computer keyboard,1
+worm,1
+vigil light,1
+gear,1
+persimmon,1
+lamppost,1
+rafter,1
+hospital,1
+swine,1
+sea otter,1
+neckpiece,1
+dark red,0
+clothespin,1
+swivel chair,1
+pew,1
+chairlift,1
+shop,1
+path,1
+podium,1
+power line,1
+mansion,1
+keyboard instrument,1
+bunny,1
+daffodil,1
+picture frame,1
+stubble,1
+alternator,1
+row house,1
+chocolate,1
+carp,1
+hockey,0
+amusement park,1
+casino,1
+meadow cranesbill,1
+fig,1
+reservoir,1
+marmot,1
+tramline,1
+cd,1
+pedestal table,1
+red admiral,1
+mainmast,1
+fog,0
+soup,1
+dwelling,1
+conference table,1
+passion flower,1
+hall,1
+banner,1
+airplane wing,1
+crevice,1
+stoop,1
+cattleya,1
+car part,1
+fret,1
+campanile,1
+student,1
+flowerbed,1
+alp,1
+dumpling,1
+scuba diver,1
+engine,1
+warehouse,1
+dome,1
+hound,1
+topiary,1
+stadium,1
+grain,1
+pitcher,1
+model t,1
+dust storm,0
+faience,1
+groom,1
+reading lamp,1
+frieze,1
+sorrel horse,1
+goldenrod,1
+conifer,1
+car interior,1
+memorial,1
+wristwatch,1
+fireworks,1
+grape,1
+can,1
+bracelet,1
+screenshot,1
+naval ship,1
+fortress,1
+bungee,1
+rainbow,1
+cavern,1
+fly,1
+weevil,1
+curry,1
+leopard,1
+lacrosse,1
+black,0
+tree frog,1
+trapeze,1
+orange tree,1
+paddy,1
+tractor,1
+locket,1
+grassland,1
+skirt,1
+clock tower,1
+street sign,1
+pine,1
+round,0
+rain,0
+aardvark,1
+toy,1
+kitchen,1
+blossom,1
+motorcycle,1
+organ instrument,1
+stork,1
+ant,1
+booby,1
+coil,1
+cigarette butt,1
+cineraria,1
+sportswear,1
+sports car,1
+aspen,1
+cologne,1
+container ship,1
+hoary marmot,1
+reef,1
+trestle,1
+battleship,1
+water,1
+honeycomb,1
+manhole,1
+beer,1
+cat,1
+german shepherd,1
+barberton daisy,1
+mangrove,1
+bison,1
+gnu,1
+solar array,1
+canary,1
+fly agaric,1
+food,1
+parrot,1
+depth of field,0
+butterfly,1
+flintlock,1
+thatch,1
+brassavola,1
+cartoon,0
+billiard room,1
+headstock,1
+flower cluster,1
+bullfight,1
+runner,1
+orchid,1
+beetle,1
+branchlet,1
+pylon,1
+jungle gym,1
+sofa,1
+ceiling,1
+eyeshadow,1
+banjo,1
+hart,1
+pinniped,1
+benthos,1
+whipping cream,1
+cliff diving,0
+cow parsley,1
+foliage,1
+porch,1
+crane fly,1
+roller skate,1
+nature,0
+fruit,1
+beverage,1
+dog,1
+bookshelf,1
+teal,0
+greens,0
+common spotted orchid,1
+mammal,1
+drawbridge,1
+white,0
+bagpipe,1
+fire truck,1
+pinetum,1
+swimsuit,1
+chalet,1
+trail,1
+florist,1
+camera,1
+gymnastic apparatus,1
+cabinet,1
+hubcap,1
+foxglove,1
+yarn,1
+dragonfly,1
+matador,1
+bedroom,1
+marguerite,1
+room light,1
+spider,1
+plate,1
+rock,1
+porcelain,1
+lynx,1
+farm machine,1
+anthurium,1
+crab,1
+hotel room,1
+nissen hut,1
+wicker basket,1
+fence,1
+lizard,1
+harp,1
+flamingo,1
+beluga,1
+tiger,1
+ring,1
+light painting,1
+gate,1
+reliquary,1
+sea lion,1
+wine cask,1
+golf cart,1
+black-eyed susan,1
+violin,1
+tomato,1
+clutch bag,1
+furry,0
+horse bridle,1
+chair,1
+kayak,1
+ball game,0
+wallet,1
+jaguar,1
+wind turbine,1
+roof,1
+cathedral,1
+portico,1
+ice skating,0
+lavender,1
+highchair,1
+lunar,0
+bench,1
+backhoe,1
+bag,1
+gray fox,1
+goal net,1
+pig,1
+aquatic bird,1
+jewelry,1
+antenna,1
+hedge,1
+wine,1
+river,1
+storm,0
+gravel,1
+shed,1
+satellite,1
+fireweed,1
+coral,1
+stall,1
+hurricane lamp,1
+bonsai,1
+shoe,1
+columbine,1
+gable roof,1
+castle,1
+shore,1
+brochette,1
+steel arch bridge,1
+geranium,1
+cocktail,1
+brick,1
+door,1
+outcrop,1
+butterfly orchid,1
+newel post,1
+harbor seal,1
+yearling,1
+foothill,1
+computer chip,1
+swan,1
+lego,1
+peacock,1
+office,1
+buttercup,1
+kitten,1
+swimming pool,1
+sweet william,1
+fur hat,1
+landscape,1
+pool cue,1
+yorkshire terrier,1
+saddle horse,1
+bride,1
+boat,1
+muskrat,1
+goose,1
+stairwell,1
+fire,1
+coltsfoot,1
+robin,1
+quilt,1
+wave,1
+jellyfish,1
+tropical,1
+alehouse,1
+timepiece,1
+cookie sheet,1
+window frame,1
+ethereal,0
+whiteboard,1
+cuticle,1
+ostrich,1
+knife,1
+sketch,0
+bonfire,1
+cap,1
+window box,1
+peacock butterfly,1
+goat,1
+cave,1
+abstract,0
+owl,1
+sleeping,1
+cannon,1
+organ loft,1
+sledding,0
+school bus,1
+soccer,1
+songbird,1
+honeysuckle,1
+horse halter,1
+sunflower,1
+church,1
+bicycling,1
+ruins,1
+grass,1
+artifact,1
+athlete,1
+husky,1
+concrete,1
+assembly hall,1
+aircraft,1
+facade,0
+showjumping,0
+reddish brown,0
+elk,1
+hitter,1
+basset,1
+portable computer,1
+chateau,1
+snow,1
+running shoe,1
+headboard,1
+performer,1
+pedestal,1
+corn,1
+blinker,1
+comic book,1
+riding,0
+rotisserie,1
+pelican,1
+crinoline,1
+feverfew,1
+microprocessor,1
+grainfield,1
+nave,1
+chestnut horse,1
+cup,1
+sheetrock,1
+tennis,1
+roller coaster,1
+wasp,1
+rotunda,1
+tire,1
+group performance,1
+field house,1
+outdoor,1
+floor lamp,1
+boxcar,1
+cockpit,1
+bowl,1
+pasture,1
+raw vegetable,1
+olive green,0
+raspberry,1
+menhir,1
+frangipani,1
+billiards,0
+riverbed,1
+lectern,1
+field,1
+jockey,1
+joystick,1
+cabin,1
+chard,1
+cross,1
+dinner table,1
+disk,1
+flower,1
+petiole,1
+dome building,1
+cabbage butterfly,1
+pitcher plant,1
+bubble,1
+piaffe,1
+formal wear,1
+cable car,1
+meeting room,1
+speed skate,1
+breakfast,1
+electronics,1
+piano keyboard,1
+scuba diving,0
+bactrian camel,1
+horse,1
+underwater,1
+gray squirrel,1
+beam,1
+monument,1
+noseband,1
+bird of prey,1
+bike pedal,1
+canoe,1
+aposematic coloration,1
+gear tooth,1
+rose window,1
+figure skating,1
+kachina,1
+lounge,1
+glasses,1
+oak,1
+candy,1
+shelf,1
+carburetor,1
+friends,1
+wheel spoke,1
+groupshot,1
+percussion instrument,1
+interior door,1
+mouse button,1
+office furniture,1
+otter,1
+candlestick,1
+denim,1
+gym weights,1
+ferris wheel,1
+white rice,1
+monochrome,0
+manor,1
+car seat,1
+hallway,1
+pear,1
+aerial,1
+teapot,1
+yacht,1
+notebook,1
+frog,1
+dessert,1
+chrysanthemum,1
+bird feeder,1
+cross-country skiing,0
+fountain,1
+radiogram,1
+smocking,1
+mantel,1
+crag,1
+white whale,1
+sashimi,1
+wood anemone,1
+bazaar,1
+sun,1
+ceramic,1
+indoor,1
+jack-o-lantern,1
+briefcase,1
+burrito,1
+light,1
+cargo container,1
+crowd,1
+dagger,1
+auditorium,1
+counter,1
+mountain,1
+lily,1
+cosplay,0
+altar,1
+steam locomotive,1
+bumper car,1
+adapter,1
+predator,1
+watch,1
+arbor,1
+coat,1
+concert band,1
+table lamp,1
+monitor,1
+building,1
+arch,1
+palm tree,1
+gearshift,1
+whale shark,1
+megalith,1
+home,1
+berry,1
+watercourse,1
+racing,0
+skin diving,0
+pheasant,1
+lichen,1
+goldfish,1
+alcohol,1
+ocean,1
+stage,1
+pasta salad,1
+airplane fuselage,1
+dough,1
+poppy,1
+monarch,1
+high jump,0
+magenta,0
+shipping container,1
+mug,1
+insect,1
+truss,1
+footwear,1
+car engine,1
+race car,1
+wheat,1
+cactus,1
+jet,1
+mist,0
+doll,1
+brass,1
+dik-dik,1
+balloon,1
+safari,0
+cenotaph,1
+column,1
+brain coral,1
+macaque,1
+passageway,1
+satellite dish,1
+bowling,0
+mezzanine,1
+studio couch,1
+streetcar,1
+brownstone,1
+heliopsis,1
+concert,1
+neon light,1
+salad bar,1
+wool,1
+vault,1
+lemon,1
+assembly,1
+speaker,1
+vise,1
+carport,1
+singlet,1
+green snake,1
+water vole,1
+cattle,1
+dogsled,1
+leafhopper,1
+glacier,1
+night,0
+dolphin,1
+shelter,1
+track,1
+masonry,1
+succulent,0
+mushroom,1
+barn owl,1
+feline,1
+chacma,1
+katydid,1
+peccary,1
+horse rein,1
+sign,1
+ewe,1
+gymnastics,0
+arborvitae,1
+cheetah,1
+african daisy,1
+recording disc,1
+slide,1
+battlement,1
+full moon,1
+petal,1
+hill,1
+box turtle,1
+palace,1
+dining room,1
+egg,1
+dusk,0
+tachometer,1
+donkey,1
+sport fight,1
+horse cart,1
+emerald,1
+computer screen,1
+hosiery,1
+bat,1
+spruce,1
+armor,1
+atoll,1
+scabious,1
+suit,1
+moth,1
+blowfly,1
+harbor,1
+bokeh,0
+dahlia,1
+cloister,1
+rugby,0
+rodent,1
+musician,1
+oven,1
+baluster,1
+farmhouse,1
+bridal veil,1
+desk,1
+bikini,1
+glass,1
+train,1
+livestock,1
+sari,1
+passenger ship,1
+handmade,1
+semiconductor,1
+painting,1
+bathroom,1
+dining table,1
+headlight,1
+gray,0
+sushi,1
+earthenware,1
+aperture,0
+bay,1
+athletic game,1
+cyclamen,1
+text,1
+tub,1
+creek,1
+cantilever bridge,1
+maroon,1
+lorikeet,1
+sunlight,0
+badminton,0
+latch,1
+iceberg,1
+four wheel drive,1
+study room,1
+bouquet,1
+display rack,1
+swim,0
+gun,1
+scorpion,1
+gorilla,1
+tyrannosaur,1
+study hall,1
+car hood,1
+red,0
+chicory,1
+bridesmaid,1
+archery,1
+document,1
+bicycle seat,1
+people,1
+digital display,1
+red maple,1
+park bench,1
+building complex,1
+fleabane,1
+electric locomotive,1
+lamp,1
+penguin,1
+bannister,1
+orangutan,1
+duck,1
+alley,1
+spinnaker,1
+bastion,1
+gull,1
+military vehicle,1
+park,1
+chassis,1
+calla,1
+water skiing,0
+tailpipe,1
+morning glory,1
+slope,1
+purse,1
+outfit,1
+bunk bed,1
+stained glass,1
+oyster mushroom,1
+country house,1
+ox,1
+pet,1
+sock,1
+doily,1
+wall,1
+telephone pole,1
+forest,1
+railroad,1
+laptop,1
+caterpillar,1
+pediment,1
+stronghold,1
+caribou,1
+fern,1
+monkey,1
+viaduct,1
+volleyball,0
+stairs,1
+surreal,0
+bee,1
+knapweed,1
+computer,1
+softball,0
+architecture,1
+control panel,1
+wine cellar,1
+pottery,1
+coreopsis,1
+water sport,0
+cosmos flower,1
+maple,1
+basket,1
+fish,1
+coffee,1
+snowmobile,1
+chess,0
+shower,1
+bird of paradise,1
+jetliner,1
+mosaic,1
+windowsill,1
+running,0
+urban decay,1
+lion,1
+hamburger,1
+amphitheater,1
+lakefront,1
+horseback riding,0
+telephone booth,1
+road,1
+banana tree,1
+tabby,1
+power cord,1
+hair,1
+food processor,1
+portrait,1
+piste,1
+dish,1
+candelabrum,1
+pink flower,1
+circle,0
+rock climbing,0
+swamp,1
+sumo wrestling,0
+motor scooter,1
+bread,1
+banquet,1
+mizzenmast,1
+rock formation,1
+cliff,1
+printed circuit board,1
+toucan,1
+latte,1
+watercolor,0
+african violet,0
+strainer,1
+appliance,1
+bookshop,1
+angus,1
+wood joinery,1
+hovel,1
+egret,1
+wood,1
+cherry blossom,1
+bike,1
+french window,1
+table tennis,0
+seal,1
+bullhorn,1
+cymbid,1
+music,1
+ball,1
+green,1
+motel room,1
+geyser,1
+keyboard,1
+airplane,1
+cornflower,1
+puppy,1
+pale yellow,0
+ice,1
+clydesdale,1
+writing,1
+hay,1
+cemetery,1
+dress,1
+romantic,0
+car grille,1
+aurora,1
+arnica,1
+tower,1
+stove gas burner,1
+intersection,1
+hippopotamus,1
+plaque,1
+censer,1
+jumbo jet,1
+four o'clock flower,1
+outdoor sport,0
+siamese cat,1
+map,1
+candle,1
+sky,1
+stool,1
+tennis racket,1
+dune,1
+pool table,1
+almond tree,1
+skewer,1
+hdr,0
+tangerine,1
+cayenne pepper,1
+eye,1
+cigar band,1
+paella,1
+cafeteria,1
+wheel,1
+skyscraper,1
+furniture,1
+bicycle wheel,1
+anemone,1
+skein,1
+wine bottle,1
+photomicrograph,0
+fieldwork,1
+high-rise,1
+whitewater rafting,0
+car rally,1
+obelisk,1
+blur,0
+barley,1
+knit,1
+collection,1
+buffalo,1
+knitting,0
+fatigues,1
+roulette,1
+odometer,1
+clipper ship,1
+curve,1
+african gray,1
+clown,1
+steering wheel,1
+fawn,1
+bee eater,1
+radio telescope,1
+lecanora,1
+corbel,1
+kite,1
+blazing star,1
+seabird,1
+shorebird,1
+white background,0
+pronghorn,1
+climber,1
+telephone wire,1
+jackal,1
+bolt,1
+fir,1
+bucket,1
+tepee,1
+crane,1
+blade,1
+seaside,1
+bletilla striata,1
+groundhog,1
+marina,1
+vessel,1
+deck,1
+sculpture,1
+flagpole,1
+black background,0
+caladenia,1
+steppe,1
+rabbit,1
+city,1
+classroom,1
+washroom,1
+minimalism,0
+frying pan,1
+feather boa,1
+tarsier,1
+fox,1
+camel,1
+car tire,1
+weathervane,1
+horse ranch,1
+raft,1
+spoon,1
+sea slug,1
+gauge,1
+hedgehog,1
+brown bear,1
+rampart,1
+siamang,1
+forklift,1
+swing,1
+table,1
+spaghetti,1
+reptile,1
+kitchen table,1
+lady's slipper orchid,1
+ram,1
+dewdrop,1
+skating,0
+court game,0
+candy cane,1
+food pan,1
+dormitory,1
+doberman,1
