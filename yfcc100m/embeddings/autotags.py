@@ -1,4 +1,4 @@
-from yfcc100m.load import load_csv_as_dict
+from yfcc100m.common import load_csv_as_dict
 from tqdm import tqdm
 
 FIELDS = ["ID", "PredictedConcepts"]
