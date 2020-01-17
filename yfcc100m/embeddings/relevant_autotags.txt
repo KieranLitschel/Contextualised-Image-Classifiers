@@ -294,7 +294,7 @@ rooster,1
 sidewalk,1
 piano,1
 coneflower,1
-drawing,1
+drawing,0
 flying buttress,1
 ridge,1
 cereal bowl,1
@@ -602,7 +602,7 @@ crimson,0
 gray horse,1
 rhododendron,1
 block,1
-boat racing,1
+boat racing,0
 golden retriever,1
 pool,1
 blackbird,1
@@ -615,7 +615,7 @@ token,1
 seagull,1
 store shelf,1
 sheep,1
-cycling,1
+cycling,0
 fighter jet,1
 athletic shoe,1
 drum,1
@@ -962,7 +962,7 @@ goat,1
 cave,1
 abstract,0
 owl,1
-sleeping,1
+sleeping,0
 cannon,1
 organ loft,1
 sledding,0
@@ -973,7 +973,7 @@ honeysuckle,1
 horse halter,1
 sunflower,1
 church,1
-bicycling,1
+bicycling,0
 ruins,1
 grass,1
 artifact,1
@@ -1066,7 +1066,7 @@ canoe,1
 aposematic coloration,1
 gear tooth,1
 rose window,1
-figure skating,1
+figure skating,0
 kachina,1
 lounge,1
 glasses,1
@@ -1270,7 +1270,7 @@ sari,1
 passenger ship,1
 handmade,1
 semiconductor,1
-painting,1
+painting,0
 bathroom,1
 dining table,1
 headlight,1
@@ -1279,7 +1279,7 @@ sushi,1
 earthenware,1
 aperture,0
 bay,1
-athletic game,1
+athletic game,0
 cyclamen,1
 text,0
 tub,1
@@ -1440,7 +1440,7 @@ puppy,1
 pale yellow,0
 ice,1
 clydesdale,1
-writing,1
+writing,0
 hay,1
 cemetery,1
 dress,1
