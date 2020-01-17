@@ -1076,7 +1076,7 @@ shelf,1
 carburetor,1
 friends,1
 wheel spoke,1
-groupshot,1
+groupshot,0
 percussion instrument,1
 interior door,1
 mouse button,1
@@ -1281,7 +1281,7 @@ aperture,0
 bay,1
 athletic game,1
 cyclamen,1
-text,1
+text,0
 tub,1
 creek,1
 cantilever bridge,1
