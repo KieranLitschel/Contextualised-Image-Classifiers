@@ -28,6 +28,7 @@ def count_user_tags(path):
         if row["UserTags"]:
             tags = row["UserTags"].split(",")
             for tag in tags:
+                tag = tag.lower()
                 if not tag_counts.get(tag):
                     tag_counts[tag] = 0
                 tag_counts[tag] += 1
@@ -63,3 +64,38 @@ def images_highest_count_user_tag(path, tag_counts_path=None):
         highest_counts[image_id] = count
     return highest_counts
 
+
+def dataset_to_file(dataset_path, autotags_path, output_path):
+    """ Reads the dataset and autotags files, and writes the id, user tags, and auto tags
+        for each image to the file at output path, by appending the rows to it
+
+    Parameters
+    ----------
+    dataset_path : str
+        Path to dataset file
+    autotags_path : str
+        Path to autotags file
+    output_path : str
+        File to append rows to
+    """
+
+    dataset = load_csv_as_dict(dataset_path, fieldnames=FIELDS)
+    autotags = load_csv_as_dict(autotags_path, fieldnames=["ID", "PredictedConcepts"])
+    lines = []
+    for dataset_row in tqdm(dataset):
+        autotags_row = next(autotags)
+        image_id = dataset_row["ID"]
+        image_user_tags = dataset_row["UserTags"]
+        image_auto_tags = autotags_row["PredictedConcepts"]
+        line = "{}\t{}\t{}\n".format(image_id, image_user_tags, image_auto_tags)
+        lines.append(line)
+        if len(lines) == 10000000:
+            output_file = open(output_path, "a")
+            output_file.writelines(lines)
+            output_file.close()
+            lines = []
+    if lines:
+        lines[-1] = lines[-1][:-1]
+        output_file = open(output_path, "a")
+        output_file.writelines(lines)
+        output_file.close()
