@@ -396,7 +396,7 @@ animal,1
 demonstrator,1
 kangaroo,1
 aircraft engine,1
-villa1
+villa,1
 pinwheel,1
 overcast,0
 telephone,1
@@ -1016,7 +1016,7 @@ rotunda,1
 tire,1
 group performance,1
 field house,1
-outdoor,1
+outdoor,0
 floor lamp,1
 boxcar,1
 cockpit,1
@@ -1112,7 +1112,7 @@ wood anemone,1
 bazaar,1
 sun,1
 ceramic,1
-indoor,1
+indoor,0
 jack-o-lantern,1
 briefcase,1
 burrito,1
