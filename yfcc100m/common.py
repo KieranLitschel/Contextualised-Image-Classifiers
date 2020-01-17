@@ -1,4 +1,5 @@
 import csv
+import re
 
 import sys
 
@@ -35,3 +36,25 @@ def load_csv_as_dict(csv_path, fieldnames=None):
     f = open(csv_path, encoding='utf8')
     c = csv.DictReader(f, fieldnames=fieldnames, delimiter=delimiter)
     return c
+
+
+def extract_image_id_from_flickr_static(static_url):
+    """ Given a static url extract the image id
+    Parameters
+    ----------
+    static_url : str
+        Static url to photo, one of kind:
+            https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
+                or
+            https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}_[mstzb].jpg
+                or
+            https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{o-secret}_o.(jpg|gif|png)
+    Returns
+    -------
+    str
+        Image id of url
+    """
+
+    pattern = r"(?:.*?\/\/?)+([^_]*)"
+    image_id = re.findall(pattern, static_url)[0]
+    return image_id
