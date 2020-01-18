@@ -1,13 +1,9 @@
-from yfcc100m.common import load_csv_as_dict
+from yfcc100m.common import get_dataset_fields, get_autotag_fields
+from common import load_csv_as_dict
 from yfcc100m.embeddings.autotags import kept_classes
 import pickle
 from tqdm import tqdm
 import re
-
-FIELDS = ["LineNumber", "ID", "Hash", "UserNSID", "UserNickname", "DateTaken", "DateUploaded",
-          "CaptureDevice", "Title", "Description", "UserTags", "MachineTags", "Longitude", "Latitude",
-          "LongLatAcc", "PageURL", "DownloadURL", "LicenseName", "LicenseURL", "ServerIdentifier",
-          "FarmIdentifier", "Secret", "OriginalSecret", "OriginalExtension", "Video"]
 
 USER_TAG_STOP_WORDS = []
 
@@ -26,7 +22,7 @@ def count_user_tags(path):
         Number of occurrences of each user tag
     """
 
-    dataset = load_csv_as_dict(path, fieldnames=FIELDS)
+    dataset = load_csv_as_dict(path, fieldnames=get_dataset_fields())
     tag_counts = {}
     for row in tqdm(dataset):
         if row["UserTags"]:
@@ -56,7 +52,7 @@ def images_highest_count_user_tag(path, tag_counts_path=None):
     """
 
     tag_counts = pickle.load(open(tag_counts_path, "rb")) if tag_counts_path else count_user_tags(path)
-    dataset = load_csv_as_dict(path, fieldnames=FIELDS)
+    dataset = load_csv_as_dict(path, fieldnames=get_dataset_fields())
     highest_counts = {}
     for row in tqdm(dataset):
         image_id = row["ID"]
@@ -68,8 +64,8 @@ def images_highest_count_user_tag(path, tag_counts_path=None):
     return highest_counts
 
 
-def dataset_to_file(dataset_path, autotags_path, output_path, keep_numbers=None, tag_freq_thresh=None,
-                    tag_counts_path=None, class_path=None):
+def join_dataset_and_autotags(dataset_path, autotags_path, output_path, keep_numbers=None, tag_freq_thresh=None,
+                              tag_counts_path=None, class_path=None):
     """ Reads the dataset and autotags files, and writes the id, user tags, and auto tags
         for each image to the file at output path, by appending the rows to it
 
@@ -93,8 +89,8 @@ def dataset_to_file(dataset_path, autotags_path, output_path, keep_numbers=None,
     """
 
     keep_numbers = keep_numbers if keep_numbers is not None else False
-    dataset = load_csv_as_dict(dataset_path, fieldnames=FIELDS)
-    autotags = load_csv_as_dict(autotags_path, fieldnames=["ID", "PredictedConcepts"])
+    dataset = load_csv_as_dict(dataset_path, fieldnames=get_dataset_fields())
+    autotags = load_csv_as_dict(autotags_path, fieldnames=get_autotag_fields())
     classes_to_keep = set(kept_classes(class_path)) if class_path else None
     tag_counts = None
     if tag_freq_thresh:

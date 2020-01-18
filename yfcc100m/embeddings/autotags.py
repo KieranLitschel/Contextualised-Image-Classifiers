@@ -1,7 +1,6 @@
-from yfcc100m.common import load_csv_as_dict
+from yfcc100m.common import get_autotag_fields
+from common import load_csv_as_dict
 from tqdm import tqdm
-
-FIELDS = ["ID", "PredictedConcepts"]
 
 
 def unique_tags(path):
@@ -18,7 +17,7 @@ def unique_tags(path):
         Unique tags
     """
 
-    autotags = load_csv_as_dict(path, fieldnames=FIELDS)
+    autotags = load_csv_as_dict(path, fieldnames=get_autotag_fields())
     concepts = set()
     for row in tqdm(autotags):
         predicted_concepts = [predicted_concept.split(":")[0] for predicted_concept in
@@ -67,7 +66,7 @@ def class_counts(path):
         Counts for each class
     """
 
-    autotags = load_csv_as_dict(path, fieldnames=FIELDS)
+    autotags = load_csv_as_dict(path, fieldnames=get_autotag_fields())
     counts = {}
     for row in tqdm(autotags):
         predicted_concepts = [predicted_concept.split(":")[0] for predicted_concept in
