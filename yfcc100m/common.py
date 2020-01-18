@@ -30,7 +30,7 @@ def get_dataset_fields():
 
     Returns
     -------
-    str
+    list of str
         Fields for dataset file
     """
 
@@ -45,7 +45,7 @@ def get_autotag_fields():
 
     Returns
     -------
-    str
+    list of str
         Fields for autotag file
     """
 
