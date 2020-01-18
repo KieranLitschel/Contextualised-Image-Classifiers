@@ -59,9 +59,10 @@ def write_rows_to_csv(rows_to_write, csv_path, fieldnames=None, mode=None):
         DictWriter object of path
     """
 
-    mode = mode or "w"
-    fieldnames = fieldnames or list(rows_to_write[0].keys())
-    f = open(csv_path, mode, encoding='utf8', newline='')
-    c = csv.DictWriter(f, fieldnames=fieldnames)
-    c.writerows(rows_to_write)
-    f.close()
+    if rows_to_write:
+        mode = mode or "w"
+        fieldnames = fieldnames or list(rows_to_write[0].keys())
+        f = open(csv_path, mode, encoding='utf8', newline='')
+        c = csv.DictWriter(f, fieldnames=fieldnames)
+        c.writerows(rows_to_write)
+        f.close()
