@@ -3,6 +3,7 @@ import re
 
 def extract_image_id_from_flickr_static(static_url):
     """ Given a static url extract the image id
+
     Parameters
     ----------
     static_url : str
@@ -12,6 +13,7 @@ def extract_image_id_from_flickr_static(static_url):
             https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}_[mstzb].jpg
                 or
             https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{o-secret}_o.(jpg|gif|png)
+
     Returns
     -------
     str
@@ -24,6 +26,14 @@ def extract_image_id_from_flickr_static(static_url):
 
 
 def get_dataset_fields():
+    """ Return the fields for dataset file
+
+    Returns
+    -------
+    str
+        Fields for dataset file
+    """
+
     return ["LineNumber", "ID", "Hash", "UserNSID", "UserNickname", "DateTaken", "DateUploaded",
             "CaptureDevice", "Title", "Description", "UserTags", "MachineTags", "Longitude", "Latitude",
             "LongLatAcc", "PageURL", "DownloadURL", "LicenseName", "LicenseURL", "ServerIdentifier",
@@ -31,4 +41,12 @@ def get_dataset_fields():
 
 
 def get_autotag_fields():
+    """ Return the fields for autotag file
+
+    Returns
+    -------
+    str
+        Fields for autotag file
+    """
+
     return ["ID", "PredictedConcepts"]
