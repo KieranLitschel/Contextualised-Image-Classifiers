@@ -27,8 +27,8 @@ def extract_image_id_from_flickr_static(static_url):
     return image_id
 
 
-def get_train_val_test_ids(oiv_folder):
-    """ Extract the image ids for train, validation, and test in the OIV dataset
+def get_train_val_test_flickr_ids(oiv_folder):
+    """ Extract the flickr image ids for train, validation, and test in the OIV dataset
 
     Parameters
     ----------
