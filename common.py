@@ -48,7 +48,7 @@ def new_csv_as_dict(csv_path, fieldnames, mode=None):
         Path to csv
     fieldnames : list of str
         List of fieldnames for csv
-    mode : bool
+    mode : str
         Mode to write to file (w for write, a for append)
 
     Returns
