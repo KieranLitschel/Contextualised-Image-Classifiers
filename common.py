@@ -63,6 +63,6 @@ def write_rows_to_csv(rows_to_write, csv_path, fieldnames=None, mode=None):
         mode = mode or "w"
         fieldnames = fieldnames or list(rows_to_write[0].keys())
         f = open(csv_path, mode, encoding='utf8', newline='')
-        c = csv.DictWriter(f, fieldnames=fieldnames)
+        c = csv.DictWriter(f, fieldnames=fieldnames, delimiter="\t")
         c.writerows(rows_to_write)
         f.close()
