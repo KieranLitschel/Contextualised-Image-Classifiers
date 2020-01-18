@@ -1,6 +1,7 @@
 import re
 import os
 from common import load_csv_as_dict
+from tqdm import tqdm
 
 
 def extract_image_id_from_flickr_static(static_url):
@@ -44,7 +45,7 @@ def get_train_val_test_flickr_ids(oiv_folder):
     files = {"train": "train-images-boxable-with-rotation.csv", "validation": "validation-images-with-rotation.csv",
              "test": "test-images-with-rotation.csv"}
     image_ids = {}
-    for subset, file_name in files.items():
+    for subset, file_name in tqdm(files.items()):
         subset_csv = load_csv_as_dict(os.path.join(oiv_folder, file_name), delimiter=",")
         subset_ids = set()
         for row in subset_csv:
