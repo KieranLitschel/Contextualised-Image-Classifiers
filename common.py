@@ -37,3 +37,27 @@ def load_csv_as_dict(csv_path, fieldnames=None, delimiter=None):
     f = open(csv_path, encoding='utf8')
     c = csv.DictReader(f, fieldnames=fieldnames, delimiter=delimiter)
     return c
+
+
+def new_csv_as_dict(csv_path, fieldnames, mode=None):
+    """ Loads the csv DictWriter
+
+    Parameters
+    ----------
+    csv_path : str
+        Path to csv
+    fieldnames : list of str
+        List of fieldnames for csv
+    mode : bool
+        Mode to write to file (w for write, a for append)
+
+    Returns
+    -------
+    csv.DictWriter
+        DictWriter object of path
+    """
+
+    mode = mode or "w"
+    f = open(csv_path, mode, encoding='latin1', newline='')
+    c = csv.DictWriter(f, fieldnames=fieldnames)
+    return c
