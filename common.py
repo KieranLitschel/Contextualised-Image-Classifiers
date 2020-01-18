@@ -39,15 +39,17 @@ def load_csv_as_dict(csv_path, fieldnames=None, delimiter=None):
     return c
 
 
-def new_csv_as_dict(csv_path, fieldnames, mode=None):
-    """ Loads the csv DictWriter
+def write_rows_to_csv(rows_to_write, csv_path, fieldnames=None, mode=None):
+    """ Write the rows the csv at the path
 
     Parameters
     ----------
+    rows_to_write : list of dict
+        Rows to write to the CSV
     csv_path : str
         Path to csv
     fieldnames : list of str
-        List of fieldnames for csv
+        List of fieldnames for csv. Default of keys of first row in rows_to_write
     mode : str
         Mode to write to file (w for write, a for append)
 
@@ -58,6 +60,8 @@ def new_csv_as_dict(csv_path, fieldnames, mode=None):
     """
 
     mode = mode or "w"
-    f = open(csv_path, mode, encoding='latin1', newline='')
+    fieldnames = fieldnames or list(rows_to_write[0].keys())
+    f = open(csv_path, mode, encoding='utf8', newline='')
     c = csv.DictWriter(f, fieldnames=fieldnames)
-    return c
+    c.writerows(rows_to_write)
+    f.close()
