@@ -1,0 +1,137 @@
+from __future__ import absolute_import, division, print_function, unicode_literals
+
+import os
+import tensorflow as tf
+import tensorflow_datasets as tfds
+import numpy as np
+from tqdm import tqdm
+
+
+def _build_classes_encoder(classes_set):
+    """ Takes a set of classes and builds a token text encoder, to convert the str classes to numbers
+
+    Parameters
+    ----------
+    classes_set : set of str
+        Set of classes
+
+    Returns
+    -------
+    tfds.features.text.TokenTextEncoder
+        Encoder for classes
+    """
+
+    classes_encoder = tfds.features.text.TokenTextEncoder(classes_set, decode_token_separator=",")
+    return classes_encoder
+
+
+def _process_raw_row(row):
+    """ Takes a set of classes and builds a token text encoder, to convert the str classes to numbers
+
+    Parameters
+    ----------
+    row : tf.string
+        Row from file produced by yfcc100m.embeddings.prepare.joined_to_subsets
+
+    Returns
+    -------
+    (str, str)
+        First element is comma separated user tags, second element is comma separated classes, both in str format
+    """
+
+    _, user_tags, labels = bytes.decode(row).split("\t")
+    labels = ",".join([label_prob.split(":")[0] for label_prob in labels.split(",")])
+    return tf.cast(user_tags, tf.string), tf.cast(labels, tf.string)
+
+
+def _str_row_to_int(features, features_encoder, labels, classes_encoder):
+    """ Converts comma separated user tags to list of encoded tag id's, and comma separated classes to one hot encoded
+        classes
+
+    Parameters
+    ----------
+    features : tf.string
+        User tags, separated by commas
+    features_encoder : tfds.features.text.TokenTextEncoder
+        User tags encoder
+    labels : tf.string
+        Labels, separated by commas
+    classes_encoder : tfds.features.text.TokenTextEncoder
+        Labels encoder
+
+    Returns
+    -------
+    (np array of int, np array of int)
+        First element is
+    """
+
+    encoded_features = features_encoder.encode(bytes.decode(features))
+    encoded_labels = classes_encoder.encode(bytes.decode(labels))
+    one_hot_labels = np.zeros(classes_encoder.vocab_size)
+    for label_num in encoded_labels:
+        one_hot_labels[label_num - 1] = 1
+    return encoded_features, one_hot_labels
+
+
+def load_subset_as_tf_data(path, classes_encoder, feature_encoder=None):
+    """ Loads the subset passed, encodes the features, and one hot-encodes the classes
+
+    Parameters
+    ----------
+    path : tf.string
+        Path to subset to be loaded
+    classes_encoder : tfds.features.text.TokenTextEncoder
+        Labels encoder
+    feature_encoder : tfds.features.text.TokenTextEncoder
+        User tags encoder. If not specified build from scratch
+
+    Returns
+    -------
+    tf.python.data.ops.dataset_ops.DatasetV1Adapter
+        The subset ready for use in TensorFlow, if feature_encoder was not passed then the constructed one is returned
+        as the second element of a tuple
+    """
+
+    raw_dataset = tf.data.TextLineDataset(path)
+    str_features_labels_dataset = raw_dataset.map(
+        lambda row: tf.py_func(_process_raw_row, inp=[row], Tout=[tf.string, tf.string]))
+    feature_encoder_was_none = not feature_encoder
+    if not feature_encoder:
+        print("Building feature encoder")
+        vocab_set = set()
+        for user_tags, _ in tqdm(str_features_labels_dataset):
+            tokens = bytes.decode(user_tags.numpy()).split(",")
+            vocab_set.update(tokens)
+        feature_encoder = tfds.features.text.TokenTextEncoder(vocab_set, decode_token_separator=",")
+    features_labels_dataset = str_features_labels_dataset.map(
+        lambda features, labels: tf.py_func(_str_row_to_int,
+                                            inp=[features, feature_encoder, labels, classes_encoder],
+                                            Tout=[tf.int64, tf.int64]))
+    if feature_encoder_was_none:
+        return features_labels_dataset, feature_encoder
+    return features_labels_dataset
+
+
+def load_train_val(dataset_folder, classes_set):
+    """ For train and validation, loads them, encodes the features, and one hot-encodes the classes. Validation dataset
+        features encoded using encoder built from train
+
+    Parameters
+    ----------
+    dataset_folder : str
+        The location of the train and validation files
+    classes_set : set of str
+        The set of classes
+
+    Returns
+    -------
+    tf.python.data.ops.dataset_ops.DatasetV1Adapter, tf.python.data.ops.dataset_ops.DatasetV1Adapter,
+    tfds.features.text.TokenTextEncoder
+        First element is the train data, second is the validation data, third is the feature extractor built from train
+    """
+
+    classes_encoder = _build_classes_encoder(classes_set)
+    train_dataset, feature_encoder = load_subset_as_tf_data(os.path.join(dataset_folder, "train"), classes_encoder)
+    val_dataset = load_subset_as_tf_data(os.path.join(dataset_folder, "validation"), classes_encoder,
+                                         feature_encoder=feature_encoder)
+    return train_dataset, val_dataset, feature_encoder
