@@ -38,7 +38,7 @@ def get_train_val_test_flickr_ids(oiv_folder):
 
     Returns
     -------
-    dict of set
+    dict of str -> set
         Dict mapping "train", "validation", and "test" to sets, containing the flickr ids of images that belong to them
     """
 
