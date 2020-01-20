@@ -141,3 +141,29 @@ def joined_to_subsets(oiv_folder, dataset_path, output_folder):
             rows_in_memory = 0
     for subset in subsets:
         write_rows_to_csv(rows_by_subset[subset], os.path.join(output_folder, subset), mode="a")
+
+
+def count_frequency_of_number_of_user_tags(train_path):
+    """ Counts the frequency that each possible number of tags occurs
+
+    Parameters
+    ----------
+    train_path : str
+        Path to training subset produced by joined_to_subsets
+
+    Returns
+    -------
+    dict of int -> int
+        Maps number of tags to its frequency across the training set
+    """
+
+    train = load_csv_as_dict(train_path, fieldnames=["ID", "UserTags", "PredictedConcepts"])
+    len_freqs = {}
+    for row in train:
+        tags = row["UserTags"].split(",")
+        no_tags = len(tags)
+        if no_tags not in len_freqs:
+            len_freqs[no_tags] = 0
+        len_freqs[no_tags] += 1
+    return len_freqs
+
