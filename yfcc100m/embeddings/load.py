@@ -116,8 +116,7 @@ def load_subset_as_tf_data(path, classes_encoder, features_encoder=None, tag_thr
         features_encoder = tfds.features.text.TokenTextEncoder(vocab_list, decode_token_separator=",")
     custom_str_row_to_int = partial(_str_row_to_int, features_encoder=features_encoder, classes_encoder=classes_encoder)
     features_labels_dataset = str_features_labels_dataset.map(
-        lambda features, labels: tf.py_function(custom_str_row_to_int,
-                                                inp=[features, features_encoder, labels, classes_encoder],
+        lambda features, labels: tf.py_function(custom_str_row_to_int, inp=[features, labels],
                                                 Tout=[tf.int64, tf.int64]))
     if feature_encoder_was_none:
         return features_labels_dataset, features_encoder
