@@ -73,7 +73,7 @@ def _str_row_to_int(features, features_encoder, labels, classes_encoder):
     return encoded_features, one_hot_labels
 
 
-def load_subset_as_tf_data(path, classes_encoder, feature_encoder=None):
+def load_subset_as_tf_data(path, classes_encoder, feature_encoder=None, tag_threshold=None):
     """ Loads the subset passed, encodes the features, and one hot-encodes the classes
 
     Parameters
@@ -84,6 +84,9 @@ def load_subset_as_tf_data(path, classes_encoder, feature_encoder=None):
         Labels encoder
     feature_encoder : tfds.features.text.TokenTextEncoder
         User tags encoder. If not specified build from scratch
+    tag_threshold : int
+        Used to construct feature extractor if it is not specified. Threshold for keeping tags as features. Default of
+        None. If None all tags are kept
 
     Returns
     -------
@@ -98,11 +101,18 @@ def load_subset_as_tf_data(path, classes_encoder, feature_encoder=None):
     feature_encoder_was_none = not feature_encoder
     if not feature_encoder:
         print("Building feature encoder")
-        vocab_set = set()
+        vocab_count = {}
         for user_tags, _ in tqdm(str_features_labels_dataset):
             tokens = bytes.decode(user_tags.numpy()).split(",")
-            vocab_set.update(tokens)
-        feature_encoder = tfds.features.text.TokenTextEncoder(vocab_set, decode_token_separator=",")
+            for token in tokens:
+                if not vocab_count.get(token):
+                    vocab_count[token] = 0
+                vocab_count[token] += 1
+        vocab_list = []
+        for vocab, count in vocab_count.items():
+            if not tag_threshold or count > tag_threshold:
+                vocab_list.append(vocab)
+        feature_encoder = tfds.features.text.TokenTextEncoder(vocab_list, decode_token_separator=",")
     features_labels_dataset = str_features_labels_dataset.map(
         lambda features, labels: tf.py_func(_str_row_to_int,
                                             inp=[features, feature_encoder, labels, classes_encoder],
