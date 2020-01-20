@@ -111,7 +111,7 @@ def load_subset_as_tf_data(path, classes_encoder, features_encoder=None, tag_thr
                 vocab_count[token] += 1
         vocab_list = []
         for vocab, count in vocab_count.items():
-            if not tag_threshold or count > tag_threshold:
+            if not tag_threshold or count >= tag_threshold:
                 vocab_list.append(vocab)
         features_encoder = tfds.features.text.TokenTextEncoder(vocab_list, decode_token_separator=",")
     custom_str_row_to_int = partial(_str_row_to_int, features_encoder=features_encoder, classes_encoder=classes_encoder)
