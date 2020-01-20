@@ -9,7 +9,7 @@ from functools import partial
 from common import load_csv_as_dict
 
 
-def _build_classes_encoder(classes_set):
+def build_classes_encoder(classes_set):
     """ Takes a set of classes and builds a token text encoder, to convert the str classes to numbers
 
     Parameters
@@ -165,7 +165,7 @@ def load_train_val(dataset_folder, classes_set, tag_threshold=None):
         fourth is the class encoder
     """
 
-    classes_encoder = _build_classes_encoder(classes_set)
+    classes_encoder = build_classes_encoder(classes_set)
     train_dataset, features_encoder = load_subset_as_tf_data(os.path.join(dataset_folder, "train"), classes_encoder,
                                                              tag_threshold=tag_threshold)
     val_dataset = load_subset_as_tf_data(os.path.join(dataset_folder, "validation"), classes_encoder,
