@@ -1,0 +1,1424 @@
+### TokenTextEncoder
+### Metadata: {"lowercase": false, "oov_buckets": 1, "oov_token": "UNK"}
+chipmunk
+chain-link
+hat
+arabian camel
+flag
+loft
+gorge
+hawk
+onion dome
+armored personnel carrier
+saint bernard
+undergarment
+scallop
+guitar
+buggy
+dial
+magazine
+heron
+draft horse
+leaf
+boa constrictor
+butterfly fish
+graffiti
+aqualung
+muffin
+bright
+bittern
+meadow
+gable
+lecture hall
+sea turtle
+snake
+computer circuit
+paddle
+fireplace
+brass instrument
+barn
+chicken
+cable
+clam
+hand luggage
+yak
+steam engine
+carousel
+emu
+parasail
+mandrill
+trail bike
+outerwear
+handicraft
+tree
+colonnade
+freeway
+fortification
+frond
+gold
+snorkel
+nail polish
+pants
+fuchsia
+motor
+helicopter
+arctic fox
+yurt
+wolf
+go-kart
+carriage
+pumpkin
+oar
+bean
+white admiral
+mexican sunflower
+beachwear
+boot
+building structure
+sand
+mixed drink
+trellis
+lens
+stag
+baseball
+foremast
+mosquito
+head
+plant
+ice rink
+tattoo
+car bumper
+farmer's market
+gothic arch
+teasel
+poster
+star shape
+lingerie
+tiger lily
+valley
+pizza
+mountain peak
+waterwheel
+earphone
+circuitry
+library
+stonework
+house
+overpass
+cake
+pavilion
+capitol
+sandwich
+snowbank
+plumbago
+waterfront
+grocery store
+rodeo
+microwave oven
+pastel
+zebra
+bald eagle
+bottle
+brussels carpet
+skylight
+guanaco
+airframe
+temple
+backboard
+cityscape
+cichlid
+tarpaulin
+headrest
+buffet
+stock car
+bird
+railroad track
+doe
+armored vehicle
+turtle
+golf club
+ski
+roman arch
+atrium
+french fries
+rocking chair
+roller skating
+paper
+pigeon
+chaetodon
+new england aster
+military officer
+giant clam
+apartment
+sandbox
+llama
+dancer
+sakura
+oil lamp
+squash
+bleeding heart
+big cat
+hamster
+hour hand
+adobe
+vegetable
+parasol
+black swan
+cappuccino
+pedestrian crossing
+pond
+amphora
+purple heather
+fort
+calliandra
+curtain
+strawberry
+football helmet
+ocean floor
+earring
+vivarium
+thistle
+chihuahua
+television
+gerbil
+angora
+accordion
+artillery
+window
+porthole
+dandelion
+canyon
+girder
+display screen
+shellfish
+birdbath
+steeple
+chandelier
+batter
+cherry
+gaillardia
+ladybug
+diver
+eskimo dog
+cocotte
+car mirror
+picador
+hearth
+amphibian
+crocodile
+cow
+pistil
+garden
+sewing machine
+beach
+fabric
+needlework
+echinoderm
+elephant
+grizzly
+car wheel
+shelf stacks
+aster
+kiwi
+triangle
+rotor blade
+plywood
+open air market
+fuel injection
+brittle star
+radio
+jacket
+lemur
+breakfast table
+stagecoach
+pantheon
+deer
+pier
+ski pole
+cage
+nigella
+solar cell
+sea trout
+aisle
+swimming trunks
+starfish
+recreational vehicle
+prairie dog
+lock
+locomotive
+rope bridge
+billy goat
+gondola
+post
+wagon
+sea
+pasta
+flagon
+streetlight
+computer monitor
+bicycle
+cockatiel
+circuit
+bar
+apple tree
+armrest
+triptych
+rooster
+sidewalk
+piano
+coneflower
+flying buttress
+ridge
+cereal bowl
+harvester
+eagle
+carthorse
+willow
+basketball
+kingfisher
+traction engine
+duckling
+windshield
+hands
+baggage
+potter's wheel
+door knocker
+chest of drawers
+ensemble
+toilet
+cloud
+snow leopard
+lake
+phlox
+football
+stream
+patchwork
+alligator
+tamarin
+volcanic crater
+truck
+coliseum
+bowsprit
+floor
+ferry
+harness
+gargoyle
+wood laminate
+moorhen
+primate
+banyan
+soldier
+passerine
+water tower
+cetacean
+indigo
+boa
+watchtower
+sunbath
+juice
+airliner
+handbag
+buckle
+art gallery
+lymphocyte
+panda
+necklace
+faucet
+potted plant
+bear
+spider orchid
+firearm
+bobcat
+beer bottle
+ship
+umbel
+frill
+carnivorous plant
+ferrari
+stone wall
+clock
+rhinoceros
+overalls
+sun parlor
+abutment
+hammock
+drapery
+department store
+canine
+daisy
+saddle
+meal
+stemma
+umbrella
+peach
+sea anemone
+step
+electric organ
+gourd
+mountainside
+bridge
+drawer
+van
+animal
+demonstrator
+kangaroo
+aircraft engine
+villa
+pinwheel
+telephone
+ballpark
+pointed arch
+brickwork
+crew boat
+pelagic bird
+blouse
+lighthouse
+snail
+dashboard
+field mustard
+ape
+trench coat
+clownfish
+balloon flower
+jamb
+bulldozer
+cedar
+vanda
+hang glider
+cliff dwelling
+macaw
+belfry
+clavier
+round arch
+seat belt
+moon
+lioness
+marigold
+cockatoo
+computer mouse
+stoneware
+jewelry chain
+card index
+beanie
+saucepan
+radome
+washbasin
+glacier lily
+support column
+hand rail
+tea
+anemone fish
+plain
+polar bear
+soil
+ranch
+wire
+fuschia
+fragrant orchid
+minute hand
+rapeseed
+infrastructure
+walkway
+coast
+waterfowl
+acropolis
+gazelle
+drums
+knitwear
+closet
+gown
+scoreboard
+hortensia
+restaurant
+bus
+camp chair
+toad
+lory
+arete
+kitchen ware
+african lily
+lionfish
+petunia
+sprocket
+lampshade
+ibex
+display window
+meerkat
+dendrobium
+barbecue
+wood fence
+resort
+pepper
+hand
+locust
+cruise ship
+windmill
+ringlet
+gatehouse
+parade
+great hall
+print
+riverbank
+armchair
+canal boat
+cabbage
+carnivore
+snowdrift
+evening primrose
+hibiscus
+collared peccary
+snack bar
+tortoise
+flame
+illustration
+dresser
+spar
+frock
+wood panels
+bull
+lantern
+hot air balloon
+shorts
+screw
+poker plant
+escarpment
+costume
+ocean liner
+hummingbird
+fashion
+condominium
+car
+statue
+art
+spur gear
+screen
+black bear
+vase
+panicle
+tent
+life jacket
+vole
+spadix
+harness horse
+bed
+shirt
+photo border
+yard
+mouse
+playground
+anteater
+rose
+giraffe
+squirrel
+egg yolk
+golf
+taillight
+buck
+rowing boat
+birch
+stringed instrument
+casserole
+book
+iris
+highway
+bluff
+web
+vehicle
+greenhouse
+skunk
+mountain bike
+red panda
+blue jay
+red squirrel
+salad
+rock wall
+tulip
+apple
+floret
+sail boat
+signboard
+skyline
+campsite
+onion
+spider web
+waterfall
+dolmen
+sea urchin
+yellow
+cpu board
+water ski
+gray horse
+rhododendron
+block
+golden retriever
+pool
+blackbird
+labrador
+makeup
+gravestone
+rim
+token
+seagull
+store shelf
+sheep
+fighter jet
+athletic shoe
+drum
+poodle
+grid
+milk thistle
+jeans
+capuchin
+freight car
+clasp
+snowboard
+mountain ridge
+abbey
+orange daisy
+computer keyboard
+worm
+vigil light
+gear
+persimmon
+lamppost
+rafter
+hospital
+swine
+sea otter
+neckpiece
+clothespin
+swivel chair
+pew
+chairlift
+shop
+path
+podium
+power line
+mansion
+keyboard instrument
+bunny
+daffodil
+picture frame
+stubble
+alternator
+row house
+chocolate
+carp
+amusement park
+casino
+meadow cranesbill
+fig
+reservoir
+marmot
+tramline
+cd
+pedestal table
+red admiral
+mainmast
+soup
+dwelling
+conference table
+passion flower
+hall
+banner
+airplane wing
+crevice
+stoop
+cattleya
+car part
+fret
+campanile
+student
+flowerbed
+alp
+dumpling
+scuba diver
+engine
+warehouse
+dome
+hound
+topiary
+stadium
+grain
+pitcher
+model t
+faience
+groom
+reading lamp
+frieze
+sorrel horse
+goldenrod
+conifer
+car interior
+memorial
+wristwatch
+fireworks
+grape
+can
+bracelet
+screenshot
+naval ship
+fortress
+bungee
+rainbow
+cavern
+fly
+weevil
+curry
+leopard
+lacrosse
+tree frog
+trapeze
+orange tree
+paddy
+tractor
+locket
+grassland
+skirt
+clock tower
+street sign
+pine
+aardvark
+toy
+kitchen
+blossom
+motorcycle
+organ instrument
+stork
+ant
+booby
+coil
+cigarette butt
+cineraria
+sportswear
+sports car
+aspen
+cologne
+container ship
+hoary marmot
+reef
+trestle
+battleship
+water
+honeycomb
+manhole
+beer
+cat
+german shepherd
+barberton daisy
+mangrove
+bison
+gnu
+solar array
+canary
+fly agaric
+food
+parrot
+butterfly
+flintlock
+thatch
+brassavola
+billiard room
+headstock
+flower cluster
+bullfight
+runner
+orchid
+beetle
+branchlet
+pylon
+jungle gym
+sofa
+ceiling
+eyeshadow
+banjo
+hart
+pinniped
+benthos
+whipping cream
+cow parsley
+foliage
+porch
+crane fly
+roller skate
+fruit
+beverage
+dog
+bookshelf
+common spotted orchid
+mammal
+drawbridge
+bagpipe
+fire truck
+pinetum
+swimsuit
+chalet
+trail
+florist
+camera
+gymnastic apparatus
+cabinet
+hubcap
+foxglove
+yarn
+dragonfly
+matador
+bedroom
+marguerite
+room light
+spider
+plate
+rock
+porcelain
+lynx
+farm machine
+anthurium
+crab
+hotel room
+nissen hut
+wicker basket
+fence
+lizard
+harp
+flamingo
+beluga
+tiger
+ring
+light painting
+gate
+reliquary
+sea lion
+wine cask
+golf cart
+black-eyed susan
+violin
+tomato
+clutch bag
+horse bridle
+chair
+kayak
+wallet
+jaguar
+wind turbine
+roof
+cathedral
+portico
+lavender
+highchair
+bench
+backhoe
+bag
+gray fox
+goal net
+pig
+aquatic bird
+jewelry
+antenna
+hedge
+wine
+river
+gravel
+shed
+satellite
+fireweed
+coral
+stall
+hurricane lamp
+bonsai
+shoe
+columbine
+gable roof
+castle
+shore
+brochette
+steel arch bridge
+geranium
+cocktail
+brick
+door
+outcrop
+butterfly orchid
+newel post
+harbor seal
+yearling
+foothill
+computer chip
+swan
+lego
+peacock
+office
+buttercup
+kitten
+swimming pool
+sweet william
+fur hat
+landscape
+pool cue
+yorkshire terrier
+saddle horse
+bride
+boat
+muskrat
+goose
+stairwell
+fire
+coltsfoot
+robin
+quilt
+wave
+jellyfish
+tropical
+alehouse
+timepiece
+cookie sheet
+window frame
+whiteboard
+cuticle
+ostrich
+knife
+bonfire
+cap
+window box
+peacock butterfly
+goat
+cave
+owl
+cannon
+organ loft
+school bus
+soccer
+songbird
+honeysuckle
+horse halter
+sunflower
+church
+ruins
+grass
+artifact
+athlete
+husky
+concrete
+assembly hall
+aircraft
+elk
+hitter
+basset
+portable computer
+chateau
+snow
+running shoe
+headboard
+performer
+pedestal
+corn
+blinker
+comic book
+rotisserie
+pelican
+crinoline
+feverfew
+microprocessor
+grainfield
+nave
+chestnut horse
+cup
+sheetrock
+tennis
+roller coaster
+wasp
+rotunda
+tire
+group performance
+field house
+floor lamp
+boxcar
+cockpit
+bowl
+pasture
+raw vegetable
+raspberry
+menhir
+frangipani
+riverbed
+lectern
+field
+jockey
+joystick
+cabin
+chard
+cross
+dinner table
+disk
+flower
+petiole
+dome building
+cabbage butterfly
+pitcher plant
+bubble
+piaffe
+formal wear
+cable car
+meeting room
+speed skate
+breakfast
+electronics
+piano keyboard
+bactrian camel
+horse
+underwater
+gray squirrel
+beam
+monument
+noseband
+bird of prey
+bike pedal
+canoe
+aposematic coloration
+gear tooth
+rose window
+kachina
+lounge
+glasses
+oak
+candy
+shelf
+carburetor
+friends
+wheel spoke
+percussion instrument
+interior door
+mouse button
+office furniture
+otter
+candlestick
+denim
+gym weights
+ferris wheel
+white rice
+manor
+car seat
+hallway
+pear
+aerial
+teapot
+yacht
+notebook
+frog
+dessert
+chrysanthemum
+bird feeder
+fountain
+radiogram
+smocking
+mantel
+crag
+white whale
+sashimi
+wood anemone
+bazaar
+sun
+ceramic
+jack-o-lantern
+briefcase
+burrito
+light
+cargo container
+crowd
+dagger
+auditorium
+counter
+mountain
+lily
+altar
+steam locomotive
+bumper car
+adapter
+predator
+watch
+arbor
+coat
+concert band
+table lamp
+monitor
+building
+arch
+palm tree
+gearshift
+whale shark
+megalith
+home
+berry
+watercourse
+pheasant
+lichen
+goldfish
+alcohol
+ocean
+stage
+pasta salad
+airplane fuselage
+dough
+poppy
+monarch
+shipping container
+mug
+insect
+truss
+footwear
+car engine
+race car
+wheat
+cactus
+jet
+doll
+brass
+dik-dik
+balloon
+cenotaph
+column
+brain coral
+macaque
+passageway
+satellite dish
+mezzanine
+studio couch
+streetcar
+brownstone
+heliopsis
+concert
+neon light
+salad bar
+wool
+vault
+lemon
+assembly
+speaker
+vise
+carport
+singlet
+green snake
+water vole
+cattle
+dogsled
+leafhopper
+glacier
+dolphin
+shelter
+track
+masonry
+mushroom
+barn owl
+feline
+chacma
+katydid
+peccary
+horse rein
+sign
+ewe
+arborvitae
+cheetah
+african daisy
+recording disc
+slide
+battlement
+full moon
+petal
+hill
+box turtle
+palace
+dining room
+egg
+tachometer
+donkey
+sport fight
+horse cart
+emerald
+computer screen
+hosiery
+bat
+spruce
+armor
+atoll
+scabious
+suit
+moth
+blowfly
+harbor
+dahlia
+cloister
+rodent
+musician
+oven
+baluster
+farmhouse
+bridal veil
+desk
+bikini
+glass
+train
+livestock
+sari
+passenger ship
+handmade
+semiconductor
+bathroom
+dining table
+headlight
+sushi
+earthenware
+bay
+cyclamen
+tub
+creek
+cantilever bridge
+maroon
+lorikeet
+latch
+iceberg
+four wheel drive
+study room
+bouquet
+display rack
+gun
+scorpion
+gorilla
+tyrannosaur
+study hall
+car hood
+chicory
+bridesmaid
+archery
+document
+bicycle seat
+people
+digital display
+red maple
+park bench
+building complex
+fleabane
+electric locomotive
+lamp
+penguin
+bannister
+orangutan
+duck
+alley
+spinnaker
+bastion
+gull
+military vehicle
+park
+chassis
+calla
+tailpipe
+morning glory
+slope
+purse
+outfit
+bunk bed
+stained glass
+oyster mushroom
+country house
+ox
+pet
+sock
+doily
+wall
+telephone pole
+forest
+railroad
+laptop
+caterpillar
+pediment
+stronghold
+caribou
+fern
+monkey
+viaduct
+stairs
+bee
+knapweed
+computer
+architecture
+control panel
+wine cellar
+pottery
+coreopsis
+cosmos flower
+maple
+basket
+fish
+coffee
+snowmobile
+shower
+bird of paradise
+jetliner
+mosaic
+windowsill
+urban decay
+lion
+hamburger
+amphitheater
+lakefront
+telephone booth
+road
+banana tree
+tabby
+power cord
+hair
+food processor
+portrait
+piste
+dish
+candelabrum
+pink flower
+swamp
+motor scooter
+bread
+banquet
+mizzenmast
+rock formation
+cliff
+printed circuit board
+toucan
+latte
+strainer
+appliance
+bookshop
+angus
+wood joinery
+hovel
+egret
+wood
+cherry blossom
+bike
+french window
+seal
+bullhorn
+cymbid
+music
+ball
+green
+motel room
+geyser
+keyboard
+airplane
+cornflower
+puppy
+ice
+clydesdale
+hay
+cemetery
+dress
+car grille
+aurora
+arnica
+tower
+stove gas burner
+intersection
+hippopotamus
+plaque
+censer
+jumbo jet
+four o'clock flower
+siamese cat
+map
+candle
+sky
+stool
+tennis racket
+dune
+pool table
+almond tree
+skewer
+tangerine
+cayenne pepper
+eye
+cigar band
+paella
+cafeteria
+wheel
+skyscraper
+furniture
+bicycle wheel
+anemone
+skein
+wine bottle
+fieldwork
+high-rise
+car rally
+obelisk
+barley
+knit
+collection
+buffalo
+fatigues
+roulette
+odometer
+clipper ship
+curve
+african gray
+clown
+steering wheel
+fawn
+bee eater
+radio telescope
+lecanora
+corbel
+kite
+blazing star
+seabird
+shorebird
+pronghorn
+climber
+telephone wire
+jackal
+bolt
+fir
+bucket
+tepee
+crane
+blade
+seaside
+bletilla striata
+groundhog
+marina
+vessel
+deck
+sculpture
+flagpole
+caladenia
+steppe
+rabbit
+city
+classroom
+washroom
+frying pan
+feather boa
+tarsier
+fox
+camel
+car tire
+weathervane
+horse ranch
+raft
+spoon
+sea slug
+gauge
+hedgehog
+brown bear
+rampart
+siamang
+forklift
+swing
+table
+spaghetti
+reptile
+kitchen table
+lady's slipper orchid
+ram
+dewdrop
+candy cane
+food pan
+dormitory
+doberman
