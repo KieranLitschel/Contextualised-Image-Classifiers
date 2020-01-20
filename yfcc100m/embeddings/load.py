@@ -176,9 +176,10 @@ def load_train_val(dataset_folder, classes_set, tag_threshold=None):
     """
 
     classes_encoder = build_classes_encoder(classes_set)
+    print("Building features encoder")
     features_encoder = build_features_encoder(os.path.join(dataset_folder, "train"), tag_threshold=tag_threshold)
-    train_dataset, features_encoder = load_subset_as_tf_data(os.path.join(dataset_folder, "train"), classes_encoder,
-                                                             features_encoder=features_encoder)
+    train_dataset = load_subset_as_tf_data(os.path.join(dataset_folder, "train"), classes_encoder,
+                                           features_encoder=features_encoder)
     val_dataset = load_subset_as_tf_data(os.path.join(dataset_folder, "validation"), classes_encoder,
                                          features_encoder=features_encoder)
     return train_dataset, val_dataset, features_encoder, classes_encoder
