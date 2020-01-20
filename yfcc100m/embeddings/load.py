@@ -31,7 +31,7 @@ def _process_raw_row(row):
 
     Parameters
     ----------
-    row : tf.string
+    row : tf.Tensor
         Row from file produced by yfcc100m.embeddings.prepare.joined_to_subsets
 
     Returns
@@ -51,9 +51,9 @@ def _str_row_to_int(features, labels, features_encoder, classes_encoder):
 
     Parameters
     ----------
-    features : tf.string
+    features : tf.Tensor
         User tags, separated by commas
-    labels : tf.string
+    labels : tf.Tensor
         Labels, separated by commas
     features_encoder : tfds.features.text.TokenTextEncoder
         User tags encoder
@@ -66,12 +66,12 @@ def _str_row_to_int(features, labels, features_encoder, classes_encoder):
         First element is
     """
 
-    encoded_features = features_encoder.encode(bytes.decode(features.numpy()))
-    encoded_labels = classes_encoder.encode(bytes.decode(labels.numpy()))
+    encoded_features = features_encoder.encode(features)
+    encoded_labels = classes_encoder.encode(labels)
     one_hot_labels = np.zeros(classes_encoder.vocab_size)
     for label_num in encoded_labels:
         one_hot_labels[label_num - 1] = 1
-    return encoded_features, one_hot_labels
+    return encoded_features, tf.convert_to_tensor(one_hot_labels, dtype=tf.bool)
 
 
 def load_subset_as_tf_data(path, classes_encoder, features_encoder=None, tag_threshold=None):
