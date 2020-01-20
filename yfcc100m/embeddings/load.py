@@ -139,8 +139,9 @@ def load_train_val(dataset_folder, classes_set, tag_threshold=None):
     Returns
     -------
     tf.python.data.ops.dataset_ops.DatasetV1Adapter, tf.python.data.ops.dataset_ops.DatasetV1Adapter,
-    tfds.features.text.TokenTextEncoder
-        First element is the train data, second is the validation data, third is the feature extractor built from train
+    tfds.features.text.TokenTextEncoder, tfds.features.text.TokenTextEncoder
+        First element is the train data, second is the validation data, third is the feature extractor built from train,
+        fourth is the class encoder
     """
 
     classes_encoder = _build_classes_encoder(classes_set)
@@ -148,4 +149,4 @@ def load_train_val(dataset_folder, classes_set, tag_threshold=None):
                                                              tag_threshold=tag_threshold)
     val_dataset = load_subset_as_tf_data(os.path.join(dataset_folder, "validation"), classes_encoder,
                                          features_encoder=features_encoder)
-    return train_dataset, val_dataset, features_encoder
+    return train_dataset, val_dataset, features_encoder, classes_encoder
