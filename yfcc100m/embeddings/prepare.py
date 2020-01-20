@@ -37,7 +37,7 @@ def join_dataset_and_autotags(dataset_path, autotags_path, output_path, keep_num
         if dataset_row["Video"] == "1":
             continue
         if not keep_numbers:
-            image_user_tags = ",".join([tag for tag in image_user_tags.split(",") if re.match(r"^[0-9]+$", tag)])
+            image_user_tags = ",".join([tag for tag in image_user_tags.split(",") if not re.match(r"^[0-9]+$", tag)])
         if not image_user_tags:
             continue
         image_auto_tags = autotags_row["PredictedConcepts"]
