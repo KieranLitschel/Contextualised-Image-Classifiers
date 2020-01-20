@@ -154,7 +154,7 @@ def load_subset_as_tf_data(path, classes_encoder, features_encoder):
     return features_labels_dataset
 
 
-def load_train_val(dataset_folder, classes_set, tag_threshold=None):
+def load_train_val(dataset_folder, classes_encoder, features_encoder):
     """ For train and validation, loads them, encodes the features, and one hot-encodes the classes. Validation dataset
         features encoded using encoder built from train
 
@@ -162,24 +162,19 @@ def load_train_val(dataset_folder, classes_set, tag_threshold=None):
     ----------
     dataset_folder : str
         The location of the train and validation files
-    classes_set : set of str
-        The set of classes
-    tag_threshold : int
-        Threshold for keeping tags as features. Default of None. If None all tags are kept
+    classes_encoder : tfds.features.text.TokenTextEncoder
+        Encoder to convert class labels to numbers
+    features_encoder : tfds.features.text.TokenTextEncoder
+        Encoder to build features from
 
     Returns
     -------
-    tf.python.data.ops.dataset_ops.DatasetV1Adapter, tf.python.data.ops.dataset_ops.DatasetV1Adapter,
-    tfds.features.text.TokenTextEncoder, tfds.features.text.TokenTextEncoder
-        First element is the train data, second is the validation data, third is the feature extractor built from train,
-        fourth is the class encoder
+    tf.python.data.ops.dataset_ops.DatasetV1Adapter, tf.python.data.ops.dataset_ops.DatasetV1Adapter
+        First element is the train data, second is the validation data
     """
 
-    classes_encoder = build_classes_encoder(classes_set)
-    print("Building features encoder")
-    features_encoder = build_features_encoder(os.path.join(dataset_folder, "train"), tag_threshold=tag_threshold)
     train_dataset = load_subset_as_tf_data(os.path.join(dataset_folder, "train"), classes_encoder,
                                            features_encoder=features_encoder)
     val_dataset = load_subset_as_tf_data(os.path.join(dataset_folder, "validation"), classes_encoder,
                                          features_encoder=features_encoder)
-    return train_dataset, val_dataset, features_encoder, classes_encoder
+    return train_dataset, val_dataset
