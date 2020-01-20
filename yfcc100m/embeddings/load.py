@@ -5,6 +5,7 @@ import tensorflow as tf
 import tensorflow_datasets as tfds
 import numpy as np
 from tqdm import tqdm
+from functools import partial
 
 
 def _build_classes_encoder(classes_set):
@@ -44,7 +45,7 @@ def _process_raw_row(row):
     return tf.cast(user_tags, tf.string), tf.cast(labels, tf.string)
 
 
-def _str_row_to_int(features, features_encoder, labels, classes_encoder):
+def _str_row_to_int(features, labels, features_encoder, classes_encoder):
     """ Converts comma separated user tags to list of encoded tag id's, and comma separated classes to one hot encoded
         classes
 
@@ -52,10 +53,10 @@ def _str_row_to_int(features, features_encoder, labels, classes_encoder):
     ----------
     features : tf.string
         User tags, separated by commas
-    features_encoder : tfds.features.text.TokenTextEncoder
-        User tags encoder
     labels : tf.string
         Labels, separated by commas
+    features_encoder : tfds.features.text.TokenTextEncoder
+        User tags encoder
     classes_encoder : tfds.features.text.TokenTextEncoder
         Labels encoder
 
@@ -73,7 +74,7 @@ def _str_row_to_int(features, features_encoder, labels, classes_encoder):
     return encoded_features, one_hot_labels
 
 
-def load_subset_as_tf_data(path, classes_encoder, feature_encoder=None, tag_threshold=None):
+def load_subset_as_tf_data(path, classes_encoder, features_encoder=None, tag_threshold=None):
     """ Loads the subset passed, encodes the features, and one hot-encodes the classes
 
     Parameters
@@ -82,7 +83,7 @@ def load_subset_as_tf_data(path, classes_encoder, feature_encoder=None, tag_thre
         Path to subset to be loaded
     classes_encoder : tfds.features.text.TokenTextEncoder
         Labels encoder
-    feature_encoder : tfds.features.text.TokenTextEncoder
+    features_encoder : tfds.features.text.TokenTextEncoder
         User tags encoder. If not specified build from scratch
     tag_threshold : int
         Used to construct feature extractor if it is not specified. Threshold for keeping tags as features. Default of
@@ -98,8 +99,8 @@ def load_subset_as_tf_data(path, classes_encoder, feature_encoder=None, tag_thre
     raw_dataset = tf.data.TextLineDataset(path)
     str_features_labels_dataset = raw_dataset.map(
         lambda row: tf.py_function(_process_raw_row, inp=[row], Tout=[tf.string, tf.string]))
-    feature_encoder_was_none = not feature_encoder
-    if not feature_encoder:
+    feature_encoder_was_none = not features_encoder
+    if not features_encoder:
         print("Building feature encoder")
         vocab_count = {}
         for user_tags, _ in tqdm(str_features_labels_dataset):
@@ -112,13 +113,14 @@ def load_subset_as_tf_data(path, classes_encoder, feature_encoder=None, tag_thre
         for vocab, count in vocab_count.items():
             if not tag_threshold or count > tag_threshold:
                 vocab_list.append(vocab)
-        feature_encoder = tfds.features.text.TokenTextEncoder(vocab_list, decode_token_separator=",")
+        features_encoder = tfds.features.text.TokenTextEncoder(vocab_list, decode_token_separator=",")
+    custom_str_row_to_int = partial(_str_row_to_int, features_encoder=features_encoder, classes_encoder=classes_encoder)
     features_labels_dataset = str_features_labels_dataset.map(
-        lambda features, labels: tf.py_function(_str_row_to_int,
-                                                inp=[features, feature_encoder, labels, classes_encoder],
+        lambda features, labels: tf.py_function(custom_str_row_to_int,
+                                                inp=[features, features_encoder, labels, classes_encoder],
                                                 Tout=[tf.int64, tf.int64]))
     if feature_encoder_was_none:
-        return features_labels_dataset, feature_encoder
+        return features_labels_dataset, features_encoder
     return features_labels_dataset
 
 
