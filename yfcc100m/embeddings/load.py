@@ -122,7 +122,7 @@ def load_subset_as_tf_data(path, classes_encoder, feature_encoder=None, tag_thre
     return features_labels_dataset
 
 
-def load_train_val(dataset_folder, classes_set):
+def load_train_val(dataset_folder, classes_set, tag_threshold=None):
     """ For train and validation, loads them, encodes the features, and one hot-encodes the classes. Validation dataset
         features encoded using encoder built from train
 
@@ -132,6 +132,8 @@ def load_train_val(dataset_folder, classes_set):
         The location of the train and validation files
     classes_set : set of str
         The set of classes
+    tag_threshold : int
+        Threshold for keeping tags as features. Default of None. If None all tags are kept
 
     Returns
     -------
@@ -141,7 +143,8 @@ def load_train_val(dataset_folder, classes_set):
     """
 
     classes_encoder = _build_classes_encoder(classes_set)
-    train_dataset, feature_encoder = load_subset_as_tf_data(os.path.join(dataset_folder, "train"), classes_encoder)
+    train_dataset, feature_encoder = load_subset_as_tf_data(os.path.join(dataset_folder, "train"), classes_encoder,
+                                                            tag_threshold=tag_threshold)
     val_dataset = load_subset_as_tf_data(os.path.join(dataset_folder, "validation"), classes_encoder,
                                          feature_encoder=feature_encoder)
     return train_dataset, val_dataset, feature_encoder
