@@ -39,7 +39,7 @@ def _process_raw_row(row):
         First element is comma separated user tags, second element is comma separated classes, both in str format
     """
 
-    _, user_tags, labels = bytes.decode(row).split("\t")
+    _, user_tags, labels = bytes.decode(row.numpy()).split("\t")
     labels = ",".join([label_prob.split(":")[0] for label_prob in labels.split(",")])
     return tf.cast(user_tags, tf.string), tf.cast(labels, tf.string)
 
@@ -65,8 +65,8 @@ def _str_row_to_int(features, features_encoder, labels, classes_encoder):
         First element is
     """
 
-    encoded_features = features_encoder.encode(bytes.decode(features))
-    encoded_labels = classes_encoder.encode(bytes.decode(labels))
+    encoded_features = features_encoder.encode(bytes.decode(features.numpy()))
+    encoded_labels = classes_encoder.encode(bytes.decode(labels.numpy()))
     one_hot_labels = np.zeros(classes_encoder.vocab_size)
     for label_num in encoded_labels:
         one_hot_labels[label_num - 1] = 1
@@ -97,7 +97,7 @@ def load_subset_as_tf_data(path, classes_encoder, feature_encoder=None, tag_thre
 
     raw_dataset = tf.data.TextLineDataset(path)
     str_features_labels_dataset = raw_dataset.map(
-        lambda row: tf.py_func(_process_raw_row, inp=[row], Tout=[tf.string, tf.string]))
+        lambda row: tf.py_function(_process_raw_row, inp=[row], Tout=[tf.string, tf.string]))
     feature_encoder_was_none = not feature_encoder
     if not feature_encoder:
         print("Building feature encoder")
@@ -114,9 +114,9 @@ def load_subset_as_tf_data(path, classes_encoder, feature_encoder=None, tag_thre
                 vocab_list.append(vocab)
         feature_encoder = tfds.features.text.TokenTextEncoder(vocab_list, decode_token_separator=",")
     features_labels_dataset = str_features_labels_dataset.map(
-        lambda features, labels: tf.py_func(_str_row_to_int,
-                                            inp=[features, feature_encoder, labels, classes_encoder],
-                                            Tout=[tf.int64, tf.int64]))
+        lambda features, labels: tf.py_function(_str_row_to_int,
+                                                inp=[features, feature_encoder, labels, classes_encoder],
+                                                Tout=[tf.int64, tf.int64]))
     if feature_encoder_was_none:
         return features_labels_dataset, feature_encoder
     return features_labels_dataset
