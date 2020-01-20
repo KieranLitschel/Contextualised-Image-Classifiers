@@ -71,7 +71,7 @@ def _str_row_to_int(features, labels, features_encoder, classes_encoder):
     one_hot_labels = np.zeros(classes_encoder.vocab_size)
     for label_num in encoded_labels:
         one_hot_labels[label_num - 1] = 1
-    return tf.cast(encoded_features, tf.string), tf.convert_to_tensor(one_hot_labels, dtype=tf.bool)
+    return tf.cast(encoded_features, tf.int32), tf.convert_to_tensor(one_hot_labels, dtype=tf.bool)
 
 
 def load_subset_as_tf_data(path, classes_encoder, features_encoder=None, tag_threshold=None):
