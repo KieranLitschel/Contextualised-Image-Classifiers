@@ -6,6 +6,7 @@ import tensorflow_datasets as tfds
 import numpy as np
 from tqdm import tqdm
 from functools import partial
+from common import load_csv_as_dict
 
 
 def _build_classes_encoder(classes_set):
@@ -74,6 +75,31 @@ def _str_row_to_int(features, labels, features_encoder, classes_encoder):
     return tf.cast(encoded_features, tf.int32), tf.convert_to_tensor(one_hot_labels, dtype=tf.bool)
 
 
+def count_user_tags(subset_path):
+    """ Counts the number of user tags
+
+    Parameters
+    ----------
+    subset_path : str
+        Path to a subset produced by joined_to_subsets
+
+    Returns
+    -------
+    dict of str -> int
+        Count of each user tag
+    """
+
+    subset = load_csv_as_dict(subset_path, fieldnames=["ID", "UserTags", "PredictedConcepts"])
+    counts = {}
+    for row in tqdm(subset):
+        tags = row["UserTags"].split(",")
+        for tag in tags:
+            if tag not in counts:
+                counts[tag] = 0
+            counts[tag] += 1
+    return counts
+
+
 def load_subset_as_tf_data(path, classes_encoder, features_encoder=None, tag_threshold=None):
     """ Loads the subset passed, encodes the features, and one hot-encodes the classes
 
@@ -96,22 +122,17 @@ def load_subset_as_tf_data(path, classes_encoder, features_encoder=None, tag_thr
         as the second element of a tuple
     """
 
+    tag_threshold = tag_threshold or 1
     raw_dataset = tf.data.TextLineDataset(path)
     str_features_labels_dataset = raw_dataset.map(
         lambda row: tf.py_function(_process_raw_row, inp=[row], Tout=[tf.string, tf.string]))
     feature_encoder_was_none = not features_encoder
     if not features_encoder:
         print("Building feature encoder")
-        vocab_count = {}
-        for user_tags, _ in tqdm(str_features_labels_dataset):
-            tokens = bytes.decode(user_tags.numpy()).split(",")
-            for token in tokens:
-                if not vocab_count.get(token):
-                    vocab_count[token] = 0
-                vocab_count[token] += 1
+        vocab_count = count_user_tags(path)
         vocab_list = []
         for vocab, count in vocab_count.items():
-            if not tag_threshold or count >= tag_threshold:
+            if tag_threshold >= count:
                 vocab_list.append(vocab)
         features_encoder = tfds.features.text.TokenTextEncoder(vocab_list, decode_token_separator=",")
     custom_str_row_to_int = partial(_str_row_to_int, features_encoder=features_encoder, classes_encoder=classes_encoder)
