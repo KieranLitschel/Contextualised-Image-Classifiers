@@ -27,61 +27,16 @@ def build_classes_encoder(classes_set):
     return classes_encoder
 
 
-def _process_raw_row(row):
-    """ Takes a set of classes and builds a token text encoder, to convert the str classes to numbers
-
-    Parameters
-    ----------
-    row : tf.Tensor
-        Row from file produced by yfcc100m.embeddings.prepare.joined_to_subsets
-
-    Returns
-    -------
-    (str, str)
-        First element is comma separated user tags, second element is comma separated classes, both in str format
-    """
-
-    _, user_tags, labels = bytes.decode(row.numpy()).split("\t")
-    labels = ",".join([label_prob.split(":")[0] for label_prob in labels.split(",")])
-    return tf.cast(user_tags, tf.string), tf.cast(labels, tf.string)
-
-
-def _str_row_to_int(features, labels, features_encoder, classes_encoder):
-    """ Converts comma separated user tags to list of encoded tag id's, and comma separated classes to one hot encoded
-        classes
-
-    Parameters
-    ----------
-    features : tf.Tensor
-        User tags, separated by commas
-    labels : tf.Tensor
-        Labels, separated by commas
-    features_encoder : tfds.features.text.TokenTextEncoder
-        User tags encoder
-    classes_encoder : tfds.features.text.TokenTextEncoder
-        Labels encoder
-
-    Returns
-    -------
-    (np array of int, np array of int)
-        First element is
-    """
-
-    encoded_features = features_encoder.encode(bytes.decode(features.numpy()))
-    encoded_labels = classes_encoder.encode(bytes.decode(labels.numpy()))
-    one_hot_labels = np.zeros(classes_encoder.vocab_size)
-    for label_num in encoded_labels:
-        one_hot_labels[label_num - 1] = 1
-    return tf.cast(encoded_features, tf.int32), tf.convert_to_tensor(one_hot_labels, dtype=tf.bool)
-
-
-def count_user_tags(subset_path):
+def count_user_tags(subset_path, user_tags_limit=None):
     """ Counts the number of user tags
 
     Parameters
     ----------
     subset_path : str
         Path to a subset produced by joined_to_subsets
+    user_tags_limit : int
+        If an image has more user tags than this value, then the tags beyond this value are ignored. Default of None.
+        If None all are kept
 
     Returns
     -------
@@ -93,14 +48,14 @@ def count_user_tags(subset_path):
     counts = {}
     for row in tqdm(subset):
         tags = row["UserTags"].split(",")
-        for tag in tags:
+        for tag in tags[:user_tags_limit]:
             if tag not in counts:
                 counts[tag] = 0
             counts[tag] += 1
     return counts
 
 
-def build_features_encoder(subset_path, tag_threshold=None):
+def build_features_encoder(subset_path, tag_threshold=None, user_tags_limit=None):
     """ Takes a set of classes and builds a token text encoder, to convert the str classes to numbers
 
     Parameters
@@ -108,7 +63,10 @@ def build_features_encoder(subset_path, tag_threshold=None):
     subset_path : str
         Path to subset to build encoder from
     tag_threshold : int
-        Threshold over which to keep words as features. If None all are kept
+        Threshold over which to keep words as features. Default of None. If None all are kept
+    user_tags_limit : int
+        If an image has more user tags than this value, then the tags beyond this value are ignored. Default of None.
+        If None all are kept
 
     Returns
     -------
@@ -117,13 +75,45 @@ def build_features_encoder(subset_path, tag_threshold=None):
     """
 
     tag_threshold = tag_threshold or 1
-    vocab_count = count_user_tags(subset_path)
+    vocab_count = count_user_tags(subset_path, user_tags_limit=user_tags_limit)
     vocab_list = []
     for vocab, count in vocab_count.items():
         if tag_threshold >= count:
             vocab_list.append(vocab)
     features_encoder = tfds.features.text.TokenTextEncoder(vocab_list, decode_token_separator=",")
     return features_encoder
+
+
+def _str_row_to_tf(row, user_tags_limit, features_encoder, classes_encoder):
+    """ Converts comma separated user tags to list of encoded tag id's, and comma separated classes to one hot encoded
+        classes
+
+    Parameters
+    ----------
+    row : tf.Tensor
+        Row from file produced by yfcc100m.embeddings.prepare.joined_to_subsets
+    user_tags_limit : int
+        Number of user tags to keep
+    features_encoder : tfds.features.text.TokenTextEncoder
+        User tags encoder
+    classes_encoder : tfds.features.text.TokenTextEncoder
+        Labels encoder
+
+    Returns
+    -------
+    tf.int32, tf.bool
+
+    """
+
+    _, user_tags, labels = bytes.decode(row.numpy()).split("\t")
+    user_tags = ",".join([tag for tag in user_tags.split(",")][:user_tags_limit])
+    labels = ",".join([label_prob.split(":")[0] for label_prob in labels.split(",")])
+    encoded_features = features_encoder.encode(user_tags)
+    encoded_labels = classes_encoder.encode(labels)
+    one_hot_labels = np.zeros(classes_encoder.vocab_size)
+    for label_num in encoded_labels:
+        one_hot_labels[label_num - 1] = 1
+    return tf.cast(encoded_features, tf.int32), tf.convert_to_tensor(one_hot_labels, dtype=tf.bool)
 
 
 def load_subset_as_tf_data(path, classes_encoder, features_encoder):
@@ -145,12 +135,9 @@ def load_subset_as_tf_data(path, classes_encoder, features_encoder):
     """
 
     raw_dataset = tf.data.TextLineDataset(path)
-    str_features_labels_dataset = raw_dataset.map(
-        lambda row: tf.py_function(_process_raw_row, inp=[row], Tout=[tf.string, tf.string]))
-    custom_str_row_to_int = partial(_str_row_to_int, features_encoder=features_encoder, classes_encoder=classes_encoder)
-    features_labels_dataset = str_features_labels_dataset.map(
-        lambda features, labels: tf.py_function(custom_str_row_to_int, inp=[features, labels],
-                                                Tout=[tf.int32, tf.bool]))
+    custom_str_row_to_tf = partial(_str_row_to_tf, features_encoder=features_encoder, classes_encoder=classes_encoder)
+    features_labels_dataset = raw_dataset.map(
+        lambda row: tf.py_function(custom_str_row_to_tf, inp=[row], Tout=[tf.int32, tf.bool]))
     return features_labels_dataset
 
 
