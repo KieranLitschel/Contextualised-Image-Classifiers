@@ -159,7 +159,7 @@ def count_frequency_of_number_of_user_tags(train_path):
 
     train = load_csv_as_dict(train_path, fieldnames=["ID", "UserTags", "PredictedConcepts"])
     len_freqs = {}
-    for row in train:
+    for row in tqdm(train):
         tags = row["UserTags"].split(",")
         no_tags = len(tags)
         if no_tags not in len_freqs:
