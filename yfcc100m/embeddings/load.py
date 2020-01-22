@@ -108,7 +108,8 @@ def _str_row_to_tf(row, user_tags_limit, features_encoder, classes_encoder):
     _, user_tags, labels = bytes.decode(row.numpy()).split("\t")
     user_tags = ",".join([tag for tag in user_tags.split(",")][:user_tags_limit])
     labels = ",".join([label_prob.split(":")[0] for label_prob in labels.split(",")])
-    encoded_features = features_encoder.encode(user_tags)
+    encoded_features = [feature for feature in features_encoder.encode(user_tags) if
+                        feature != features_encoder.vocab_size - 1]
     encoded_labels = classes_encoder.encode(labels)
     one_hot_labels = np.zeros(classes_encoder.vocab_size)
     for label_num in encoded_labels:
@@ -138,7 +139,9 @@ def load_subset_as_tf_data(path, classes_encoder, features_encoder):
     custom_str_row_to_tf = partial(_str_row_to_tf, features_encoder=features_encoder, classes_encoder=classes_encoder)
     features_labels_dataset = raw_dataset.map(
         lambda row: tf.py_function(custom_str_row_to_tf, inp=[row], Tout=[tf.int32, tf.bool]))
-    return features_labels_dataset
+    filtered_features_labels_dataset = features_labels_dataset.filter(
+        lambda features, _: tf.equal(tf.size(features), 0))
+    return filtered_features_labels_dataset
 
 
 def load_train_val(dataset_folder, classes_encoder, features_encoder):
