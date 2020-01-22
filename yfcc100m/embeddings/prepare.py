@@ -5,6 +5,8 @@ from yfcc100m.autotags import kept_classes
 import re
 import os
 from tqdm import tqdm
+import pandas
+import tensorflow as tf
 
 
 def join_dataset_and_autotags(dataset_path, autotags_path, output_path, keep_numbers=None, class_path=None):
@@ -143,6 +145,32 @@ def joined_to_subsets(oiv_folder, dataset_path, output_folder):
         write_rows_to_csv(rows_by_subset[subset], os.path.join(output_folder, subset), mode="a")
 
 
+def subsets_to_tfrecords(subsets_folder):
+    """ Converts subsets to TFRecords. Favourable as a lot faster to load. tfrecords file are output in the directory
+        of the subset
+
+    Parameters
+    ----------
+    subsets_folder : str
+        Path to folder containing subsets produced by joined_to_subsets
+    """
+
+    for subset in ["train", "validation", "test"]:
+        print("Building TFRecord for {}".format(subset))
+        subset_path = os.path.join(subsets_folder, subset)
+        subset_csv = pandas.read_csv(subset_path, sep="\t", na_filter=False).values
+        with tf.python_io.TFRecordWriter(subset_path + ".tfrecords") as writer:
+            for row in tqdm(subset_csv):
+                flickr_id, user_tags, predicted_concepts = row
+                example = tf.train.Example(features=tf.train.Features(feature={
+                    "FlickrID": tf.train.Feature(int64_list=tf.train.Int64List(value=[flickr_id])),
+                    "UserTags": tf.train.Feature(bytes_list=tf.train.BytesList(value=[user_tags.encode('utf-8')])),
+                    "PredictedConcepts": tf.train.Feature(
+                        bytes_list=tf.train.BytesList(value=[predicted_concepts.encode('utf-8')])),
+                }))
+                writer.write(example.SerializeToString())
+
+
 def count_frequency_of_number_of_user_tags(train_path):
     """ Counts the frequency that each possible number of tags occurs
 
@@ -166,4 +194,3 @@ def count_frequency_of_number_of_user_tags(train_path):
             len_freqs[no_tags] = 0
         len_freqs[no_tags] += 1
     return len_freqs
-
