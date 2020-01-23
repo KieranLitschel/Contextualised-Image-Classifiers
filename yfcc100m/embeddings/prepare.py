@@ -176,7 +176,7 @@ def build_dataset(dataset_dir, classes_encoder_path, output_folder, tag_threshol
         subset_csv = pandas.read_csv(subset_path, sep="\t", na_filter=False).values
         with tf.python_io.TFRecordWriter(os.path.join(output_folder, subset + ".tfrecords")) as writer:
             for row in tqdm(subset_csv):
-                _, user_tags, labels = row
+                flickr_id, user_tags, labels = row
                 user_tags = ",".join([tag for tag in user_tags.split(",")][:user_tags_limit])
                 labels = ",".join([label_prob.split(":")[0] for label_prob in labels.split(",")])
                 encoded_features = [feature for feature in features_encoder.encode(user_tags) if
@@ -185,6 +185,7 @@ def build_dataset(dataset_dir, classes_encoder_path, output_folder, tag_threshol
                     continue
                 encoded_labels = [label - 1 for label in classes_encoder.encode(labels)]
                 example = tf.train.Example(features=tf.train.Features(feature={
+                    "flickr_id": tf.train.Feature(int64_list=tf.train.Int64List(value=flickr_id)),
                     "encoded_features": tf.train.Feature(int64_list=tf.train.Int64List(value=encoded_features)),
                     "encoded_labels": tf.train.Feature(int64_list=tf.train.Int64List(value=encoded_labels)),
                 }))
