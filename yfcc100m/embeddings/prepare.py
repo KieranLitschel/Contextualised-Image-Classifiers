@@ -181,6 +181,8 @@ def build_dataset(dataset_dir, classes_encoder_path, output_folder, tag_threshol
                 labels = ",".join([label_prob.split(":")[0] for label_prob in labels.split(",")])
                 encoded_features = [feature for feature in features_encoder.encode(user_tags) if
                                     feature != features_encoder.vocab_size - 1]
+                if not encoded_features:
+                    continue
                 encoded_labels = [label - 1 for label in classes_encoder.encode(labels)]
                 example = tf.train.Example(features=tf.train.Features(feature={
                     "encoded_features": tf.train.Feature(int64_list=tf.train.Int64List(value=encoded_features)),
