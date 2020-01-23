@@ -105,8 +105,8 @@ def _batch_decode_pad_one_hot(batch, no_classes):
         "encoded_features": tf.io.FixedLenSequenceFeature([], tf.int64, allow_missing=True, default_value=0),
         "encoded_labels": tf.io.FixedLenSequenceFeature([], tf.int64, allow_missing=True, default_value=no_classes + 1),
     })
-    encoded_features = parsed_batch["encoded_features"].numpy()
-    encoded_labels = parsed_batch["encoded_labels"].numpy()
+    encoded_features = tf.cast(parsed_batch["encoded_features"].numpy(), dtype=tf.int32)
+    encoded_labels = tf.cast(parsed_batch["encoded_labels"].numpy(), dtype=tf.int32)
     # get rid of first column as encoding 0 reserved for padding in TextEncoder, and last column as encoding no_classes
     # reserved for unknown tags in TextEncoder, which we have none of for classes
     one_hot_labels = tf.reduce_sum(tf.one_hot(indices=encoded_labels, depth=no_classes, axis=1),
