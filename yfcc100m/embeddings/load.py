@@ -2,22 +2,10 @@ from __future__ import absolute_import, division, print_function, unicode_litera
 
 import os
 import tensorflow as tf
-import tensorflow_datasets as tfds
-import numpy as np
 from tqdm import tqdm
 from functools import partial
 from common import load_csv_as_dict
-
-
-class CommaTokenizer(tfds.features.text.Tokenizer):
-    def tokenize(self, s):
-        """ Splits a string into tokens. As we know our tokens are comma-separated, can just split on comma, which is
-            a lot more efficient, as otherwise time complexity is linked to number of word in our vocabulary that
-            contain non-alpha numeric characters.
-        """
-        s = tf.compat.as_text(s)
-        toks = s.split(",")
-        return toks
+from yfcc100m.embeddings.encoders import CommaTokenTextEncoder
 
 
 def build_classes_encoder(classes_set):
@@ -30,12 +18,11 @@ def build_classes_encoder(classes_set):
 
     Returns
     -------
-    tfds.features.text.TokenTextEncoder
+    CommaTokenTextEncoder
         Encoder for classes
     """
 
-    classes_encoder = tfds.features.text.TokenTextEncoder(classes_set, decode_token_separator=",",
-                                                          tokenizer=CommaTokenizer(alphanum_only=False))
+    classes_encoder = CommaTokenTextEncoder(classes_set, decode_token_separator=",")
     return classes_encoder
 
 
@@ -82,7 +69,7 @@ def build_features_encoder(subset_path, tag_threshold=None, user_tags_limit=None
 
     Returns
     -------
-    tfds.features.text.TokenTextEncoder
+    CommaTokenTextEncoder
         Encoder for features
     """
 
@@ -92,12 +79,11 @@ def build_features_encoder(subset_path, tag_threshold=None, user_tags_limit=None
     for vocab, count in vocab_count.items():
         if tag_threshold >= count:
             vocab_list.append(vocab)
-    features_encoder = tfds.features.text.TokenTextEncoder(vocab_list, decode_token_separator=",",
-                                                           tokenizer=CommaTokenizer(alphanum_only=False))
+    features_encoder = CommaTokenTextEncoder(vocab_list, decode_token_separator=",")
     return features_encoder
 
 
-def _str_row_to_tf(proto, features_encoder, classes_encoder, user_tags_limit=None):
+def _str_row_to_tf(proto, no_classes):
     """ Converts comma separated user tags to list of encoded tag id's, and comma separated classes to one hot encoded
         classes
 
@@ -105,52 +91,34 @@ def _str_row_to_tf(proto, features_encoder, classes_encoder, user_tags_limit=Non
     ----------
     proto : Serialized tf.Tensor
         Serialized row from file produced by yfcc100m.embeddings.prepare.subsets_to_tfrecords
-    features_encoder : tfds.features.text.TokenTextEncoder
-        User tags encoder
-    classes_encoder : tfds.features.text.TokenTextEncoder
-        Labels encoder
-    user_tags_limit : int
-        If an image has more user tags than this value, then the tags beyond this value are ignored. Default of None.
-        If None all are kept
+    no_classes : int
+        Number of classes
 
     Returns
     -------
     tf.int32, tf.bool
-
+        First element is features, second element is one hot labels
     """
 
     parsed_features = tf.io.parse_single_example(proto, {
-        "FlickrID": tf.io.FixedLenSequenceFeature([], tf.int64, allow_missing=True),
-        "UserTags": tf.io.FixedLenSequenceFeature([], tf.string, allow_missing=True),
-        "PredictedConcepts": tf.io.FixedLenSequenceFeature([], tf.string, allow_missing=True),
+        "encoded_features": tf.io.FixedLenSequenceFeature([], tf.int32, allow_missing=True),
+        "encoded_labels": tf.io.FixedLenSequenceFeature([], tf.bool, allow_missing=True),
     })
-    user_tags = bytes.decode(parsed_features["UserTags"].numpy()[0])
-    labels = bytes.decode(parsed_features["PredictedConcepts"].numpy()[0])
-    user_tags = ",".join([tag for tag in user_tags.split(",")][:user_tags_limit])
-    labels = ",".join([label_prob.split(":")[0] for label_prob in labels.split(",")])
-    encoded_features = [feature for feature in features_encoder.encode(user_tags) if
-                        feature != features_encoder.vocab_size - 1]
-    encoded_labels = classes_encoder.encode(labels)
-    one_hot_labels = np.zeros(classes_encoder.vocab_size)
-    for label_num in encoded_labels:
-        one_hot_labels[label_num - 1] = 1
+    encoded_features = bytes.decode(parsed_features["UserTags"].numpy()[0])
+    encoded_labels = bytes.decode(parsed_features["PredictedConcepts"].numpy()[0])
+    one_hot_labels = tf.reduce_sum(tf.one_hot(indices=encoded_labels, depth=no_classes), reduction_indices=0)
     return tf.cast(encoded_features, tf.int32), tf.convert_to_tensor(one_hot_labels, dtype=tf.bool)
 
 
-def load_subset_as_tf_data(path, classes_encoder, features_encoder, user_tags_limit=None):
+def load_subset_as_tf_data(path, no_classes):
     """ Loads the subset passed, encodes the features, and one hot-encodes the classes
 
     Parameters
     ----------
     path : tf.string
         Path to subset to be loaded
-    classes_encoder : tfds.features.text.TokenTextEncoder
-        Labels encoder
-    features_encoder : tfds.features.text.TokenTextEncoder
-        User tags encoder
-    user_tags_limit : int
-        If an image has more user tags than this value, then the tags beyond this value are ignored. Default of None.
-        If None all are kept
+    no_classes : int
+        Number of classes
 
     Returns
     -------
@@ -159,8 +127,7 @@ def load_subset_as_tf_data(path, classes_encoder, features_encoder, user_tags_li
     """
 
     raw_dataset = tf.data.TFRecordDataset(path)
-    custom_str_row_to_tf = partial(_str_row_to_tf, user_tags_limit=user_tags_limit, features_encoder=features_encoder,
-                                   classes_encoder=classes_encoder)
+    custom_str_row_to_tf = partial(_str_row_to_tf, no_classes=no_classes)
     features_labels_dataset = raw_dataset.map(
         lambda proto: tf.py_function(custom_str_row_to_tf, inp=[proto], Tout=[tf.int32, tf.bool]),
         num_parallel_calls=tf.data.experimental.AUTOTUNE)
@@ -169,7 +136,7 @@ def load_subset_as_tf_data(path, classes_encoder, features_encoder, user_tags_li
     return filtered_features_labels_dataset
 
 
-def load_train_val(dataset_folder, classes_encoder, features_encoder, user_tags_limit=None):
+def load_train_val(dataset_folder, no_classes):
     """ For train and validation, loads them, encodes the features, and one hot-encodes the classes. Validation dataset
         features encoded using encoder built from train
 
@@ -177,13 +144,8 @@ def load_train_val(dataset_folder, classes_encoder, features_encoder, user_tags_
     ----------
     dataset_folder : str
         The location of the train and validation files
-    classes_encoder : tfds.features.text.TokenTextEncoder
-        Encoder to convert class labels to numbers
-    features_encoder : tfds.features.text.TokenTextEncoder
-        Encoder to build features from
-    user_tags_limit : int
-        If an image has more user tags than this value, then the tags beyond this value are ignored. Default of None.
-        If None all are kept
+    no_classes : int
+        Number of classes
 
     Returns
     -------
@@ -191,8 +153,6 @@ def load_train_val(dataset_folder, classes_encoder, features_encoder, user_tags_
         First element is the train data, second is the validation data
     """
 
-    train_dataset = load_subset_as_tf_data(os.path.join(dataset_folder, "train.tfrecords"), classes_encoder,
-                                           features_encoder=features_encoder, user_tags_limit=user_tags_limit)
-    val_dataset = load_subset_as_tf_data(os.path.join(dataset_folder, "validation.tfrecords"), classes_encoder,
-                                         features_encoder=features_encoder, user_tags_limit=user_tags_limit)
+    train_dataset = load_subset_as_tf_data(os.path.join(dataset_folder, "train.tfrecords"), no_classes)
+    val_dataset = load_subset_as_tf_data(os.path.join(dataset_folder, "validation.tfrecords"), no_classes)
     return train_dataset, val_dataset

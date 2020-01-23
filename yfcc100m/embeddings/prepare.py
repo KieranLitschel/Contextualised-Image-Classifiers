@@ -2,10 +2,12 @@ from common import load_csv_as_dict, write_rows_to_csv
 from oiv.common import get_train_val_test_flickr_ids
 from yfcc100m.common import get_dataset_fields, get_autotag_fields
 from yfcc100m.autotags import kept_classes
-import re
+from yfcc100m.embeddings.load import build_features_encoder
+from yfcc100m.embeddings.encoders import CommaTokenTextEncoder
 import os
 from tqdm import tqdm
 import pandas
+import re
 import tensorflow as tf
 
 
@@ -145,30 +147,47 @@ def joined_to_subsets(oiv_folder, dataset_path, output_folder):
         write_rows_to_csv(rows_by_subset[subset], os.path.join(output_folder, subset), mode="a")
 
 
-def subsets_to_tfrecords(subsets_folder):
-    """ Converts subsets to TFRecords. Favourable as a lot faster to load. tfrecords file are output in the directory
-        of the subset
+def build_dataset(dataset_dir, classes_encoder_path, output_folder, tag_threshold, user_tags_limit):
+    """ Takes
 
     Parameters
     ----------
-    subsets_folder : str
-        Path to folder containing subsets produced by joined_to_subsets
+    dataset_dir : str
+        Path to folder produced by joined_to_subsets
+    classes_encoder_path : str
+        Path to classes encoder produced by build_classes_encoder
+    output_folder : str
+        Folder to output feature encoder and TFRecord folds to
+    tag_threshold : int
+        Threshold over which to keep words as features. Default of None. If None all are kept
+    user_tags_limit : int
+        If an image has more user tags than this value, then the tags beyond this value are ignored. Default of None.
+        If None all are kept
     """
-
+    classes_encoder = CommaTokenTextEncoder.load_from_file(classes_encoder_path)
+    features_encoder = build_features_encoder(os.path.join(dataset_dir, "train"),
+                                              tag_threshold=tag_threshold,
+                                              user_tags_limit=user_tags_limit)
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
     for subset in ["train", "validation", "test"]:
         print("Building TFRecord for {}".format(subset))
-        subset_path = os.path.join(subsets_folder, subset)
+        subset_path = os.path.join(dataset_dir, subset)
         subset_csv = pandas.read_csv(subset_path, sep="\t", na_filter=False).values
-        with tf.python_io.TFRecordWriter(subset_path + ".tfrecords") as writer:
+        with tf.python_io.TFRecordWriter(os.path.join(output_folder, subset + ".tfrecords")) as writer:
             for row in tqdm(subset_csv):
-                flickr_id, user_tags, predicted_concepts = row
+                _, user_tags, labels = row
+                user_tags = ",".join([tag for tag in user_tags.split(",")][:user_tags_limit])
+                labels = ",".join([label_prob.split(":")[0] for label_prob in labels.split(",")])
+                encoded_features = [feature for feature in features_encoder.encode(user_tags) if
+                                    feature != features_encoder.vocab_size - 1]
+                encoded_labels = [label - 1 for label in classes_encoder.encode(labels)]
                 example = tf.train.Example(features=tf.train.Features(feature={
-                    "FlickrID": tf.train.Feature(int64_list=tf.train.Int64List(value=[flickr_id])),
-                    "UserTags": tf.train.Feature(bytes_list=tf.train.BytesList(value=[user_tags.encode('utf-8')])),
-                    "PredictedConcepts": tf.train.Feature(
-                        bytes_list=tf.train.BytesList(value=[predicted_concepts.encode('utf-8')])),
+                    "encoded_features": tf.train.Feature(int64_list=tf.train.Int64List(value=encoded_features)),
+                    "encoded_labels": tf.train.Feature(int64_list=tf.train.Int64List(value=encoded_labels)),
                 }))
                 writer.write(example.SerializeToString())
+    features_encoder.save_to_file(os.path.join(output_folder, "features_encoder"))
 
 
 def count_frequency_of_number_of_user_tags(train_path):
