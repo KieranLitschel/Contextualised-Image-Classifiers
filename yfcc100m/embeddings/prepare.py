@@ -185,7 +185,7 @@ def build_dataset(dataset_dir, classes_encoder_path, output_folder, tag_threshol
                     continue
                 encoded_labels = [label - 1 for label in classes_encoder.encode(labels)]
                 example = tf.train.Example(features=tf.train.Features(feature={
-                    "flickr_id": tf.train.Feature(int64_list=tf.train.Int64List(value=flickr_id)),
+                    "flickr_id": tf.train.Feature(int64_list=tf.train.Int64List(value=[flickr_id])),
                     "encoded_features": tf.train.Feature(int64_list=tf.train.Int64List(value=encoded_features)),
                     "encoded_labels": tf.train.Feature(int64_list=tf.train.Int64List(value=encoded_labels)),
                 }))
