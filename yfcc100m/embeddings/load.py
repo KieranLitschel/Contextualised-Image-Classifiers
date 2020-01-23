@@ -83,14 +83,14 @@ def build_features_encoder(subset_path, tag_threshold=None, user_tags_limit=None
     return features_encoder
 
 
-def _str_row_to_tf(proto, no_classes):
-    """ Converts comma separated user tags to list of encoded tag id's, and comma separated classes to one hot encoded
-        classes
+def _batch_decode_pad_one_hot(batch, no_classes):
+    """ Decodes batches, padding with 0 such that all samples in the batch have the same number of features, and one
+        hot encodes the labels
 
     Parameters
     ----------
-    proto : Serialized tf.Tensor
-        Serialized row from file produced by yfcc100m.embeddings.prepare.subsets_to_tfrecords
+    batch : Serialized tf.Tensor
+        Serialized batch from file produced by build_dataset
     no_classes : int
         Number of classes
 
@@ -100,17 +100,21 @@ def _str_row_to_tf(proto, no_classes):
         First element is features, second element is one hot labels
     """
 
-    parsed_features = tf.io.parse_single_example(proto, {
-        "encoded_features": tf.io.FixedLenSequenceFeature([], tf.int32, allow_missing=True),
-        "encoded_labels": tf.io.FixedLenSequenceFeature([], tf.bool, allow_missing=True),
+    parsed_batch = tf.io.parse_example(batch, {
+        "flickr_id": tf.io.FixedLenSequenceFeature([], tf.int64, allow_missing=True),
+        "encoded_features": tf.io.FixedLenSequenceFeature([], tf.int64, allow_missing=True, default_value=0),
+        "encoded_labels": tf.io.FixedLenSequenceFeature([], tf.int64, allow_missing=True, default_value=no_classes + 1),
     })
-    encoded_features = bytes.decode(parsed_features["UserTags"].numpy()[0])
-    encoded_labels = bytes.decode(parsed_features["PredictedConcepts"].numpy()[0])
-    one_hot_labels = tf.reduce_sum(tf.one_hot(indices=encoded_labels, depth=no_classes), reduction_indices=0)
-    return tf.cast(encoded_features, tf.int32), tf.convert_to_tensor(one_hot_labels, dtype=tf.bool)
+    encoded_features = parsed_batch["encoded_features"].numpy()
+    encoded_labels = parsed_batch["encoded_labels"].numpy()
+    # get rid of first column as encoding 0 reserved for padding in TextEncoder, and last column as encoding no_classes
+    # reserved for unknown tags in TextEncoder, which we have none of for classes
+    one_hot_labels = tf.reduce_sum(tf.one_hot(indices=encoded_labels, depth=no_classes, axis=1),
+                                   reduction_indices=2)[:, 1:-1]
+    return tf.cast(encoded_features, dtype=tf.int32), tf.convert_to_tensor(one_hot_labels, dtype=tf.float32)
 
 
-def load_subset_as_tf_data(path, no_classes):
+def load_subset_as_tf_data(path, no_classes, batch_size):
     """ Loads the subset passed, encodes the features, and one hot-encodes the classes
 
     Parameters
@@ -119,6 +123,8 @@ def load_subset_as_tf_data(path, no_classes):
         Path to subset to be loaded
     no_classes : int
         Number of classes
+    batch_size : int
+        Size of batches to be loaded
 
     Returns
     -------
@@ -126,14 +132,12 @@ def load_subset_as_tf_data(path, no_classes):
         The subset ready for use in TensorFlow
     """
 
-    raw_dataset = tf.data.TFRecordDataset(path)
-    custom_str_row_to_tf = partial(_str_row_to_tf, no_classes=no_classes)
-    features_labels_dataset = raw_dataset.map(
-        lambda proto: tf.py_function(custom_str_row_to_tf, inp=[proto], Tout=[tf.int32, tf.bool]),
-        num_parallel_calls=tf.data.experimental.AUTOTUNE)
-    filtered_features_labels_dataset = features_labels_dataset.filter(
-        lambda features, _: tf.not_equal(tf.size(features), 0))
-    return filtered_features_labels_dataset
+    custom_row_to_tf = partial(_batch_decode_pad_one_hot, no_classes=no_classes)
+    dataset = tf.data.TFRecordDataset(path) \
+        .shuffle(batch_size * 2) \
+        .batch(batch_size) \
+        .map(lambda batch: tf.py_function(custom_row_to_tf, [batch], Tout=[tf.int32, tf.float32]))
+    return dataset
 
 
 def load_train_val(dataset_folder, no_classes):
