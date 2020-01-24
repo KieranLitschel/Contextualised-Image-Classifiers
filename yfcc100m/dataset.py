@@ -3,6 +3,7 @@ from yfcc100m.common import get_dataset_fields
 import pickle
 from tqdm import tqdm
 import pycld2 as cld2
+import re
 
 
 def count_user_tags(path):
