@@ -128,7 +128,7 @@ def count_detected_languages_cld3(dataset_path, keep_numbers=None):
         if not image_user_tags:
             continue
         image_user_tags = re.sub(r",+", " ", image_user_tags)
-        image_user_tags = re.sub(r"\b(?:https?://|www\.)[a-z0-9-]+(\.[a-z0-9-]+)+(?:[/?].*)?", " ", image_user_tags)
+        image_user_tags = re.sub(r"\b(?:https?://|www\.)[a-z0-9-]+(\.[a-z0-9-]+)+(?:[/?].*)?", "", image_user_tags)
         lp = cld3.get_language(image_user_tags)
         lang_code = lp.language
         is_reliable = lp.is_reliable
