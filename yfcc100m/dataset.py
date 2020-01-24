@@ -79,7 +79,7 @@ def count_detected_languages(dataset_path, keep_numbers=None):
 
     keep_numbers = keep_numbers if keep_numbers is not None else False
     dataset = load_csv_as_dict(dataset_path, fieldnames=get_dataset_fields())
-    languages_count = {}
+    language_counts = {}
     for dataset_row in tqdm(dataset):
         image_user_tags = dataset_row["UserTags"]
         if dataset_row["Video"] == "1":
@@ -92,7 +92,7 @@ def count_detected_languages(dataset_path, keep_numbers=None):
         language = details[0][0].lower()
         if not is_reliable:
             language = "unknown"
-        if language not in languages_count:
-            languages_count[language] = 0
-        languages_count[language] += 1
-    return languages_count
+        if language not in language_counts:
+            language_counts[language] = 0
+        language_counts[language] += 1
+    return language_counts
