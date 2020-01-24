@@ -53,7 +53,7 @@ def join_dataset_and_autotags(dataset_path, autotags_path, output_path, keep_num
                 stemmer = SnowballStemmer(language)
                 stemmed_user_tags = []
                 for user_tag in image_user_tags.split(","):
-                    stemmed_tag = "+".join([stemmer.stem(word) for word in user_tag.split("+")])
+                    stemmed_tag = "+".join([stemmer.stem(word) if word != '' else '' for word in user_tag.split("+")])
                     stemmed_user_tags.append(stemmed_tag)
                 image_user_tags = ",".join(stemmed_user_tags)
         image_auto_tags = autotags_row["PredictedConcepts"]
