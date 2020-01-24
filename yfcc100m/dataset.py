@@ -2,6 +2,7 @@ from common import load_csv_as_dict
 from yfcc100m.common import get_dataset_fields
 import pickle
 from tqdm import tqdm
+import pycld2 as cld2
 
 
 def count_user_tags(path):
@@ -58,3 +59,40 @@ def images_highest_count_user_tag(path, tag_counts_path=None):
             count = max(tag_counts[user_tag] for user_tag in user_tags)
         highest_counts[image_id] = count
     return highest_counts
+
+
+def count_detected_languages(dataset_path, keep_numbers=None):
+    """ Counts detected languages across YFCC100M
+
+    Parameters
+    ----------
+    dataset_path : str
+        Path to dataset file
+    keep_numbers : bool
+        Whether to keep numbers, default False
+
+    Returns
+    -------
+    dict of int -> int
+        Maps language to its detected frequency across YFCC100M
+    """
+
+    keep_numbers = keep_numbers if keep_numbers is not None else False
+    dataset = load_csv_as_dict(dataset_path, fieldnames=get_dataset_fields())
+    languages_count = {}
+    for dataset_row in tqdm(dataset):
+        image_user_tags = dataset_row["UserTags"]
+        if dataset_row["Video"] == "1":
+            continue
+        if not keep_numbers:
+            image_user_tags = ",".join([tag for tag in image_user_tags.split(",") if not re.match(r"^[0-9]+$", tag)])
+        if not image_user_tags:
+            continue
+        is_reliable, _, details = cld2.detect(image_user_tags)
+        language = details[0][0].lower()
+        if not is_reliable:
+            language = "unknown"
+        if language not in languages_count:
+            languages_count[language] = 0
+        languages_count[language] += 1
+    return languages_count
