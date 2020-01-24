@@ -5,7 +5,9 @@ yfcc_dataset_path = "C:\\Honors Project\\YFCC100M\\yfcc100m_dataset"
 yfcc_autotags_path = "C:\\Honors Project\\YFCC100M\\yfcc100m_autotags"
 output_folder = "C:\\Honors Project\\YFCC100M\\dataset"
 raw_dataset_path = os.path.join(output_folder, "raw_dataset")
-class_path = "yfcc100m\\embeddings\\relevant_autotags.txt"
+class_path = "C:\\Users\\kiera\\OneDrive - University of Edinburgh\\Every Day Files\\Documents\\Microsoft " \
+             "Office\\Word\\Homework\\University\\Year 4\\Honours " \
+             "Project\\Contextualised-CNN\\yfcc100m\\embeddings\\relevant_autotags.txt "
 oiv_folder = "C:\\Users\\kiera\\OneDrive - University of Edinburgh\\Every Day Files\\Documents\\Microsoft " \
              "Office\\Word\\Homework\\University\\Year 4\\Honours Project\\Open Images\\v5\\Bounding Boxes\\Extended"
 
