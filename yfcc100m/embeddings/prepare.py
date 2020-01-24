@@ -9,6 +9,8 @@ from tqdm import tqdm
 import pandas
 import re
 import tensorflow as tf
+import pycld2 as cld2
+from nltk.stem import SnowballStemmer
 
 
 def join_dataset_and_autotags(dataset_path, autotags_path, output_path, keep_numbers=None, class_path=None):
@@ -44,6 +46,16 @@ def join_dataset_and_autotags(dataset_path, autotags_path, output_path, keep_num
             image_user_tags = ",".join([tag for tag in image_user_tags.split(",") if not re.match(r"^[0-9]+$", tag)])
         if not image_user_tags:
             continue
+        is_reliable, _, details = cld2.detect(image_user_tags)
+        language = details[0][0].lower()
+        if is_reliable and language != "unknown":
+            if language in SnowballStemmer.languages:
+                stemmer = SnowballStemmer(language)
+                stemmed_user_tags = []
+                for user_tag in image_user_tags.split(","):
+                    stemmed_tag = "+".join([stemmer.stem(word) for word in user_tag.split("+")])
+                    stemmed_user_tags.append(stemmed_tag)
+                image_user_tags = ",".join(stemmed_user_tags)
         image_auto_tags = autotags_row["PredictedConcepts"]
         if classes_to_keep and image_auto_tags:
             image_auto_tags = ",".join([tag_prob for tag_prob in image_auto_tags.split(",") if
