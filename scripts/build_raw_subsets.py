@@ -11,6 +11,9 @@ class_path = "C:\\Users\\kiera\\OneDrive - University of Edinburgh\\Every Day Fi
 oiv_folder = "C:\\Users\\kiera\\OneDrive - University of Edinburgh\\Every Day Files\\Documents\\Microsoft " \
              "Office\\Word\\Homework\\University\\Year 4\\Honours Project\\Open Images\\v5\\Bounding Boxes\\Extended"
 
+if not os.path.exists(output_folder):
+    os.makedirs(output_folder)
+
 print("Build raw dataset")
 join_dataset_and_autotags(yfcc_dataset_path, yfcc_autotags_path, raw_dataset_path, class_path=class_path)
 print("Build raw subsets")
