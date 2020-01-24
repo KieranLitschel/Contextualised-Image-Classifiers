@@ -9,5 +9,7 @@ class_path = "yfcc100m\\embeddings\\relevant_autotags.txt"
 oiv_folder = "C:\\Users\\kiera\\OneDrive - University of Edinburgh\\Every Day Files\\Documents\\Microsoft " \
              "Office\\Word\\Homework\\University\\Year 4\\Honours Project\\Open Images\\v5\\Bounding Boxes\\Extended"
 
+print("Build raw dataset")
 join_dataset_and_autotags(yfcc_dataset_path, yfcc_autotags_path, raw_dataset_path, class_path=class_path)
+print("Build raw subsets")
 joined_to_subsets(oiv_folder, raw_dataset_path, output_folder)
