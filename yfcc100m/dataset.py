@@ -61,15 +61,13 @@ def images_highest_count_user_tag(path, tag_counts_path=None):
     return highest_counts
 
 
-def count_detected_languages(dataset_path, keep_numbers=None):
+def count_detected_languages(dataset_path):
     """ Counts detected languages across YFCC100M
 
     Parameters
     ----------
     dataset_path : str
         Path to dataset file
-    keep_numbers : bool
-        Whether to keep numbers, default False
 
     Returns
     -------
@@ -77,16 +75,11 @@ def count_detected_languages(dataset_path, keep_numbers=None):
         Maps language to its detected frequency across YFCC100M
     """
 
-    keep_numbers = keep_numbers if keep_numbers is not None else False
     dataset = load_csv_as_dict(dataset_path, fieldnames=get_dataset_fields())
     language_counts = {}
     for dataset_row in tqdm(dataset):
         image_user_tags = dataset_row["UserTags"]
         if dataset_row["Video"] == "1":
-            continue
-        if not keep_numbers:
-            image_user_tags = ",".join([tag for tag in image_user_tags.split(",") if not re.match(r"^[0-9]+$", tag)])
-        if not image_user_tags:
             continue
         is_reliable, _, details = cld2.detect(image_user_tags)
         language = details[0][0].lower()
