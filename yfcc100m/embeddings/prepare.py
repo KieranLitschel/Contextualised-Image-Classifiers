@@ -14,8 +14,8 @@ from nltk.stem import SnowballStemmer
 
 
 def join_dataset_and_autotags(dataset_path, autotags_path, output_path, keep_numbers=None, class_path=None):
-    """ Reads the dataset and autotags files, and writes the id, user tags, and auto tags
-        for each image (discarding of videos) to the file at output path, by appending the rows to it
+    """ Reads the dataset and autotags files, and writes the id, user tags (stemmed if stemmable language detected), and
+        auto tags for each image (discarding of videos) to the file at output path, by appending the rows to it
 
     Parameters
     ----------
