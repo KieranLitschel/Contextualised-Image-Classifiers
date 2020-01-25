@@ -1,27 +1,27 @@
-chipmunk,0
+chipmunk,/m/04rky
 chain-link,0
 hat,/m/02dl1y
-arabian camel,0
+arabian camel,/m/04rky
 flag,/m/03120
 loft,0
 gorge,0
-hawk,0
+hawk,/m/015p6
 onion dome,0
-armored personnel carrier,0
-saint bernard,0
-undergarment,0
-scallop,0
+armored personnel carrier,/m/01prls
+saint bernard,/m/0bt9lr
+undergarment,/m/09j2d
+scallop,/m/0fbdv
 guitar,/m/0342h
-buggy,0
+buggy,/m/01prls
 dial,0
 cross country riding,0
 magazine,0
-heron,0
-draft horse,0
-leaf,0
-boa constrictor,0
+heron,/m/015p6
+draft horse,/m/04rky
+leaf,/m/05s2s
+boa constrictor,/m/078jl
 organic pattern,0
-butterfly fish,0
+butterfly fish,/m/0ch_cf
 graffiti,0
 aqualung,0
 muffin,/m/01tcjp
@@ -31,180 +31,180 @@ blue,0
 bittern,0
 meadow,0
 gable,0
-lecture hall,0
+lecture hall,/m/0cgh4
 sea turtle,/m/0120dh
 snake,/m/078jl
 computer circuit,0
 paddle,/m/014y4n
 fireplace,/m/03tw93
 brass instrument,/m/04szw
-barn,0
+barn,/m/0cgh4
 chicken,/m/09b5t
 cable,0
-clam,0
+clam,/m/0fbdv
 skateboarding,/m/06_fw
 hand luggage,/m/0hf58v5
-yak,0
-steam engine,0
+yak,/m/04rky
+steam engine,/m/01prls
 carousel,0
-emu,0
-parasail,0
-mandrill,0
-trail bike,0
-outerwear,0
+emu,/m/015p6
+parasail,/m/05y5lj
+mandrill,/m/08pbxl
+trail bike,/m/0199g
+outerwear,/m/09j2d
 handicraft,0
 tree,/m/07j7r
-colonnade,0
+colonnade,/m/0cgh4
 freeway,0
 polo,0
-fortification,0
+fortification,/m/0cgh4
 frond,0
 lines,0
 gold,0
 ancient,0
-snorkel,0
+snorkel,/m/05y5lj
 sunrise,0
-nail polish,0
+nail polish,/m/014trl
 pants,/m/07mhn
-fuchsia,0
+fuchsia,/m/0c9ph5
 motor,0
 helicopter,/m/09ct_
-arctic fox,0
-yurt,0
-wolf,0
-go-kart,0
-carriage,0
+arctic fox,/m/01lrl
+yurt,/m/0cgh4
+wolf,/m/01lrl
+go-kart,/m/01prls
+carriage,/m/01prls
 pumpkin,/m/05zsy
-oar,0
-bean,0
-white admiral,0
-mexican sunflower,0
-beachwear,0
+oar,/m/05y5lj
+bean,/m/02wbm
+white admiral,/m/0cyf8
+mexican sunflower,/m/0c9ph5
+beachwear,Clothing
 boot,/m/01b638
-building structure,0
+building structure,Building
 sand,0
-mixed drink,0
+mixed drink,Drink
 trellis,0
 lens,0
-stag,0
+stag,Mammal
 baseball,0
 foremast,0
-mosquito,0
+mosquito,Insect
 head,/m/04hgtk
 plant,/m/05s2s
-ice rink,0
+ice rink,Building
 tattoo,0
-car bumper,0
+car bumper,Auto part
 farmer's market,0
-gothic arch,0
-teasel,0
+gothic arch,Building
+teasel,Plant
 poster,/m/01n5jq
 satin,0
 star shape,0
-lingerie,0
-tiger lily,0
+lingerie,Clothing
+tiger lily,Flower
 valley,0
 pizza,/m/0663v
 mountain peak,0
 waterwheel,0
 earphone,/m/01b7fy
 circuitry,0
-library,0
+library,Building
 speedskating,0
 graduation,0
 stonework,0
 camping,0
 house,/m/03jm5
-overpass,0
+overpass,Building
 cake,/m/0fszt
-pavilion,0
-capitol,0
+pavilion,Building
+capitol,Building
 sandwich,/m/0l515
 snowbank,0
 boxing,0
-plumbago,0
+plumbago,Flower
 waterfront,0
 grocery store,/m/0crjs
 rodeo,0
 microwave oven,/m/0fx9l
 pastel,0
 zebra,/m/0898b
-bald eagle,0
+bald eagle,Bird
 bottle,/m/04dr76w
 brussels carpet,0
 skylight,0
-guanaco,0
+guanaco,Mammal
 wedding,0
 airframe,0
-temple,0
+temple,Building
 backboard,0
 sculling,0
-cityscape,0
-cichlid,0
+cityscape,Building
+cichlid,Fish
 tarpaulin,0
 headrest,0
 buffet,0
-stock car,0
+stock car,Car
 bird,/m/015p6
 railroad track,0
-doe,0
-armored vehicle,0
+doe,Mammal
+armored vehicle,Land Vehicle
 ice hockey,0
 turtle,/m/09dzg
-golf club,0
+golf club,Sports equipment
 ski,/m/071p9
-roman arch,0
-atrium,0
+roman arch,Building
+atrium,Building
 french fries,/m/02y6n
-rocking chair,0
+rocking chair,Furniture
 roller skating,/m/02p3w7d
 paper,0
-pigeon,0
-chaetodon,0
-new england aster,0
-military officer,0
+pigeon,Bird
+chaetodon,Fish
+new england aster,Flower
+military officer,Person
 quirky,0
-giant clam,0
-apartment,0
-sandbox,0
-llama,0
-dancer,0
-sakura,0
+giant clam,Shellfish
+apartment,Building
+sandbox,Toy
+llama,Mammal
+dancer,Person
+sakura,Flower
 oil lamp,0
 squash,/m/0dv77
 bleeding heart,0
-big cat,0
+big cat,Carnivore
 hamster,/m/03qrc
 hour hand,0
 adobe,0
 auto racing,0
 vegetable,/m/0f4s2w
 parasol,0
-black swan,0
-cappuccino,0
+black swan,Bird
+cappuccino,Coffee
 pedestrian crossing,0
 pond,0
 amphora,0
-purple heather,0
-fort,0
-calliandra,0
+purple heather,Flower
+fort,Building
+calliandra,Flower
 curtain,/m/03rszm
 strawberry,/m/07fbm7
 football helmet,/m/07qxg_
 ocean floor,0
 earring,/m/01r546
 vivarium,0
-thistle,0
-chihuahua,0
+thistle,Flower
+chihuahua,Dog
 television,/m/07c52
 autumn,0
-gerbil,0
-angora,0
+gerbil,Mammal
+angora,Mammal
 accordion,/m/0mkg
 artillery,0
 window,/m/0d4v4
 porthole,0
-dandelion,0
+dandelion,Flower
 canyon,0
 girder,0
 display screen,0
@@ -213,358 +213,358 @@ birdbath,0
 steeple,0
 chandelier,0
 batter,0
-cherry,0
-gaillardia,0
+cherry,Fruit
+gaillardia,Flower
 ladybug,/m/0gj37
-diver,0
+diver,Person
 eskimo dog,/m/0bt9lr
 cocotte,0
 carnation pink,0
-car mirror,0
+car mirror,Auto part
 picador,0
-hearth,0
-amphibian,0
+hearth,Fireplace
+amphibian,/m/06bt6
 crocodile,/m/09f_2
 surfing,/m/019w40
-cow,0
+cow,Mammal
 pistil,0
 garden,0
 sewing machine,/m/0llzx
 beach,0
 fabric,0
 needlework,0
-echinoderm,0
+echinoderm,/m/03hl4l9
 sport,0
 diagonal,0
 elephant,/m/0bwd_0j
-grizzly,0
-car wheel,0
+grizzly,Bear
+car wheel,Auto part
 shelf stacks,0
-aster,0
-kiwi,0
+aster,Flower
+kiwi,Fruit
 triangle,0
 rotor blade,0
 plywood,0
 open air market,0
-fuel injection,0
+fuel injection,Auto part
 brittle star,0
-radio,0
+radio,Home appliance
 jacket,/m/032b3c
-lemur,0
+lemur,Mammal
 breakfast table,/m/0h8n5zk
 pink,0
 stagecoach,0
-pantheon,0
+pantheon,Building
 deer,/m/09kx5
 purple,0
-pier,0
+pier,Building
 ski pole,0
 cage,0
 room,0
-nigella,0
+nigella,Flower
 solar cell,0
-sea trout,0
+sea trout,Fish
 aisle,0
 swimming trunks,/m/01gkx_
 starfish,/m/01h8tj
 rowing,0
-recreational vehicle,0
-prairie dog,0
+recreational vehicle,Land vehicle
+prairie dog,Mammal
 lock,0
 serene,0
-locomotive,0
+locomotive,Land vehicle
 rope bridge,0
-billy goat,0
+billy goat,Goat
 gondola,/m/02068x
 post,0
-wagon,0
+wagon,Land vehicle
 sea,0
 pasta,/m/05z55
 flagon,0
 streetlight,/m/033rq4
 computer monitor,/m/02522
 bicycle,/m/0199g
-cockatiel,0
+cockatiel,Bird
 circuit,0
 bar,0
-apple tree,0
+apple tree,Tree
 armrest,0
 triptych,0
-rooster,0
+rooster,Bird
 sidewalk,0
 piano,/m/05r5c
-coneflower,0
+coneflower,Flower
 drawing,0
-flying buttress,0
+flying buttress,Building
 ridge,0
-cereal bowl,0
+cereal bowl,Bowl
 horse racing,0
-harvester,0
+harvester,Land vehicle
 tartan,0
 eagle,/m/09csl
-carthorse,0
+carthorse,Horse
 willow,/m/0mw_6
 basketball,0
-kingfisher,0
-traction engine,0
-duckling,0
-windshield,0
+kingfisher,Bird
+traction engine,Land vehicle
+duckling,Duck
+windshield,Auto part
 hands,/m/0k65p
 baggage,/m/0hf58v5
-potter's wheel,0
-door knocker,0
+potter's wheel,Tool
+door knocker,Door
 chest of drawers,/m/05kyg_
-ensemble,0
+ensemble,Person&Musical Instrument
 toilet,/m/09g1w
 cloud,0
-snow leopard,0
+snow leopard,Leopard
 lake,0
-phlox,0
+phlox,Flower
 football,/m/01226z
 stream,0
 patchwork,0
-alligator,0
-tamarin,0
+alligator,Reptile
+tamarin,Monkey
 volcanic crater,0
 truck,/m/07r04
-coliseum,0
+coliseum,Building
 bowsprit,0
 floor,0
-ferry,0
+ferry,Boat
 harness,0
 gargoyle,0
 fishing,0
 wood laminate,0
-moorhen,0
-primate,0
-banyan,0
-soldier,0
-passerine,0
-water tower,0
-cetacean,0
+moorhen,Bird
+primate,Mammal
+banyan,Tree
+soldier,Person
+passerine,Bird
+water tower,Building
+cetacean,Marine mammal
 indigo,0
-boa,0
-watchtower,0
+boa,Snake
+watchtower,Building
 sunbath,0
 juice,/m/01z1kdw
-airliner,0
+airliner,Airplane
 handbag,/m/080hkjn&/m/0hf58v5
 buckle,0
-art gallery,0
+art gallery,Building
 lymphocyte,0
 panda,/m/03bj1
 necklace,/m/01llwg
-faucet,0
+faucet,Tap
 potted plant,/m/03fp41&/m/05s2s
 bear,/m/01dws
-spider orchid,0
-firearm,0
-bobcat,0
-beer bottle,0
-ship,0
-umbel,0
+spider orchid,Flower
+firearm,Weapon
+bobcat,Carnivore
+beer bottle,Beer
+ship,Watercraft
+umbel,Flower
 frill,0
-carnivorous plant,0
-ferrari,0
-stone wall,0
+carnivorous plant,Plant
+ferrari,Car
+stone wall,Building
 clock,/m/01x3z
 rhinoceros,/m/03d443
-overalls,0
-sun parlor,0
-abutment,0
+overalls,Clothings
+sun parlor,Building
+abutment,Building
 hammock,0
-drapery,0
-department store,0
-canine,0
-daisy,0
+drapery,/m/03rszm
+department store,Building
+canine,Dog
+daisy,Flower
 saddle,0
-meal,0
+meal,Food
 stemma,0
 texture,0
 umbrella,/m/0hnnb
 peach,/m/0dj6p
-sea anemone,0
+sea anemone,/m/03hl4l9
 step,0
-electric organ,0
+electric organ,Musical instrument
 team sport,0
-gourd,0
+gourd,Fruit
 mountainside,0
-bridge,0
+bridge,Building
 drawer,/m/0fqfqc
 van,/m/0h2r6
 animal,/m/0jbk
-demonstrator,0
+demonstrator,Person
 kangaroo,/m/04c0y
 aircraft engine,0
-villa,0
+villa,Building
 pinwheel,0
 overcast,0
 telephone,/m/07cx4&/m/0h8lkj8
-ballpark,0
-pointed arch,0
+ballpark,Building
+pointed arch,Building
 brickwork,0
-crew boat,0
-pelagic bird,0
-blouse,0
+crew boat,Boat
+pelagic bird,Bird
+blouse,Clothing
 lighthouse,/m/04h7h
 snail,/m/0f9_l
 dashboard,0
-field mustard,0
-ape,0
-trench coat,0
-clownfish,0
-balloon flower,0
+field mustard,Plant
+ape,Mammal
+trench coat,Coat
+clownfish,Fish
+balloon flower,Flower
 jamb,0
-bulldozer,0
-cedar,0
-vanda,0
+bulldozer,Land vehicle
+cedar,Tree
+vanda,Flower
 blackandwhite,0
-hang glider,0
+hang glider,Sports equipment
 cliff dwelling,0
-macaw,0
+macaw,Bird
 skiing,0
-belfry,0
-clavier,0
-round arch,0
+belfry,Building
+clavier,Musical keyboard
+round arch,Building
 seat belt,/m/0dkzw
 moon,0
-lioness,0
-marigold,0
-cockatoo,0
+lioness,Carnivore
+marigold,Flower
+cockatoo,Bird
 computer mouse,/m/020lf
 stoneware,0
-jewelry chain,0
+jewelry chain,/m/01llwg
 card index,0
-beanie,0
-saucepan,0
-radome,0
-washbasin,0
-glacier lily,0
-support column,0
+beanie,Fashion accessory
+saucepan,Kitchenware
+radome,Building
+washbasin,Sink
+glacier lily,Plant
+support column,Building
 hand rail,0
 sunset,0
 tea,/m/07clx
-anemone fish,0
+anemone fish,Fish
 plain,0
 polar bear,/m/0633h
 soil,0
-ranch,0
+ranch,Building
 wire,0
-fuschia,0
-fragrant orchid,0
+fuschia,Plant
+fragrant orchid,Flower
 minute hand,0
 rapeseed,0
-infrastructure,0
+infrastructure,Building
 walkway,0
 coast,0
-waterfowl,0
-acropolis,0
-gazelle,0
-drums,0
+waterfowl,Bird
+acropolis,Building
+gazelle,Mammal
+drums,Drum
 knitwear,0
 closet,/m/0d4w1
 contact sport,0
-gown,0
+gown,Clothing
 scoreboard,/m/057p5t
 marathon,0
 hortensia,0
 restaurant,0
 macro,0
 bus,/m/01bjv
-camp chair,0
-toad,0
-lory,0
+camp chair,Chair
+toad,/m/06bt6
+lory,Truck
 arete,0
 kitchen ware,/m/03_wxk
-african lily,0
-lionfish,0
-petunia,0
-sprocket,0
+african lily,Plant
+lionfish,Fish
+petunia,Plant
+sprocket,Tool
 lampshade,0
-ibex,0
+ibex,Goat
 display window,0
-meerkat,0
-dendrobium,0
+meerkat,Carnivore
+dendrobium,Plant
 barbecue,0
 wood fence,0
 resort,0
 pepper,0
 hand,/m/0k65p
-locust,0
-cruise ship,0
+locust,Insect
+cruise ship,Watercraft
 pattern,0
 windmill,0
-ringlet,0
-gatehouse,0
+ringlet,Butterfly
+gatehouse,Building
 parade,0
-great hall,0
+great hall,Building
 print,0
 riverbank,0
-armchair,0
-canal boat,0
+armchair,Chair
+canal boat,Boat
 cabbage,/m/0fbw6
 carnivore,/m/01lrl
 snowdrift,0
-evening primrose,0
-hibiscus,0
-collared peccary,0
+evening primrose,Plant
+hibiscus,Plant
+collared peccary,Mammal
 snack bar,0
 dining,0
 tortoise,/m/011k07
 flame,0
 illustration,0
-dresser,0
+dresser,Furniture
 spar,0
 geometric,0
-frock,0
+frock,Dress
 wood panels,0
 bull,/m/0cnyhnx
 lantern,/m/01jfsr
-hot air balloon,0
+hot air balloon,Aerial vehicle
 shorts,/m/01bfm9
-screw,0
+screw,Tool
 poker plant,/m/05s2s
 escarpment,0
-costume,0
-ocean liner,0
-hummingbird,0
-fashion,0
-condominium,0
+costume,Clothing
+ocean liner,Watercraft
+hummingbird,Bird
+fashion,Clothing
+condominium,Building
 car,/m/0k4j
 tangle,0
 statue,0
 art,0
 spur gear,0
 screen,0
-black bear,0
+black bear,Bear
 judo,0
 vase,/m/02s195
 panicle,0
 symmetry,0
 tent,/m/01j61q
-life jacket,0
-vole,0
+life jacket,Lifejacket
+vole,Mammal
 spadix,0
-harness horse,0
+harness horse,Horse
 bed,/m/03ssj5
 shirt,/m/01n4qj
 photo border,0
 yard,0
 mouse,/m/04rmv
 playground,0
-anteater,0
+anteater,Mammal
 jump,0
 rose,/m/06m11
 giraffe,/m/03bk1
 squirrel,/m/071qp
 egg yolk,/m/033cnk
 golf,0
-taillight,0
-buck,0
-rowing boat,0
-birch,0
+taillight,Auto part
+buck,Mammal
+rowing boat,Boat
+birch,Tree
 stringed instrument,/m/04szw
-casserole,0
+casserole,Food
 book,/m/0bt_c3
 iris,0
 highway,0
@@ -575,180 +575,180 @@ web,0
 snag,0
 fractal,0
 vehicle,/m/07yv9
-greenhouse,0
+greenhouse,Building
 skunk,/m/0km7z
-mountain bike,0
+mountain bike,Bicycle
 red panda,/m/06l9r
 blue jay,/m/01f8m5
-red squirrel,0
+red squirrel,Squirrel
 salad,/m/0grw1
-rock wall,0
-tulip,0
+rock wall,Sports equipment
+tulip,Flower
 apple,/m/014j1m
 floret,0
-sail boat,0
+sail boat,Boat
 signboard,0
-skyline,0
+skyline,Building
 campsite,0
-onion,0
+onion,Vegetable
 spider web,0
 waterfall,0
 dolmen,0
-sea urchin,0
+sea urchin,Marine invertebrates
 yellow,0
 cpu board,0
-water ski,0
+water ski,Watercraft
 crimson,0
-gray horse,0
-rhododendron,0
+gray horse,Horse
+rhododendron,Plant
 block,0
 boat racing,0
-golden retriever,0
+golden retriever,Dog
 pool,0
-blackbird,0
-labrador,0
+blackbird,Bird
+labrador,Dog
 lilac,0
 makeup,/m/014trl
 gravestone,0
 rim,0
 token,0
-seagull,0
+seagull,Bird
 store shelf,0
 sheep,/m/07bgp
-cycling,0
-fighter jet,0
-athletic shoe,0
+cycling,Bicycle
+fighter jet,Airplane
+athletic shoe,Footwear
 drum,/m/026t6
 dressage,0
-poodle,0
+poodle,Dog
 grid,0
-milk thistle,0
+milk thistle,Plant
 jeans,/m/0fly7
-capuchin,0
-freight car,0
+capuchin,Monkey
+freight car,Train
 clasp,0
 snowboard,/m/06__v
 mountain ridge,0
 chromatic,0
-abbey,0
-orange daisy,0
+abbey,Building
+orange daisy,Flower
 computer keyboard,/m/01m2v
 worm,/m/084hf
 vigil light,0
 gear,0
-persimmon,0
-lamppost,0
+persimmon,Fruit
+lamppost,Street light
 rafter,0
-hospital,0
-swine,0
-sea otter,0
+hospital,Building
+swine,Pig
+sea otter,Carnivore
 neckpiece,0
 dark red,0
 clothespin,0
-swivel chair,0
+swivel chair,Chair
 pew,0
 chairlift,0
 shop,0
 path,0
 podium,0
 power line,0
-mansion,0
+mansion,Building
 keyboard instrument,/m/057cc&/m/04szw
-bunny,0
-daffodil,0
+bunny,Rabbit
+daffodil,Flower
 picture frame,/m/06z37_
 stubble,0
 alternator,0
 row house,0
-chocolate,0
-carp,0
+chocolate,Food
+carp,Fish
 hockey,0
 amusement park,0
-casino,0
-meadow cranesbill,0
+casino,Building
+meadow cranesbill,Plant
 fig,/m/043nyj
 reservoir,0
-marmot,0
+marmot,Squirrel
 tramline,0
 cd,0
-pedestal table,0
-red admiral,0
+pedestal table,Table
+red admiral,Butterfly
 mainmast,0
 fog,0
 soup,0
 dwelling,0
-conference table,0
-passion flower,0
-hall,0
+conference table,Table
+passion flower,Plant
+hall,Building
 banner,0
 airplane wing,0
 crevice,0
 stoop,0
-cattleya,0
-car part,0
+cattleya,Plant
+car part,Auto part
 fret,0
-campanile,0
-student,0
+campanile,Plant
+student,Person
 flowerbed,0
 alp,0
-dumpling,0
-scuba diver,0
+dumpling,Food
+scuba diver,Person
 engine,0
-warehouse,0
-dome,0
-hound,0
+warehouse,Building
+dome,Building
+hound,Dog
 topiary,0
-stadium,0
+stadium,Building
 grain,0
 pitcher,/m/054fyh
-model t,0
+model t,Car
 dust storm,0
 faience,0
-groom,0
-reading lamp,0
+groom,Person
+reading lamp,Lamp
 frieze,0
-sorrel horse,0
-goldenrod,0
-conifer,0
+sorrel horse,Horse
+goldenrod,Flwer
+conifer,Tree
 car interior,0
 memorial,0
-wristwatch,0
+wristwatch,Watch
 fireworks,0
 grape,/m/0388q
-can,0
-bracelet,0
+can,Container
+bracelet,Fashion accessory
 screenshot,0
-naval ship,0
-fortress,0
+naval ship,Watercraft
+fortress,Castle
 bungee,0
 rainbow,0
 cavern,0
-fly,0
-weevil,0
-curry,0
+fly,Insect
+weevil,Beetle
+curry,Food
 leopard,/m/0c29q
 lacrosse,0
 black,0
-tree frog,0
+tree frog,Frog
 trapeze,0
-orange tree,0
+orange tree,Tree
 paddy,0
-tractor,0
-locket,0
+tractor,Land vehicle
+locket,Fashion accessory
 grassland,0
 skirt,/m/02wv6h6&/m/01cmb2
-clock tower,0
+clock tower,Building
 street sign,/m/01mqdt
 pine,0
 round,0
 rain,0
-aardvark,0
+aardvark,Mammal
 toy,/m/0138tl
 kitchen,0
 blossom,0
 motorcycle,/m/04_sv
 organ instrument,/m/013y1f&/m/04szw
-stork,0
+stork,0 UP TO HERE FOOOOOOOOOOOO BBBBBBBBBBBAAAAAAAAAAARRRRRRRRRRRRRRRRRRRR
 ant,/m/0_k2
 booby,0
 coil,0
@@ -1056,7 +1056,7 @@ scuba diving,0
 bactrian camel,0
 horse,/m/03k3r
 underwater,0
-gray squirrel,0
+gray squirrel,Squirrel
 beam,0
 monument,0
 noseband,0
