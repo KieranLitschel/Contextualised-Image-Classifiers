@@ -37,13 +37,13 @@ snake,/m/078jl
 computer circuit,0
 paddle,/m/014y4n
 fireplace,/m/03tw93
-brass instrument,0
+brass instrument,/m/04szw
 barn,0
 chicken,/m/09b5t
 cable,0
 clam,0
-skateboarding,0
-hand luggage,0
+skateboarding,/m/06_fw
+hand luggage,/m/0hf58v5
 yak,0
 steam engine,0
 carousel,0
@@ -65,7 +65,7 @@ ancient,0
 snorkel,0
 sunrise,0
 nail polish,0
-pants,0
+pants,/m/07mhn
 fuchsia,0
 motor,0
 helicopter,/m/09ct_
@@ -90,7 +90,7 @@ stag,0
 baseball,0
 foremast,0
 mosquito,0
-head,0
+head,/m/04hgtk
 plant,/m/05s2s
 ice rink,0
 tattoo,0
@@ -107,7 +107,7 @@ valley,0
 pizza,/m/0663v
 mountain peak,0
 waterwheel,0
-earphone,0
+earphone,/m/01b7fy
 circuitry,0
 library,0
 speedskating,0
@@ -124,7 +124,7 @@ snowbank,0
 boxing,0
 plumbago,0
 waterfront,0
-grocery store,0
+grocery store,/m/0crjs
 rodeo,0
 microwave oven,/m/0fx9l
 pastel,0
@@ -157,7 +157,7 @@ roman arch,0
 atrium,0
 french fries,/m/02y6n
 rocking chair,0
-roller skating,0
+roller skating,/m/02p3w7d
 paper,0
 pigeon,0
 chaetodon,0
@@ -171,7 +171,7 @@ llama,0
 dancer,0
 sakura,0
 oil lamp,0
-squash,0
+squash,/m/0dv77
 bleeding heart,0
 big cat,0
 hamster,/m/03qrc
@@ -192,7 +192,7 @@ curtain,/m/03rszm
 strawberry,/m/07fbm7
 football helmet,/m/07qxg_
 ocean floor,0
-earring,0
+earring,/m/01r546
 vivarium,0
 thistle,0
 chihuahua,0
@@ -217,7 +217,7 @@ cherry,0
 gaillardia,0
 ladybug,/m/0gj37
 diver,0
-eskimo dog,0
+eskimo dog,/m/0bt9lr
 cocotte,0
 carnation pink,0
 car mirror,0
@@ -225,7 +225,7 @@ picador,0
 hearth,0
 amphibian,0
 crocodile,/m/09f_2
-surfing,0
+surfing,/m/019w40
 cow,0
 pistil,0
 garden,0
@@ -251,7 +251,7 @@ brittle star,0
 radio,0
 jacket,/m/032b3c
 lemur,0
-breakfast table,0
+breakfast table,/m/0h8n5zk
 pink,0
 stagecoach,0
 pantheon,0
@@ -265,7 +265,7 @@ nigella,0
 solar cell,0
 sea trout,0
 aisle,0
-swimming trunks,0
+swimming trunks,/m/01gkx_
 starfish,/m/01h8tj
 rowing,0
 recreational vehicle,0
@@ -281,7 +281,7 @@ wagon,0
 sea,0
 pasta,/m/05z55
 flagon,0
-streetlight,0
+streetlight,/m/033rq4
 computer monitor,/m/02522
 bicycle,/m/0199g
 cockatiel,0
@@ -309,8 +309,8 @@ kingfisher,0
 traction engine,0
 duckling,0
 windshield,0
-hands,0
-baggage,0
+hands,/m/0k65p
+baggage,/m/0hf58v5
 potter's wheel,0
 door knocker,0
 chest of drawers,/m/05kyg_
@@ -348,14 +348,14 @@ watchtower,0
 sunbath,0
 juice,/m/01z1kdw
 airliner,0
-handbag,/m/080hkjn
+handbag,/m/080hkjn&/m/0hf58v5
 buckle,0
 art gallery,0
 lymphocyte,0
 panda,/m/03bj1
 necklace,/m/01llwg
 faucet,0
-potted plant,0
+potted plant,/m/03fp41&/m/05s2s
 bear,/m/01dws
 spider orchid,0
 firearm,0
@@ -399,7 +399,7 @@ aircraft engine,0
 villa,0
 pinwheel,0
 overcast,0
-telephone,/m/07cx4
+telephone,/m/07cx4&/m/0h8lkj8
 ballpark,0
 pointed arch,0
 brickwork,0
@@ -475,7 +475,7 @@ camp chair,0
 toad,0
 lory,0
 arete,0
-kitchen ware,0
+kitchen ware,/m/03_wxk
 african lily,0
 lionfish,0
 petunia,0
@@ -489,7 +489,7 @@ barbecue,0
 wood fence,0
 resort,0
 pepper,0
-hand,0
+hand,/m/0k65p
 locust,0
 cruise ship,0
 pattern,0
@@ -523,7 +523,7 @@ lantern,/m/01jfsr
 hot air balloon,0
 shorts,/m/01bfm9
 screw,0
-poker plant,0
+poker plant,/m/05s2s
 escarpment,0
 costume,0
 ocean liner,0
@@ -557,13 +557,13 @@ jump,0
 rose,/m/06m11
 giraffe,/m/03bk1
 squirrel,/m/071qp
-egg yolk,0
+egg yolk,/m/033cnk
 golf,0
 taillight,0
 buck,0
 rowing boat,0
 birch,0
-stringed instrument,0
+stringed instrument,/m/04szw
 casserole,0
 book,/m/0bt_c3
 iris,0
@@ -608,7 +608,7 @@ pool,0
 blackbird,0
 labrador,0
 lilac,0
-makeup,0
+makeup,/m/014trl
 gravestone,0
 rim,0
 token,0
@@ -653,7 +653,7 @@ path,0
 podium,0
 power line,0
 mansion,0
-keyboard instrument,0
+keyboard instrument,/m/057cc&/m/04szw
 bunny,0
 daffodil,0
 picture frame,/m/06z37_
@@ -666,7 +666,7 @@ hockey,0
 amusement park,0
 casino,0
 meadow cranesbill,0
-fig,0
+fig,/m/043nyj
 reservoir,0
 marmot,0
 tramline,0
@@ -700,7 +700,7 @@ hound,0
 topiary,0
 stadium,0
 grain,0
-pitcher,0
+pitcher,/m/054fyh
 model t,0
 dust storm,0
 faience,0
@@ -736,9 +736,9 @@ paddy,0
 tractor,0
 locket,0
 grassland,0
-skirt,/m/02wv6h6
+skirt,/m/02wv6h6&/m/01cmb2
 clock tower,0
-street sign,0
+street sign,/m/01mqdt
 pine,0
 round,0
 rain,0
@@ -747,14 +747,14 @@ toy,/m/0138tl
 kitchen,0
 blossom,0
 motorcycle,/m/04_sv
-organ instrument,0
+organ instrument,/m/013y1f&/m/04szw
 stork,0
 ant,/m/0_k2
 booby,0
 coil,0
 cigarette butt,0
 cineraria,0
-sportswear,0
+sportswear,/m/0h8mhzd
 sports car,0
 aspen,0
 cologne,0
@@ -794,14 +794,14 @@ beetle,/m/020jm
 branchlet,0
 pylon,0
 jungle gym,0
-sofa,0
+sofa,/m/02crq1
 ceiling,0
 eyeshadow,0
 banjo,/m/018j2
 hart,0
 pinniped,0
 benthos,0
-whipping cream,0
+whipping cream,/m/08p92x
 cliff diving,0
 cow parsley,0
 foliage,0
@@ -812,7 +812,7 @@ nature,0
 fruit,/m/02xwb
 beverage,0
 dog,/m/0bt9lr
-bookshelf,0
+bookshelf,/m/03__z0
 teal,0
 greens,0
 common spotted orchid,0
@@ -822,13 +822,13 @@ white,0
 bagpipe,0
 fire truck,0
 pinetum,0
-swimsuit,0
+swimsuit,/m/01gkx_
 chalet,0
 trail,0
 florist,0
 camera,/m/0dv5r
 gymnastic apparatus,0
-cabinet,0
+cabinet,/m/01s105
 hubcap,0
 foxglove,0
 yarn,0
@@ -871,18 +871,18 @@ chair,/m/01mzpv
 kayak,0
 ball game,0
 wallet,0
-jaguar,0
+jaguar,/m/0449p
 wind turbine,0
 roof,0
 cathedral,0
 portico,0
 ice skating,0
-lavender,0
+lavender,/m/04gth
 highchair,0
 lunar,0
 bench,/m/0cvnqh
 backhoe,0
-bag,0
+bag,/m/0hf58v5
 gray fox,0
 goal net,0
 pig,/m/068zj
@@ -1036,13 +1036,13 @@ joystick,0
 cabin,0
 chard,0
 cross,0
-dinner table,0
+dinner table,/m/0h8n5zk
 disk,0
 flower,/m/0c9ph5
 petiole,0
 dome building,0
 cabbage butterfly,0
-pitcher plant,0
+pitcher plant,/m/05s2s
 bubble,0
 piaffe,0
 formal wear,0
@@ -1074,10 +1074,10 @@ oak,0
 candy,/m/0gm28
 shelf,/m/0gjbg72
 carburetor,0
-friends,0
+friends,/m/01g317
 wheel spoke,0
 groupshot,0
-percussion instrument,0
+percussion instrument,/m/04szw
 interior door,0
 mouse button,0
 office furniture,0
@@ -1233,22 +1233,22 @@ hill,0
 box turtle,0
 palace,0
 dining room,0
-egg,0
+egg,/m/033cnk
 dusk,0
 tachometer,0
 donkey,0
 sport fight,0
-horse cart,0
+horse cart,/m/018p4k
 emerald,0
 computer screen,0
 hosiery,0
-bat,0
+bat,/m/01h44
 spruce,0
 armor,0
 atoll,0
 scabious,0
 suit,/m/01xyhv
-moth,0
+moth,/m/0d_2m
 blowfly,0
 harbor,0
 bokeh,0
@@ -1256,13 +1256,13 @@ dahlia,0
 cloister,0
 rugby,0
 rodent,0
-musician,0
+musician,/m/04szw
 oven,/m/029bxz
 baluster,0
 farmhouse,0
 bridal veil,0
 desk,/m/01y9k5
-bikini,0
+bikini,/m/01gkx_
 glass,0
 train,/m/07jdr
 livestock,0
@@ -1272,7 +1272,7 @@ handmade,0
 semiconductor,0
 painting,0
 bathroom,0
-dining table,0
+dining table,/m/0h8n5zk
 headlight,0
 gray,0
 sushi,/m/07030
@@ -1296,7 +1296,7 @@ study room,0
 bouquet,0
 display rack,0
 swim,0
-gun,0
+gun,/m/083kb
 scorpion,/m/0755b
 gorilla,0
 tyrannosaur,0
@@ -1308,10 +1308,10 @@ bridesmaid,0
 archery,0
 document,0
 bicycle seat,0
-people,0
+people,/m/01g317
 digital display,0
 red maple,0
-park bench,0
+park bench,/m/0cvnqh
 building complex,0
 fleabane,0
 electric locomotive,0
@@ -1354,7 +1354,7 @@ caribou,0
 fern,0
 monkey,/m/08pbxl
 viaduct,0
-volleyball,0
+volleyball,/m/02rgn06
 stairs,/m/01lynh
 surreal,0
 bee,/m/01h3n
@@ -1391,7 +1391,7 @@ road,0
 banana tree,0
 tabby,0
 power cord,0
-hair,0
+hair,/m/03q69
 food processor,/m/03y6mg
 portrait,0
 piste,0
@@ -1424,7 +1424,7 @@ wood,0
 cherry blossom,0
 bike,0
 french window,0
-table tennis,0
+table tennis,/m/05_5p_0
 seal,0
 bullhorn,0
 cymbid,0
@@ -1449,7 +1449,7 @@ car grille,0
 aurora,0
 arnica,0
 tower,/m/01fdzj
-stove gas burner,0
+stove gas burner,/m/02wv84t
 intersection,0
 hippopotamus,/m/09f20
 plaque,0
@@ -1462,7 +1462,7 @@ map,0
 candle,/m/0c06p
 sky,0
 stool,/m/0fqt361
-tennis racket,/m/0h8my_4
+tennis racket,/m/0h8my_4&/m/0dv9c
 dune,0
 pool table,0
 almond tree,0
@@ -1470,7 +1470,7 @@ skewer,0
 hdr,0
 tangerine,0
 cayenne pepper,0
-eye,0
+eye,/m/014sv8
 cigar band,0
 paella,0
 cafeteria,0
@@ -1480,7 +1480,7 @@ furniture,/m/0c_jw
 bicycle wheel,/m/01bqk0
 anemone,0
 skein,0
-wine bottle,0
+wine bottle,/m/081qc
 photomicrograph,0
 fieldwork,0
 high-rise,0
@@ -1555,10 +1555,10 @@ rampart,0
 siamang,0
 forklift,0
 swing,0
-table,/m/04bcr3
+table,/m/078n6m&/m/0h8n5zk
 spaghetti,0
 reptile,/m/06bt6
-kitchen table,0
+kitchen table,/m/0h8n5zk
 lady's slipper orchid,0
 ram,0
 dewdrop,0
