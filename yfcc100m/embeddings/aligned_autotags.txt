@@ -348,14 +348,14 @@ watchtower,Building
 sunbath,0
 juice,/m/01z1kdw
 airliner,Airplane
-handbag,/m/080hkjn&/m/0hf58v5
+handbag,/m/080hkjn
 buckle,0
 art gallery,Building
 lymphocyte,0
 panda,/m/03bj1
 necklace,/m/01llwg
 faucet,Tap
-potted plant,/m/03fp41&/m/05s2s
+potted plant,/m/05s2s
 bear,/m/01dws
 spider orchid,Flower
 firearm,Weapon
@@ -399,7 +399,7 @@ aircraft engine,0
 villa,Building
 pinwheel,0
 overcast,0
-telephone,/m/07cx4&/m/0h8lkj8
+telephone,/m/07cx4
 ballpark,Building
 pointed arch,Building
 brickwork,0
@@ -653,7 +653,7 @@ path,0
 podium,0
 power line,0
 mansion,Building
-keyboard instrument,/m/057cc&/m/04szw
+keyboard instrument,/m/057cc
 bunny,Rabbit
 daffodil,Flower
 picture frame,/m/06z37_
@@ -736,7 +736,7 @@ paddy,0
 tractor,Land vehicle
 locket,Fashion accessory
 grassland,0
-skirt,/m/02wv6h6&/m/01cmb2
+skirt,/m/02wv6h6
 clock tower,Building
 street sign,/m/01mqdt
 pine,Tree
@@ -747,7 +747,7 @@ toy,/m/0138tl
 kitchen,0
 blossom,Flower
 motorcycle,/m/04_sv
-organ instrument,/m/013y1f&/m/04szw
+organ instrument,/m/013y1f
 stork,Bird
 ant,/m/0_k2
 booby,Bird
@@ -1462,7 +1462,7 @@ map,0
 candle,/m/0c06p
 sky,0
 stool,/m/0fqt361
-tennis racket,/m/0h8my_4&/m/0dv9c
+tennis racket,/m/0h8my_4
 dune,0
 pool table,Sports equipment
 almond tree,Tree
@@ -1555,7 +1555,7 @@ rampart,Building
 siamang,Mammal
 forklift,Land vehicle
 swing,0
-table,/m/078n6m&/m/0h8n5zk
+table,/m/04bcr3
 spaghetti,Pasta
 reptile,/m/06bt6
 kitchen table,/m/0h8n5zk
