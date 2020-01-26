@@ -314,7 +314,7 @@ baggage,/m/0hf58v5
 potter's wheel,Tool
 door knocker,Door
 chest of drawers,/m/05kyg_
-ensemble,Person&Musical Instrument
+ensemble,0
 toilet,/m/09g1w
 cloud,0
 snow leopard,Leopard
