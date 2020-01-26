@@ -389,7 +389,7 @@ electric organ,Musical instrument
 team sport,0
 gourd,Fruit
 mountainside,0
-bridge,Building
+bridge,0
 drawer,/m/0fqfqc
 van,/m/0h2r6
 animal,/m/0jbk
@@ -817,7 +817,7 @@ teal,0
 greens,0
 common spotted orchid,Flower
 mammal,/m/04rky
-drawbridge,Building
+drawbridge,0
 white,0
 bagpipe,Musical instrument
 fire truck,Land vehicle
@@ -907,7 +907,7 @@ gable roof,Building
 castle,/m/0d5gx
 shore,0
 brochette,Kitchen utensil
-steel arch bridge,Building
+steel arch bridge,0
 geranium,Flower
 cocktail,/m/024g6
 brick,0
@@ -1284,7 +1284,7 @@ cyclamen,Flower
 text,0
 tub,0
 creek,0
-cantilever bridge,Building
+cantilever bridge,0
 maroon,0
 lorikeet,Parrot
 sunlight,0
