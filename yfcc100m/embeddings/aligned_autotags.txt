@@ -833,7 +833,7 @@ hubcap,Auto part
 foxglove,Flower
 yarn,0
 dragonfly,/m/0ft9s
-matador,People
+matador,Person
 bedroom,Building
 marguerite,Flower
 room light,0
@@ -1076,7 +1076,7 @@ shelf,/m/0gjbg72
 carburetor,0
 friends,/m/01g317
 wheel spoke,0
-groupshot,People
+groupshot,Person
 percussion instrument,/m/04szw
 interior door,Door
 mouse button,Computer mouse
@@ -1118,7 +1118,7 @@ briefcase,/m/0584n8
 burrito,/m/01j3zr
 light,0
 cargo container,0
-crowd,People
+crowd,Person
 dagger,/m/02gzp
 auditorium,Building
 counter,Countertop
@@ -1304,11 +1304,11 @@ study hall,Building
 car hood,Auto part
 red,0
 chicory,Flower
-bridesmaid,People
+bridesmaid,Person
 archery,0
 document,0
 bicycle seat,Bicycle
-people,/m/01g317
+Person,/m/01g317
 digital display,0
 red maple,Tree
 park bench,/m/0cvnqh
