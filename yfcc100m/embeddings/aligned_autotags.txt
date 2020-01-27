@@ -97,7 +97,7 @@ tattoo,0
 car bumper,Auto part
 farmer's market,0
 gothic arch,Building
-teasel,Plant
+teasel,Flower
 poster,/m/01n5jq
 satin,0
 star shape,0
@@ -409,7 +409,7 @@ blouse,Clothing
 lighthouse,/m/04h7h
 snail,/m/0f9_l
 dashboard,0
-field mustard,Plant
+field mustard,Flower
 ape,Mammal
 trench coat,Coat
 clownfish,Fish
@@ -439,7 +439,7 @@ beanie,Fashion accessory
 saucepan,Kitchenware
 radome,Building
 washbasin,Sink
-glacier lily,Plant
+glacier lily,Flower
 support column,Building
 hand rail,0
 sunset,0
@@ -450,7 +450,7 @@ polar bear,/m/0633h
 soil,0
 ranch,Building
 wire,0
-fuschia,Plant
+fuschia,Flower
 fragrant orchid,Flower
 minute hand,0
 rapeseed,0
@@ -476,15 +476,15 @@ toad,/m/06bt6
 lory,Truck
 arete,0
 kitchen ware,/m/03_wxk
-african lily,Plant
+african lily,Flower
 lionfish,Fish
-petunia,Plant
+petunia,Flower
 sprocket,Tool
 lampshade,0
 ibex,Goat
 display window,0
 meerkat,Carnivore
-dendrobium,Plant
+dendrobium,Flower
 barbecue,0
 wood fence,0
 resort,Building
@@ -505,8 +505,8 @@ canal boat,Boat
 cabbage,/m/0fbw6
 carnivore,/m/01lrl
 snowdrift,0
-evening primrose,Plant
-hibiscus,Plant
+evening primrose,Flower
+hibiscus,Flower
 collared peccary,Mammal
 snack bar,0
 dining,0
@@ -600,7 +600,7 @@ cpu board,0
 water ski,Watercraft
 crimson,0
 gray horse,Horse
-rhododendron,Plant
+rhododendron,Flower
 block,0
 boat racing,0
 golden retriever,Dog
@@ -622,7 +622,7 @@ drum,/m/026t6
 dressage,0
 poodle,Dog
 grid,0
-milk thistle,Plant
+milk thistle,Flower
 jeans,/m/0fly7
 capuchin,Monkey
 freight car,Train
@@ -665,7 +665,7 @@ carp,Fish
 hockey,0
 amusement park,0
 casino,Building
-meadow cranesbill,Plant
+meadow cranesbill,Flower
 fig,/m/043nyj
 reservoir,0
 marmot,Squirrel
@@ -678,16 +678,16 @@ fog,0
 soup,Food
 dwelling,Building
 conference table,Table
-passion flower,Plant
+passion flower,Flower
 hall,Building
 banner,0
 airplane wing,0
 crevice,0
 stoop,0
-cattleya,Plant
+cattleya,Flower
 car part,Auto part
 fret,0
-campanile,Plant
+campanile,Flower
 student,Person
 flowerbed,0
 alp,0
@@ -1303,7 +1303,7 @@ tyrannosaur,Dinosaur
 study hall,Building
 car hood,Auto part
 red,0
-chicory,Plant
+chicory,Flower
 bridesmaid,People
 archery,0
 document,0
