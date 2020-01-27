@@ -36,7 +36,7 @@ def count_user_tags(path, pre_process=None, oiv_folder=None):
     print("Counting occurrences of user tags")
     tag_counts = {}
     for row in tqdm(dataset):
-        if row["ImageID"] in oiv_image_ids:
+        if row["ID"] in oiv_image_ids:
             continue
         user_tags = row["UserTags"]
         if user_tags:
