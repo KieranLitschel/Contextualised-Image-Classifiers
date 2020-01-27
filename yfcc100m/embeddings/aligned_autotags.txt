@@ -542,7 +542,7 @@ vase,/m/02s195
 panicle,0
 symmetry,0
 tent,/m/01j61q
-life jacket,Lifejacket
+life jacket,Personal flotation device
 vole,Mammal
 spadix,0
 harness horse,Horse
