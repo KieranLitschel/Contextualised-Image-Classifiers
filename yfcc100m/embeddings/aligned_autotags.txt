@@ -6,7 +6,7 @@ flag,/m/03120
 loft,0
 gorge,0
 hawk,/m/015p6
-onion dome,Build
+onion dome,Building
 armored personnel carrier,/m/01prls
 saint bernard,/m/0bt9lr
 undergarment,/m/09j2d
