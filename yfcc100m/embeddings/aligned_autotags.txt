@@ -369,7 +369,7 @@ ferrari,Car
 stone wall,Building
 clock,/m/01x3z
 rhinoceros,/m/03d443
-overalls,Clothings
+overalls,Clothing
 sun parlor,Building
 abutment,Building
 hammock,0
