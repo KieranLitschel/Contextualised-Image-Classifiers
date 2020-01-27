@@ -64,7 +64,7 @@ def find_unaligned_classes(oiv_classes_path, aligned_autotags_path):
     return oiv_name_map
 
 
-def find_class_alignments(oiv_classes_path, aligned_autotags_path):
+def find_oiv_class_alignments(oiv_classes_path, aligned_autotags_path):
     """ Returns a dict of OIV names as keys with each having a list of YFCC100M names that have been assigned to them
 
     Parameters
@@ -97,6 +97,28 @@ def find_class_alignments(oiv_classes_path, aligned_autotags_path):
                     oiv_yfcc100m_map[oiv_name] = []
                 oiv_yfcc100m_map[oiv_name].append(yfcc100m_name)
     return oiv_yfcc100m_map
+
+
+def get_yfcc100m_oiv_labels_map(aligned_autotags_path):
+    """ Returns a dict of YFCC100M names as keys with the value being their corresponding oiv_labels
+
+    Parameters
+    ----------
+    aligned_autotags_path : str
+        Path to file mapping YFCC100M auto tag names to OIV labels. Should be CSV of rows of format "chipmunk,/m/04rky"
+        where left item is YFCC100M auto tag name, and right item is the corresponding OIV label, if no OIV label is
+        assigned yet the right item should be 0
+
+    Returns
+    -------
+    dict of str -> str
+        Maps YFCC100M names to the corresponding OIV label that have been assigned to them
+    """
+
+    yfcc_100m_labels = load_csv_as_dict(aligned_autotags_path, fieldnames=["yfcc100m_name", "oiv_label"], delimiter=",")
+    yfcc_100m_name_oiv_label_map = {row["yfcc100m_name"]: row["oiv_label"] for row in yfcc_100m_labels if
+                                    row["oiv_label"] != "0"}
+    return yfcc_100m_name_oiv_label_map
 
 
 def replace_oiv_name_with_label(oiv_classes_path, aligned_autotags_path):
