@@ -1240,7 +1240,7 @@ donkey,Mammal
 sport fight,0
 horse cart,/m/018p4k
 emerald,0
-computer screen,Computer Monitor
+computer screen,Computer monitor
 hosiery,Clothing
 bat,/m/01h44
 spruce,Tree
