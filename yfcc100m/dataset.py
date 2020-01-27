@@ -6,7 +6,7 @@ import pickle
 from tqdm import tqdm
 import pycld2 as cld2
 import re
-#import cld3
+import cld3
 
 
 def count_user_tags(path, pre_process=None, oiv_folder=None):
