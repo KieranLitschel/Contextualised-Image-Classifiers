@@ -72,8 +72,8 @@ def get_labels_detected_in_images(oiv_folder):
     """
 
     files = [["train", "train-images-boxable-with-rotation.csv", "train-annotations-bbox.csv"],
-             ["validation", "validation-images-with-rotation.csv", "validation-annotations-bbox"],
-             ["test", "test-images-with-rotation.csv", "test-annotations-bbox"]]
+             ["validation", "validation-images-with-rotation.csv", "validation-annotations-bbox.csv"],
+             ["test", "test-images-with-rotation.csv", "test-annotations-bbox.csv"]]
 
     image_labels = {}
     for subset, image_id_file_name, bbox_file_name in tqdm(files):
@@ -85,7 +85,7 @@ def get_labels_detected_in_images(oiv_folder):
             flickr_id = extract_image_id_from_flickr_static(flickr_url)
             image_id_flickr_id_map[image_id] = flickr_id
         subset_image_labels = {}
-        bbox_file_csv = load_csv_as_dict(os.path.join(bbox_file_name, image_id_file_name), delimiter=",")
+        bbox_file_csv = load_csv_as_dict(os.path.join(oiv_folder, bbox_file_name), delimiter=",")
         for row in bbox_file_csv:
             image_id = row["ImageID"]
             flickr_id = image_id_flickr_id_map[image_id]
