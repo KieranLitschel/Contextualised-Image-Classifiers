@@ -2,8 +2,8 @@ from common import load_csv_as_dict, write_rows_to_csv
 from oiv.common import get_train_val_test_flickr_ids
 from yfcc100m.common import get_dataset_fields, get_autotag_fields
 from yfcc100m.autotags import kept_classes
-from yfcc100m.embeddings.load import build_features_encoder
-from yfcc100m.embeddings.encoders import CommaTokenTextEncoder
+from embeddings.load import build_features_encoder
+from embeddings.encoders import CommaTokenTextEncoder
 import os
 from tqdm import tqdm
 import pandas

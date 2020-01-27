@@ -5,7 +5,7 @@ import tensorflow as tf
 from tqdm import tqdm
 from functools import partial
 from common import load_csv_as_dict
-from yfcc100m.embeddings.encoders import CommaTokenTextEncoder
+from embeddings.encoders import CommaTokenTextEncoder
 
 
 def build_classes_encoder(classes_set):

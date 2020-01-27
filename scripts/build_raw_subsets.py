@@ -1,4 +1,4 @@
-from yfcc100m.embeddings.prepare import join_dataset_and_autotags, joined_to_subsets
+from embeddings.prepare import join_dataset_and_autotags, joined_to_subsets
 import os
 
 yfcc_dataset_path = "C:\\Honors Project\\YFCC100M\\yfcc100m_dataset"

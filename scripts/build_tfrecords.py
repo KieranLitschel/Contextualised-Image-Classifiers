@@ -3,7 +3,7 @@ import multiprocessing
 import tensorflow as tf
 import os
 
-from yfcc100m.embeddings.prepare import build_dataset
+from embeddings.prepare import build_dataset
 
 
 def build(tag_threshold, user_tags_limit):
