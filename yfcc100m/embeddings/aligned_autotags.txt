@@ -1165,7 +1165,7 @@ mug,/m/02jvh9
 insect,/m/03vt0
 truss,Building
 footwear,/m/09j5n
-car engine,AUto part
+car engine,Auto part
 race car,Car
 wheat,0
 cactus,Plant
