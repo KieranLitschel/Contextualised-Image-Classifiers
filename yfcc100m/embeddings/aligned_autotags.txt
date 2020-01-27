@@ -520,7 +520,7 @@ frock,Dress
 wood panels,0
 bull,/m/0cnyhnx
 lantern,/m/01jfsr
-hot air balloon,Aerial vehicle
+hot air balloon,Aircraft
 shorts,/m/01bfm9
 screw,Tool
 poker plant,/m/05s2s
@@ -1019,7 +1019,7 @@ field house,Building
 outdoor,0
 floor lamp,Lamp
 boxcar,Train
-cockpit,Aerial vehicle
+cockpit,Aircraft
 bowl,/m/04kkgm
 pasture,0
 raw vegetable,Vegetable
