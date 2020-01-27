@@ -898,7 +898,7 @@ shed,0
 satellite,0
 fireweed,0
 coral,0
-stall,Seat
+stall,Chair
 hurricane lamp,Tool
 bonsai,Plant
 shoe,Footwear
