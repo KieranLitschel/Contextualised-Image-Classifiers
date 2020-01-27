@@ -6,7 +6,7 @@ import pickle
 from tqdm import tqdm
 import pycld2 as cld2
 import re
-import cld3
+#import cld3
 
 
 def count_user_tags(path, pre_process=None, oiv_folder=None):
@@ -29,14 +29,14 @@ def count_user_tags(path, pre_process=None, oiv_folder=None):
 
     dataset = load_csv_as_dict(path, fieldnames=get_dataset_fields())
     pre_process = pre_process if pre_process is not None else True
-    oiv_image_ids = {}
+    oiv_train_image_ids = {}
     if oiv_folder:
         print("Getting ids of OIV images")
-        oiv_image_ids = get_train_val_test_flickr_ids(oiv_folder)["train"]
+        oiv_train_image_ids = get_train_val_test_flickr_ids(oiv_folder)["train"]
     print("Counting occurrences of user tags")
     tag_counts = {}
     for row in tqdm(dataset):
-        if row["ID"] not in oiv_image_ids:
+        if row["ID"] not in oiv_train_image_ids:
             continue
         user_tags = row["UserTags"]
         if user_tags:
