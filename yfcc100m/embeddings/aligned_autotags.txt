@@ -708,7 +708,7 @@ groom,Person
 reading lamp,Lamp
 frieze,0
 sorrel horse,Horse
-goldenrod,Flwer
+goldenrod,Flower
 conifer,Tree
 car interior,Auto part
 memorial,0
