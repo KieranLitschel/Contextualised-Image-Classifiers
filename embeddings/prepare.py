@@ -1,7 +1,8 @@
 from common import load_csv_as_dict, write_rows_to_csv
-from oiv.common import get_train_val_test_flickr_ids
+from oiv.common import get_train_val_test_flickr_ids, get_labels_detected_in_images
 from yfcc100m.common import get_dataset_fields, get_autotag_fields
 from yfcc100m.autotags import kept_classes
+from yfcc100m.class_alignment import get_yfcc100m_oiv_labels_map
 from embeddings.load import build_features_encoder
 from embeddings.encoders import CommaTokenTextEncoder
 import os
@@ -11,9 +12,12 @@ import re
 import tensorflow as tf
 import pycld2 as cld2
 from nltk.stem import SnowballStemmer
+from itertools import chain
+from collections import ChainMap
 
 
-def join_dataset_and_autotags(dataset_path, autotags_path, output_path, keep_numbers=None, class_path=None):
+def join_dataset_and_autotags(dataset_path, autotags_path, oiv_folder, output_path, keep_numbers=None, class_path=None,
+                              oiv=None, aligned_autotags_path=None):
     """ Reads the dataset and autotags files, and writes the id, user tags (stemmed if stemmable language detected), and
         auto tags for each image (discarding of videos) to the file at output path, by appending the rows to it
 
@@ -23,22 +27,44 @@ def join_dataset_and_autotags(dataset_path, autotags_path, output_path, keep_num
         Path to dataset file
     autotags_path : str
         Path to autotags file
+    oiv_folder : str
+        Path to folder of Image ID files of Open Images for train, validation, and test
     output_path : str
         File to append rows to
     keep_numbers : bool
         Whether to keep numbers, default False
     class_path : str
         Path to classes to keep, to be loaded using kept_classes method. If not specified all classes kept
+    oiv : bool
+        Whether we are building the dataset for oiv or YFCC100M, default of False, meaning we are building it for
+        YFCC100M
+    aligned_autotags_path : str
+        Path to file mapping YFCC100M auto tag names to OIV labels. Should be CSV of rows of format "chipmunk,/m/04rky"
+        where left item is YFCC100M auto tag name, and right item is the corresponding OIV label, if no OIV label is
+        assigned yet the right item should be 0. Default of None. If only_oiv is False, must be passed
     """
 
     keep_numbers = keep_numbers if keep_numbers is not None else False
     dataset = load_csv_as_dict(dataset_path, fieldnames=get_dataset_fields())
     autotags = load_csv_as_dict(autotags_path, fieldnames=get_autotag_fields())
     classes_to_keep = set(kept_classes(class_path)) if class_path else None
+    oiv = oiv if oiv is not None else False
+    print("Getting Open Images image IDs")
+    oiv_image_ids = set(chain(*get_train_val_test_flickr_ids(oiv_folder).values()))
+    oiv_image_labels = {}
+    yfcc100m_oiv_labels_map = {}
+    if oiv:
+        print("Getting Open Images labels")
+        oiv_image_labels = dict(ChainMap(*get_labels_detected_in_images(oiv_folder).values()))
+    else:
+        yfcc100m_oiv_labels_map = get_yfcc100m_oiv_labels_map(aligned_autotags_path)
     lines = []
+    print("Building dataset")
     for dataset_row in tqdm(dataset):
         autotags_row = next(autotags)
         image_id = dataset_row["ID"]
+        if (oiv and image_id not in oiv_image_ids) or (not oiv and image_id in oiv_image_ids):
+            continue
         image_user_tags = dataset_row["UserTags"]
         if dataset_row["Video"] == "1":
             continue
@@ -56,7 +82,13 @@ def join_dataset_and_autotags(dataset_path, autotags_path, output_path, keep_num
                     stemmed_tag = "+".join([stemmer.stem(word) if word != '' else '' for word in user_tag.split("+")])
                     stemmed_user_tags.append(stemmed_tag)
                 image_user_tags = ",".join(stemmed_user_tags)
-        image_auto_tags = autotags_row["PredictedConcepts"]
+        if oiv:
+            image_auto_tags = ",".join(oiv_image_labels[image_id])
+        else:
+            image_auto_tags = autotags_row["PredictedConcepts"]
+            image_auto_tags = ",".join(set(
+                yfcc100m_oiv_labels_map[image_auto_tag] for image_auto_tag in image_auto_tags.split(",") if
+                image_auto_tag in yfcc100m_oiv_labels_map))
         if classes_to_keep and image_auto_tags:
             image_auto_tags = ",".join([tag_prob for tag_prob in image_auto_tags.split(",") if
                                         tag_prob.split(":")[0] in classes_to_keep])
