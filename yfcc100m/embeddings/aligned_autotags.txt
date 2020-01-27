@@ -148,7 +148,7 @@ stock car,Car
 bird,/m/015p6
 railroad track,0
 doe,Mammal
-armored vehicle,Land Vehicle
+armored vehicle,Land vehicle
 ice hockey,0
 turtle,/m/09dzg
 golf club,Sports equipment
