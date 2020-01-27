@@ -1365,7 +1365,7 @@ architecture,Building
 control panel,0
 wine cellar,Building
 pottery,0
-coreopsis,FLower
+coreopsis,Flower
 water sport,0
 cosmos flower,Flower
 maple,/m/0cffdh
