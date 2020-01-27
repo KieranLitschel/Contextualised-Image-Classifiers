@@ -1308,7 +1308,7 @@ bridesmaid,Person
 archery,0
 document,0
 bicycle seat,Bicycle
-Person,/m/01g317
+people,/m/01g317
 digital display,0
 red maple,Tree
 park bench,/m/0cvnqh
