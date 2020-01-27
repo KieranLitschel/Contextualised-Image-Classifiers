@@ -16,15 +16,13 @@ from itertools import chain
 from collections import ChainMap
 
 
-def pre_process_user_tags(image_user_tags, keep_numbers=None):
+def pre_process_user_tags(image_user_tags):
     """ Pre processes user tags, stemming and removing numbers (unless specified)
 
     Parameters
     ----------
     image_user_tags : str
         Tuple separated user tags
-    keep_numbers : bool
-        Whether to keep numbers as user tags, default True
 
     Returns
     -------
@@ -32,9 +30,7 @@ def pre_process_user_tags(image_user_tags, keep_numbers=None):
         Tuple separated pre processed user tags
     """
 
-    keep_numbers = keep_numbers if keep_numbers is not None else True
-    if not keep_numbers:
-        image_user_tags = ",".join([tag for tag in image_user_tags.split(",") if not re.match(r"^[0-9]+$", tag)])
+    image_user_tags = ",".join([tag for tag in image_user_tags.split(",") if not re.match(r"^[0-9]+$", tag)])
     if not image_user_tags:
         return ""
     is_reliable, _, details = cld2.detect(image_user_tags)
@@ -50,8 +46,7 @@ def pre_process_user_tags(image_user_tags, keep_numbers=None):
     return image_user_tags
 
 
-def join_dataset_and_autotags(dataset_path, autotags_path, oiv_folder, output_path, keep_numbers=None, class_path=None,
-                              oiv=None, aligned_autotags_path=None):
+def join_dataset_and_autotags(dataset_path, autotags_path, oiv_folder, output_path, class_path=None, oiv=None, aligned_autotags_path=None):
     """ Reads the dataset and autotags files, and writes the id, user tags (stemmed if stemmable language detected), and
         auto tags for each image (discarding of videos) to the file at output path, by appending the rows to it
 
@@ -65,8 +60,6 @@ def join_dataset_and_autotags(dataset_path, autotags_path, oiv_folder, output_pa
         Path to folder of Image ID files of Open Images for train, validation, and test
     output_path : str
         File to append rows to
-    keep_numbers : bool
-        Whether to keep numbers as user tags, default False
     class_path : str
         Path to classes to keep, to be loaded using kept_classes method. If not specified all classes kept
     oiv : bool
@@ -101,7 +94,7 @@ def join_dataset_and_autotags(dataset_path, autotags_path, oiv_folder, output_pa
         image_user_tags = dataset_row["UserTags"]
         if dataset_row["Video"] == "1":
             continue
-        image_user_tags = pre_process_user_tags(image_user_tags, keep_numbers=keep_numbers)
+        image_user_tags = pre_process_user_tags(image_user_tags)
         if not image_user_tags:
             continue
         if oiv:
