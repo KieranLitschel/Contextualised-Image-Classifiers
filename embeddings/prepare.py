@@ -16,6 +16,40 @@ from itertools import chain
 from collections import ChainMap
 
 
+def pre_process_user_tags(image_user_tags, keep_numbers=None):
+    """ Pre processes user tags, stemming and removing numbers (unless specified)
+
+    Parameters
+    ----------
+    image_user_tags : str
+        Tuple separated user tags
+    keep_numbers : bool
+        Whether to keep numbers as user tags, default True
+
+    Returns
+    -------
+    str
+        Tuple separated pre processed user tags
+    """
+
+    keep_numbers = keep_numbers if keep_numbers is not None else True
+    if not keep_numbers:
+        image_user_tags = ",".join([tag for tag in image_user_tags.split(",") if not re.match(r"^[0-9]+$", tag)])
+    if not image_user_tags:
+        return ""
+    is_reliable, _, details = cld2.detect(image_user_tags)
+    language = details[0][0].lower()
+    if is_reliable and language != "unknown":
+        if language in SnowballStemmer.languages:
+            stemmer = SnowballStemmer(language)
+            stemmed_user_tags = []
+            for user_tag in image_user_tags.split(","):
+                stemmed_tag = "+".join([stemmer.stem(word) if word != '' else '' for word in user_tag.split("+")])
+                stemmed_user_tags.append(stemmed_tag)
+            image_user_tags = ",".join(stemmed_user_tags)
+    return image_user_tags
+
+
 def join_dataset_and_autotags(dataset_path, autotags_path, oiv_folder, output_path, keep_numbers=None, class_path=None,
                               oiv=None, aligned_autotags_path=None):
     """ Reads the dataset and autotags files, and writes the id, user tags (stemmed if stemmable language detected), and
@@ -32,7 +66,7 @@ def join_dataset_and_autotags(dataset_path, autotags_path, oiv_folder, output_pa
     output_path : str
         File to append rows to
     keep_numbers : bool
-        Whether to keep numbers, default False
+        Whether to keep numbers as user tags, default False
     class_path : str
         Path to classes to keep, to be loaded using kept_classes method. If not specified all classes kept
     oiv : bool
@@ -44,7 +78,6 @@ def join_dataset_and_autotags(dataset_path, autotags_path, oiv_folder, output_pa
         assigned yet the right item should be 0. Default of None. If only_oiv is False, must be passed
     """
 
-    keep_numbers = keep_numbers if keep_numbers is not None else False
     dataset = load_csv_as_dict(dataset_path, fieldnames=get_dataset_fields())
     autotags = load_csv_as_dict(autotags_path, fieldnames=get_autotag_fields())
     classes_to_keep = set(kept_classes(class_path)) if class_path else None
@@ -68,20 +101,9 @@ def join_dataset_and_autotags(dataset_path, autotags_path, oiv_folder, output_pa
         image_user_tags = dataset_row["UserTags"]
         if dataset_row["Video"] == "1":
             continue
-        if not keep_numbers:
-            image_user_tags = ",".join([tag for tag in image_user_tags.split(",") if not re.match(r"^[0-9]+$", tag)])
+        image_user_tags = pre_process_user_tags(image_user_tags, keep_numbers=keep_numbers)
         if not image_user_tags:
             continue
-        is_reliable, _, details = cld2.detect(image_user_tags)
-        language = details[0][0].lower()
-        if is_reliable and language != "unknown":
-            if language in SnowballStemmer.languages:
-                stemmer = SnowballStemmer(language)
-                stemmed_user_tags = []
-                for user_tag in image_user_tags.split(","):
-                    stemmed_tag = "+".join([stemmer.stem(word) if word != '' else '' for word in user_tag.split("+")])
-                    stemmed_user_tags.append(stemmed_tag)
-                image_user_tags = ",".join(stemmed_user_tags)
         if oiv:
             image_auto_tags = ",".join(oiv_image_labels[image_id])
         else:
