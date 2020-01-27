@@ -1,5 +1,7 @@
 from common import load_csv_as_dict
 from yfcc100m.common import get_dataset_fields
+from oiv.common import get_train_val_test_flickr_ids
+from embeddings.prepare import pre_process_user_tags
 import pickle
 from tqdm import tqdm
 import pycld2 as cld2
@@ -7,13 +9,17 @@ import re
 import cld3
 
 
-def count_user_tags(path):
+def count_user_tags(path, pre_process=None, oiv_folder=None):
     """ Count the number of times each user tag occurs
 
     Parameters
     ----------
     path : str
         Path to dataset file
+    pre_process : bool
+        Whether to stem and pre-process as we do when building the dataset. Default of True
+    oiv_folder : str
+        Path to OIV folder. If specified then will only count user tags for OIV training subset
 
     Returns
     -------
@@ -22,10 +28,23 @@ def count_user_tags(path):
     """
 
     dataset = load_csv_as_dict(path, fieldnames=get_dataset_fields())
+    pre_process = pre_process if pre_process is not None else True
+    oiv_image_ids = {}
+    if oiv_folder:
+        print("Getting ids of OIV images")
+        oiv_image_ids = get_train_val_test_flickr_ids(oiv_folder)["train"]
+    print("Counting occurrences of user tags")
     tag_counts = {}
     for row in tqdm(dataset):
-        if row["UserTags"]:
-            tags = row["UserTags"].split(",")
+        if row["ImageID"] in oiv_image_ids:
+            continue
+        user_tags = row["UserTags"]
+        if user_tags:
+            if pre_process:
+                user_tags = pre_process_user_tags(user_tags)
+            if not user_tags:
+                continue
+            tags = user_tags.split(",")
             for tag in tags:
                 if not tag_counts.get(tag):
                     tag_counts[tag] = 0
