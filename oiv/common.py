@@ -72,7 +72,7 @@ def get_labels_detected_in_images(oiv_folder):
         that are present in them
     """
 
-    files = [["train", "train-images-boxable-with-rotation.csv", "train-annotations-bbox.csv"],
+    files = [["train", "train-images-with-labels-with-rotation.csv", "train-annotations-bbox.csv"],
              ["validation", "validation-images-with-rotation.csv", "validation-annotations-bbox.csv"],
              ["test", "test-images-with-rotation.csv", "test-annotations-bbox.csv"]]
 
