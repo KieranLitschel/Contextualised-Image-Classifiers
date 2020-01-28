@@ -2,6 +2,7 @@ import re
 import os
 from common import load_csv_as_dict
 from tqdm import tqdm
+import json
 
 
 def extract_image_id_from_flickr_static(static_url):
@@ -95,3 +96,61 @@ def get_labels_detected_in_images(oiv_folder):
             subset_image_labels[flickr_id].add(label)
         image_labels[subset] = subset_image_labels
     return image_labels
+
+
+def _hierarchy_child_to_dict(hierarchy_dict, labels_map=None):
+    """ Recursively constructs child dictionaries for children of hierarchy dict
+
+    Parameters
+    ----------
+    hierarchy_dict : dict
+        Dict with key "LabelName", indicating the label in the hierarchy this dict is for, may also have key
+        "Subcategory", which contains the children hierarchy_dict's of the node
+    labels_map : str
+        Maps OIV labels to OIV names, if not passed then nodes in hierarchy will be labelled with OIV label, otherwise
+        their OIV name
+
+    Returns
+    -------
+    dict of str -> dict of str -> ...
+        If hierarchy_dict has children, then returns _hierarchy_child_to_dict of children dicts, otherwise returns None
+    """
+
+    if not hierarchy_dict.get("Subcategory"):
+        return None
+    children = {}
+    for child in hierarchy_dict["Subcategory"]:
+        child_label = child["LabelName"]
+        if labels_map:
+            child_label = labels_map[child_label]
+        children[child_label] = _hierarchy_child_to_dict(child, labels_map=labels_map)
+    return children
+
+
+def hierachy_to_dict(hierarchy_file, label_names_file=None):
+    """ Takes a class hierarchy json and converts it into a more readable dict
+
+    Parameters
+    ----------
+    hierarchy_file : str
+        Path to hierarchy file json
+    label_names_file : str
+        Path to file mapping OIV labels to OIV names. Default of None. If passed then OIV labels are replaced with
+        human readable ones
+
+    Returns
+    -------
+    dict of str -> dict of str -> ...
+        Recursively constructs dict with first level dicts mapping first level concepts in the hierarchy to dicts of
+        second level concepts, etc.
+    """
+
+    f = open(hierarchy_file, "r")
+    hierachy_json = json.load(f)
+    labels_map = None
+    if label_names_file:
+        label_names_csv = load_csv_as_dict(label_names_file, delimiter=",", fieldnames=["oiv_label", "oiv_name"])
+        labels_map = {}
+        for row in label_names_csv:
+            labels_map[row["oiv_label"]] = row["oiv_name"]
+    return _hierarchy_child_to_dict(hierachy_json, labels_map)
