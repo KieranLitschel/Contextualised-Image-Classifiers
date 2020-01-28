@@ -1,7 +1,7 @@
 from common import load_csv_as_dict, write_rows_to_csv
 from oiv.common import get_train_val_test_flickr_ids, get_labels_detected_in_images
 from yfcc100m.common import get_dataset_fields, get_autotag_fields
-from yfcc100m.autotags import kept_classes
+from oiv.common import get_hierarchy_json_path, hierarchy_members_list
 from yfcc100m.class_alignment import get_yfcc100m_oiv_labels_map
 from embeddings.load import build_features_encoder
 from embeddings.encoders import CommaTokenTextEncoder
@@ -46,7 +46,8 @@ def pre_process_user_tags(image_user_tags):
     return image_user_tags
 
 
-def join_dataset_and_autotags(dataset_path, autotags_path, oiv_folder, output_path, class_path=None, oiv=None, aligned_autotags_path=None):
+def join_dataset_and_autotags(dataset_path, autotags_path, oiv_folder, output_path, oiv=None,
+                              aligned_autotags_path=None):
     """ Reads the dataset and autotags files, and writes the id, user tags (stemmed if stemmable language detected), and
         auto tags for each image (discarding of videos) to the file at output path, by appending the rows to it
 
@@ -60,8 +61,6 @@ def join_dataset_and_autotags(dataset_path, autotags_path, oiv_folder, output_pa
         Path to folder of Image ID files of Open Images for train, validation, and test
     output_path : str
         File to append rows to
-    class_path : str
-        Path to classes to keep, to be loaded using kept_classes method. If not specified all classes kept
     oiv : bool
         Whether we are building the dataset for oiv or YFCC100M, default of False, meaning we are building it for
         YFCC100M
@@ -73,7 +72,7 @@ def join_dataset_and_autotags(dataset_path, autotags_path, oiv_folder, output_pa
 
     dataset = load_csv_as_dict(dataset_path, fieldnames=get_dataset_fields())
     autotags = load_csv_as_dict(autotags_path, fieldnames=get_autotag_fields())
-    classes_to_keep = set(kept_classes(class_path)) if class_path else None
+    classes_to_keep = set(hierarchy_members_list(get_hierarchy_json_path()))
     oiv = oiv if oiv is not None else False
     print("Getting Open Images image IDs")
     oiv_image_ids = set(chain(*get_train_val_test_flickr_ids(oiv_folder).values()))
