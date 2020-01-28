@@ -3,6 +3,7 @@ import os
 from common import load_csv_as_dict
 from tqdm import tqdm
 import json
+import pathlib
 
 
 def extract_image_id_from_flickr_static(static_url):
@@ -183,3 +184,15 @@ def hierarchy_members_list(hierarchy_file, label_names_file=None):
             if child:
                 hierarchy_dict_queue.append(child)
     return members
+
+
+def get_hierarchy_json_path():
+    """ Get the path to the hierarchy JSON
+
+    Returns
+    -------
+    str
+        Path to hierarchy json
+    """
+
+    return os.path.join(pathlib.Path(__file__).parent.absolute(), "oiv\\challenge-2019-label500-hierarchy.json")
