@@ -207,7 +207,7 @@ porthole,0
 dandelion,/m/0c9ph5
 canyon,0
 girder,0
-display screen,/m/0cgh4
+display screen,0
 shellfish,/m/0fbdv
 birdbath,0
 steeple,/m/0cgh4
@@ -988,7 +988,7 @@ reddish brown,0
 elk,/m/04rky
 hitter,/m/01g317
 basset,/m/0bt9lr
-portable computer,/m/0cgh4
+portable computer,0
 chateau,/m/0cgh4
 snow,0
 running shoe,/m/09j5n
@@ -1359,7 +1359,7 @@ stairs,/m/01lynh
 surreal,0
 bee,/m/01h3n
 knapweed,0
-computer,/m/0cgh4
+computer,0
 softball,0
 architecture,/m/0cgh4
 control panel,0
