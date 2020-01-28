@@ -154,3 +154,32 @@ def hierachy_to_dict(hierarchy_file, label_names_file=None):
         for row in label_names_csv:
             labels_map[row["oiv_label"]] = row["oiv_name"]
     return _hierarchy_child_to_dict(hierachy_json, labels_map)
+
+
+def hierarchy_members_list(hierarchy_file, label_names_file=None):
+    """ Takes a class hierarchy json and returns the list of classes in the hierarchy
+
+    Parameters
+    ----------
+    hierarchy_file : str
+        Path to hierarchy file json
+    label_names_file : str
+        Path to file mapping OIV labels to OIV names. Default of None. If passed then OIV labels are replaced with
+        human readable ones
+
+    Returns
+    -------
+    list of str
+        List of OIV labels in the hierarchy, or names if label_names_file is passed
+    """
+
+    members = []
+    hierarchy_dict_queue = [hierachy_to_dict(hierarchy_file, label_names_file=label_names_file)]
+    while hierarchy_dict_queue:
+        hierarchy_dict = hierarchy_dict_queue.pop(0)
+        for member in hierarchy_dict.keys():
+            members.append(member)
+        for child in hierarchy_dict.values():
+            if child:
+                hierarchy_dict_queue.append(child)
+    return members
