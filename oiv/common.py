@@ -106,7 +106,7 @@ def _hierarchy_child_to_dict(hierarchy_dict, labels_map=None):
     hierarchy_dict : dict
         Dict with key "LabelName", indicating the label in the hierarchy this dict is for, may also have key
         "Subcategory", which contains the children hierarchy_dict's of the node
-    labels_map : str
+    labels_map : dict
         Maps OIV labels to OIV names, if not passed then nodes in hierarchy will be labelled with OIV label, otherwise
         their OIV name
 
