@@ -44,7 +44,7 @@ def get_train_val_test_flickr_ids(oiv_folder):
         Dict mapping "train", "validation", and "test" to sets, containing the flickr ids of images that belong to them
     """
 
-    files = {"train": "train-images-boxable-with-rotation.csv", "validation": "validation-images-with-rotation.csv",
+    files = {"train": "train-images-with-labels-with-rotation.csv", "validation": "validation-images-with-rotation.csv",
              "test": "test-images-with-rotation.csv"}
     image_ids = {}
     for subset, file_name in tqdm(files.items()):
@@ -73,8 +73,8 @@ def get_labels_detected_in_images(oiv_folder):
         that are present in them
     """
 
-    files = [["train", "train-images-with-labels-with-rotation.csv", "train-annotations-bbox.csv"],
-             ["validation", "validation-images-with-rotation.csv", "validation-annotations-bbox.csv"],
+    files = [["train", "train-images-with-labels-with-rotation.csv", "train-annotations-human-imagelabels.csv"],
+             ["validation", "validation-images-with-rotation.csv", "validation-annotations-human-imagelabels.csv"],
              ["test", "test-images-with-rotation.csv", "test-annotations-bbox.csv"]]
 
     image_labels = {}
@@ -89,6 +89,8 @@ def get_labels_detected_in_images(oiv_folder):
         subset_image_labels = {}
         bbox_file_csv = load_csv_as_dict(os.path.join(oiv_folder, bbox_file_name), delimiter=",")
         for row in bbox_file_csv:
+            if row["Confidence"] == "0":
+                continue
             image_id = row["ImageID"]
             flickr_id = image_id_flickr_id_map[image_id]
             if flickr_id not in subset_image_labels:
