@@ -30,13 +30,16 @@ def extract_image_id_from_flickr_static(static_url):
     return image_id
 
 
-def get_train_val_test_flickr_ids(oiv_folder):
-    """ Extract the flickr image ids for train, validation, and test in the OIV dataset
+def get_train_val_test_ids(oiv_folder, flickr_ids=None):
+    """ Extract the ids for train, validation, and test in the OIV dataset. If flickr_ids set to True, they are converted
+        to flickr_ids
 
     Parameters
     ----------
     oiv_folder : str
         Path to folder containing open images csv's
+    flickr_ids : bool
+        Whether to return flickr ids. Default of True. Otherwise returns OIV ids
 
     Returns
     -------
@@ -44,6 +47,7 @@ def get_train_val_test_flickr_ids(oiv_folder):
         Dict mapping "train", "validation", and "test" to sets, containing the flickr ids of images that belong to them
     """
 
+    flickr_ids = flickr_ids if flickr_ids is not None else True
     files = {"train": "train-images-with-labels-with-rotation.csv", "validation": "validation-images-with-rotation.csv",
              "test": "test-images-with-rotation.csv"}
     image_ids = {}
@@ -51,9 +55,12 @@ def get_train_val_test_flickr_ids(oiv_folder):
         subset_csv = load_csv_as_dict(os.path.join(oiv_folder, file_name), delimiter=",")
         subset_ids = set()
         for row in subset_csv:
-            flickr_url = row["OriginalURL"]
-            flickr_id = extract_image_id_from_flickr_static(flickr_url)
-            subset_ids.add(flickr_id)
+            if flickr_ids:
+                flickr_url = row["OriginalURL"]
+                flickr_id = extract_image_id_from_flickr_static(flickr_url)
+                subset_ids.add(flickr_id)
+            else:
+                subset_ids.add(row["ImageID"])
         image_ids[subset] = subset_ids
     return image_ids
 

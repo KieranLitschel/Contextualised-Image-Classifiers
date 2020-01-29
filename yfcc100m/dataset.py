@@ -1,6 +1,6 @@
 from common import load_csv_as_dict
 from yfcc100m.common import get_dataset_fields
-from oiv.common import get_train_val_test_flickr_ids
+from oiv.common import get_train_val_test_ids
 from embeddings.prepare import pre_process_user_tags
 import pickle
 from tqdm import tqdm
@@ -32,7 +32,7 @@ def count_user_tags(path, pre_process=None, oiv_folder=None):
     oiv_train_image_ids = {}
     if oiv_folder:
         print("Getting ids of OIV images")
-        oiv_train_image_ids = get_train_val_test_flickr_ids(oiv_folder)["train"]
+        oiv_train_image_ids = get_train_val_test_ids(oiv_folder)["train"]
     print("Counting occurrences of user tags")
     tag_counts = {}
     for row in tqdm(dataset):

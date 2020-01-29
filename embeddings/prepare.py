@@ -1,5 +1,5 @@
 from common import load_csv_as_dict, write_rows_to_csv
-from oiv.common import get_train_val_test_flickr_ids, get_labels_detected_in_images
+from oiv.common import get_train_val_test_ids, get_labels_detected_in_images
 from yfcc100m.common import get_dataset_fields, get_autotag_fields
 from oiv.common import get_hierarchy_json_path, hierarchy_members_list
 from yfcc100m.class_alignment import get_yfcc100m_oiv_labels_map
@@ -75,7 +75,7 @@ def join_dataset_and_autotags(dataset_path, autotags_path, oiv_folder, output_pa
     classes_to_keep = set(hierarchy_members_list(get_hierarchy_json_path()))
     oiv = oiv if oiv is not None else False
     print("Getting Open Images image IDs")
-    oiv_image_ids = set(chain(*get_train_val_test_flickr_ids(oiv_folder).values()))
+    oiv_image_ids = set(chain(*get_train_val_test_ids(oiv_folder).values()))
     oiv_image_labels = {}
     yfcc100m_oiv_labels_map = {}
     if oiv:
@@ -177,7 +177,7 @@ def joined_to_subsets(oiv_folder, dataset_path, output_folder):
     """
 
     print("Getting which images are already assigned to subsets in OIV")
-    subset_members = get_train_val_test_flickr_ids(oiv_folder)
+    subset_members = get_train_val_test_ids(oiv_folder)
     print("Determining samples to be used for validation and test sets")
     val_ids, test_ids = _determine_val_test_ids(dataset_path, subset_members)
     subsets = ["train", "validation", "test"]
