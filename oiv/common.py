@@ -248,3 +248,46 @@ def build_human_machine_labels(oiv_folder):
             new_rows = []
     if len(new_rows) != 0:
         write_rows_to_csv(new_rows, os.path.join(oiv_folder, human_machine_labels_file), mode="a", delimiter=",")
+
+
+def get_labels_by_image_id(oiv_folder, classes_to_keep=None):
+    """ Gets the probability of labels by image id and subset. For train, if image is missing a label, then the
+        likelihood of that label is less than 0.5, as judged from machine generated labels
+
+    Parameters
+    ----------
+    oiv_folder : str
+        Path to folder containing open images csv's
+    classes_to_keep : set
+        Set of classes to keep. If None all classes kept
+
+    Returns
+    -------
+    dict of str -> dict of str -> int
+        Dict of hierarchy, subset -> image_id -> confidence
+    """
+
+    image_labels = {}
+    files = [["train", "train-annotations-human-machine-imagelabels.csv"],
+             ["validation", "validation-annotations-human-machine-imagelabels.csv"],
+             ["test", "test-annotations-bbox.csv"]]
+    for subset, labels_file_name in files:
+        print("Loading labels for {}".format(subset))
+        subset_image_labels = {}
+        image_labels_path = os.path.join(oiv_folder, labels_file_name)
+        image_labels_csv = load_csv_as_dict(image_labels_path, delimiter=",")
+        for row in tqdm(image_labels_csv):
+            image_id = row["ImageID"]
+            label = row["LabelName"]
+            confidence = row["Confidence"]
+            if classes_to_keep and label not in classes_to_keep:
+                continue
+            if image_id not in subset_image_labels:
+                subset_image_labels[image_id] = {}
+            if label in subset_image_labels[image_id] and subset_image_labels[image_id] == "1":
+                # test set may have images that have one box confirmed as containing class, and other confirmed
+                # as not, we keep the one with it confirmed to assert that at the image level the class is present
+                continue
+            subset_image_labels[image_id][label] = confidence
+        image_labels[subset] = subset_image_labels
+    return image_labels
