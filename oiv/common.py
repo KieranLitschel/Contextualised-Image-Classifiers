@@ -1,6 +1,6 @@
 import re
 import os
-from common import load_csv_as_dict
+from common import load_csv_as_dict, write_rows_to_csv
 from tqdm import tqdm
 import json
 import pathlib
@@ -205,3 +205,50 @@ def get_hierarchy_json_path():
     """
 
     return os.path.join(pathlib.Path(__file__).parent.absolute(), "oiv\\challenge-2019-label500-hierarchy.json")
+
+
+def build_human_machine_labels(oiv_folder):
+    """ Reads the image level image id and human label files of OIV joined with YFCC100M by OpenImagesV5Tools (so that
+        they only contain OIV images that overlap with YFCC100M), and makes a new file containing the human and machine
+        labels. Where an image has a label from both the human and machine dataset, machine label is discarded
+
+    Parameters
+    ----------
+    oiv_folder : str
+        Path to folder containing open images csv's
+    """
+
+    print("Getting the ids of OIV images")
+    files = [["train", "train-images-with-labels-with-rotation.csv", "train-annotations-human-imagelabels.csv",
+              "train-annotations-machine-imagelabels.csv"],
+             ["validation", "validation-images-with-rotation.csv", "validation-annotations-human-imagelabels.csv",
+              "validation-annotations-machine-imagelabels.csv"]]
+    for subset, image_id_file_name, human_labels_filename, machine_labels_filename in files:
+        human_machine_labels_file = "{}-annotations-human-machine-imagelabels.csv".format(subset)
+        print("Building {}".format(human_machine_labels_file))
+        human_labels = {}
+        human_labels_csv = load_csv_as_dict(os.path.join(oiv_folder, human_labels_filename), delimiter=",")
+        new_rows = []
+        for row in tqdm(human_labels_csv):
+            image_id = row["ImageID"]
+            label = row["LabelName"]
+            if image_id not in human_labels:
+                human_labels[image_id] = set()
+            human_labels[image_id].add(label)
+            new_rows.append(row)
+        write_rows_to_csv(new_rows, os.path.join(oiv_folder, human_machine_labels_file), mode="a", delimiter=",",
+                          write_header=True)
+        new_rows = []
+        machine_labels_csv = load_csv_as_dict(os.path.join(oiv_folder, machine_labels_filename), delimiter=",")
+        for row in tqdm(machine_labels_csv):
+            image_id = row["ImageID"]
+            label = row["LabelName"]
+            if image_id not in human_labels or label in human_labels[image_id]:
+                continue
+            new_rows.append(row)
+            if len(new_rows) == 10000000:
+                write_rows_to_csv(new_rows, os.path.join(oiv_folder, human_machine_labels_file), mode="a",
+                                  delimiter=",")
+                new_rows = []
+        if len(new_rows) != 0:
+            write_rows_to_csv(new_rows, os.path.join(oiv_folder, human_machine_labels_file), mode="a", delimiter=",")
