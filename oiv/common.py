@@ -65,13 +65,18 @@ def get_train_val_test_ids(oiv_folder, flickr_ids=None):
     return image_ids
 
 
-def get_labels_detected_in_images(oiv_folder):
+def get_labels_detected_in_images(oiv_folder, classes_to_keep=None, get_confidence=None):
     """ Extract the labels that are bounding boxes in each image
 
     Parameters
     ----------
     oiv_folder : str
         Path to folder containing open images csv's
+    classes_to_keep : set
+        Set of classes to keep. If None all classes kept
+    get_confidence : bool
+        Whether to return the confidence. If False then just returns the labels for each image as a set, otherwise
+        returns them as a dictionary with the labels as keys and confidences as values. Default of False
 
     Returns
     -------
@@ -80,6 +85,7 @@ def get_labels_detected_in_images(oiv_folder):
         that are present in them
     """
 
+    get_confidence = get_confidence if get_confidence is not None else False
     files = [["train", "train-images-with-labels-with-rotation.csv", "train-annotations-human-imagelabels.csv"],
              ["validation", "validation-images-with-rotation.csv", "validation-annotations-human-imagelabels.csv"],
              ["test", "test-images-with-rotation.csv", "test-annotations-bbox.csv"]]
@@ -96,14 +102,20 @@ def get_labels_detected_in_images(oiv_folder):
         subset_image_labels = {}
         bbox_file_csv = load_csv_as_dict(os.path.join(oiv_folder, bbox_file_name), delimiter=",")
         for row in bbox_file_csv:
-            if row["Confidence"] == "0":
-                continue
             image_id = row["ImageID"]
             flickr_id = image_id_flickr_id_map[image_id]
-            if flickr_id not in subset_image_labels:
-                subset_image_labels[flickr_id] = set()
             label = row["LabelName"]
-            subset_image_labels[flickr_id].add(label)
+            confidence = row["Confidence"]
+            if classes_to_keep and label not in classes_to_keep:
+                continue
+            if confidence == "0":
+                continue
+            if flickr_id not in subset_image_labels:
+                subset_image_labels[flickr_id] = set() if not get_confidence else {}
+            if not get_confidence:
+                subset_image_labels[flickr_id].add(label)
+            else:
+                subset_image_labels[image_id][label] = confidence
         image_labels[subset] = subset_image_labels
     return image_labels
 
@@ -248,46 +260,3 @@ def build_human_machine_labels(oiv_folder):
             new_rows = []
     if len(new_rows) != 0:
         write_rows_to_csv(new_rows, os.path.join(oiv_folder, human_machine_labels_file), mode="a", delimiter=",")
-
-
-def get_labels_by_image_id(oiv_folder, classes_to_keep=None):
-    """ Gets the probability of labels by image id and subset. For train, if image is missing a label, then the
-        likelihood of that label is less than 0.5, as judged from machine generated labels
-
-    Parameters
-    ----------
-    oiv_folder : str
-        Path to folder containing open images csv's
-    classes_to_keep : set
-        Set of classes to keep. If None all classes kept
-
-    Returns
-    -------
-    dict of str -> dict of str -> int
-        Dict of hierarchy, subset -> image_id -> confidence
-    """
-
-    image_labels = {}
-    files = [["train", "train-annotations-human-machine-imagelabels.csv"],
-             ["validation", "validation-annotations-human-machine-imagelabels.csv"],
-             ["test", "test-annotations-bbox.csv"]]
-    for subset, labels_file_name in files:
-        print("Loading labels for {}".format(subset))
-        subset_image_labels = {}
-        image_labels_path = os.path.join(oiv_folder, labels_file_name)
-        image_labels_csv = load_csv_as_dict(image_labels_path, delimiter=",")
-        for row in tqdm(image_labels_csv):
-            image_id = row["ImageID"]
-            label = row["LabelName"]
-            confidence = row["Confidence"]
-            if classes_to_keep and label not in classes_to_keep:
-                continue
-            if image_id not in subset_image_labels:
-                subset_image_labels[image_id] = {}
-            if label in subset_image_labels[image_id] and subset_image_labels[image_id] == "1":
-                # test set may have images that have one box confirmed as containing class, and other confirmed
-                # as not, we keep the one with it confirmed to assert that at the image level the class is present
-                continue
-            subset_image_labels[image_id][label] = confidence
-        image_labels[subset] = subset_image_labels
-    return image_labels
