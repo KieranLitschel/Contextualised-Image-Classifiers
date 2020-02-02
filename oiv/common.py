@@ -32,7 +32,7 @@ def extract_image_id_from_flickr_static(static_url):
 
 def get_train_val_test_ids(oiv_folder, flickr_ids=None):
     """ Extract the ids for train, validation, and test in the OIV dataset. If flickr_ids set to True, they are converted
-        to flickr_ids
+        to flickr_ids. Default of True
 
     Parameters
     ----------
@@ -115,7 +115,7 @@ def get_labels_detected_in_images(oiv_folder, classes_to_keep=None, get_confiden
             if not get_confidence:
                 subset_image_labels[flickr_id].add(label)
             else:
-                subset_image_labels[image_id][label] = confidence
+                subset_image_labels[flickr_id][label] = confidence
         image_labels[subset] = subset_image_labels
     return image_labels
 
