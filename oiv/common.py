@@ -216,7 +216,7 @@ def get_hierarchy_json_path():
         Path to hierarchy json
     """
 
-    return os.path.join(pathlib.Path(__file__).parent.absolute(), "oiv\\challenge-2019-label500-hierarchy.json")
+    return os.path.join(pathlib.Path(__file__).parent.absolute(), "challenge-2019-label500-hierarchy.json")
 
 
 def build_human_machine_labels(oiv_folder):
