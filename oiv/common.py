@@ -108,8 +108,6 @@ def get_labels_detected_in_images(oiv_folder, classes_to_keep=None, get_confiden
             confidence = row["Confidence"]
             if classes_to_keep and label not in classes_to_keep:
                 continue
-            if confidence == "0":
-                continue
             if flickr_id not in subset_image_labels:
                 subset_image_labels[flickr_id] = set() if not get_confidence else {}
             if not get_confidence:
