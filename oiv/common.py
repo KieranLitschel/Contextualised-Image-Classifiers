@@ -115,7 +115,7 @@ def get_labels_detected_in_images(oiv_folder, classes_to_keep=None, get_confiden
             if not get_confidence:
                 subset_image_labels[flickr_id].add(label)
             else:
-                subset_image_labels[flickr_id][label] = confidence
+                subset_image_labels[flickr_id][label] = float(confidence)
         image_labels[subset] = subset_image_labels
     return image_labels
 
