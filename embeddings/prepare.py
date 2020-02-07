@@ -1,7 +1,7 @@
 from common import load_csv_as_dict, write_rows_to_csv
 from oiv.common import get_train_val_test_ids, get_labels_detected_in_images
 from yfcc100m.common import get_dataset_fields, get_autotag_fields
-from oiv.common import get_hierarchy_json_path, hierarchy_members_list
+from oiv.common import get_hierarchy_json_path, hierarchy_members_list, get_hierarchy_classes_parents
 from yfcc100m.class_alignment import get_yfcc100m_oiv_labels_map
 from embeddings.load import build_features_encoder
 from embeddings.encoders import CommaTokenTextEncoder
@@ -12,17 +12,19 @@ import re
 import tensorflow as tf
 import pycld2 as cld2
 from nltk.stem import SnowballStemmer
-from itertools import chain
-from collections import ChainMap
 
 
-def pre_process_user_tags(image_user_tags):
+def pre_process_user_tags(image_user_tags, remove_nums=None, stem=None):
     """ Pre processes user tags, stemming and removing numbers (unless specified)
 
     Parameters
     ----------
     image_user_tags : str
         Tuple separated user tags
+    remove_nums : bool
+        Whether to remove user tags that are only numbers, default True
+    stem : bool
+        Whether to stem user tags based on their detected language, default True
 
     Returns
     -------
@@ -30,24 +32,28 @@ def pre_process_user_tags(image_user_tags):
         Tuple separated pre processed user tags
     """
 
-    image_user_tags = ",".join([tag for tag in image_user_tags.split(",") if not re.match(r"^[0-9]+$", tag)])
-    if not image_user_tags:
-        return ""
-    is_reliable, _, details = cld2.detect(image_user_tags)
-    language = details[0][0].lower()
-    if is_reliable and language != "unknown":
-        if language in SnowballStemmer.languages:
-            stemmer = SnowballStemmer(language)
-            stemmed_user_tags = []
-            for user_tag in image_user_tags.split(","):
-                stemmed_tag = "+".join([stemmer.stem(word) if word != '' else '' for word in user_tag.split("+")])
-                stemmed_user_tags.append(stemmed_tag)
-            image_user_tags = ",".join(stemmed_user_tags)
+    remove_nums = remove_nums if remove_nums is not None else True
+    stem = stem if stem is not None else True
+    if remove_nums:
+        image_user_tags = ",".join([tag for tag in image_user_tags.split(",") if not re.match(r"^[0-9]+$", tag)])
+        if not image_user_tags:
+            return ""
+    if stem:
+        is_reliable, _, details = cld2.detect(image_user_tags)
+        language = details[0][0].lower()
+        if is_reliable and language != "unknown":
+            if language in SnowballStemmer.languages:
+                stemmer = SnowballStemmer(language)
+                stemmed_user_tags = []
+                for user_tag in image_user_tags.split(","):
+                    stemmed_tag = "+".join([stemmer.stem(word) if word != '' else '' for word in user_tag.split("+")])
+                    stemmed_user_tags.append(stemmed_tag)
+                image_user_tags = ",".join(stemmed_user_tags)
     return image_user_tags
 
 
-def join_dataset_and_autotags(dataset_path, autotags_path, oiv_folder, output_path, oiv=None,
-                              aligned_autotags_path=None):
+def join_dataset_and_autotags(dataset_path, autotags_path, oiv_folder, yfcc_output_path, oiv_output_path,
+                              oiv_human_output_path, stem=None):
     """ Reads the dataset and autotags files, and writes the id, user tags (stemmed if stemmable language detected), and
         auto tags for each image (discarding of videos) to the file at output path, by appending the rows to it
 
@@ -59,65 +65,103 @@ def join_dataset_and_autotags(dataset_path, autotags_path, oiv_folder, output_pa
         Path to autotags file
     oiv_folder : str
         Path to folder of Image ID files of Open Images for train, validation, and test
-    output_path : str
-        File to append rows to
-    oiv : bool
-        Whether we are building the dataset for oiv or YFCC100M, default of False, meaning we are building it for
-        YFCC100M
-    aligned_autotags_path : str
-        Path to file mapping YFCC100M auto tag names to OIV labels. Should be CSV of rows of format "chipmunk,/m/04rky"
-        where left item is YFCC100M auto tag name, and right item is the corresponding OIV label, if no OIV label is
-        assigned yet the right item should be 0. Default of None. If only_oiv is False, must be passed
+    yfcc_output_path : str
+        File to append yfcc rows to that do not appear in oiv validation and test
+    oiv_output_path : str
+        File to append oiv rows to
+    oiv_human_output_path : str
+        File to append oiv rows with human verified labels to
+    stem : bool
+        Whether to apply stemming, default is True
     """
 
+    stem = stem if stem is not None else True
     dataset = load_csv_as_dict(dataset_path, fieldnames=get_dataset_fields())
     autotags = load_csv_as_dict(autotags_path, fieldnames=get_autotag_fields())
-    classes_to_keep = set(hierarchy_members_list(get_hierarchy_json_path()))
-    oiv = oiv if oiv is not None else False
+    hierarchy_file_path = get_hierarchy_json_path()
+    classes_to_keep = set(hierarchy_members_list(hierarchy_file_path))
+    classes_parents = get_hierarchy_classes_parents(hierarchy_file_path)
     print("Getting Open Images image IDs")
-    oiv_image_ids = set(chain(*get_train_val_test_ids(oiv_folder).values()))
-    oiv_image_labels = {}
-    yfcc100m_oiv_labels_map = {}
-    if oiv:
-        print("Getting Open Images labels")
-        oiv_image_labels = dict(ChainMap(*get_labels_detected_in_images(oiv_folder).values()))
-    else:
-        yfcc100m_oiv_labels_map = get_yfcc100m_oiv_labels_map(aligned_autotags_path)
-    lines = []
+    oiv_image_ids = get_train_val_test_ids(oiv_folder, flickr_ids=False)
+    print("Getting Open Images labels")
+    oiv_image_labels = get_labels_detected_in_images(oiv_folder, classes_to_keep=classes_to_keep,
+                                                     get_confidence=True)
+    yfcc100m_oiv_labels_map = get_yfcc100m_oiv_labels_map()
+    yfcc_lines = []
+    oiv_lines = []
+    oiv_human_verified_lines = []
     print("Building dataset")
     for dataset_row in tqdm(dataset):
         autotags_row = next(autotags)
         image_id = dataset_row["ID"]
-        if (oiv and image_id not in oiv_image_ids) or (not oiv and image_id in oiv_image_ids):
-            continue
         image_user_tags = dataset_row["UserTags"]
         if dataset_row["Video"] == "1":
             continue
-        image_user_tags = pre_process_user_tags(image_user_tags)
+        image_user_tags = pre_process_user_tags(image_user_tags, stem=stem)
         if not image_user_tags:
             continue
-        if oiv:
-            image_auto_tags = ",".join(oiv_image_labels[image_id])
+        if image_id in oiv_image_ids["train"] or image_id in oiv_image_ids["validation"] \
+                or image_id in oiv_image_ids["test"]:
+            for label, confidence in oiv_image_labels[image_id].items():
+                confidence = float(confidence)
+                if label in classes_parents:
+                    for parent_label in classes_parents[label]:
+                        if parent_label in oiv_image_labels[image_id] and \
+                                confidence < oiv_image_labels[image_id][parent_label]:
+                            continue
+                        oiv_image_labels[image_id][parent_label] = confidence
+            image_labels = oiv_image_labels[image_id].items()
+        elif autotags_row["PredictedConcepts"]:
+            image_labels = [tag_prob.split(":") for tag_prob in autotags_row["PredictedConcepts"].split(",")]
+            new_image_labels = {}
+            for yfcc_tag, confidence in image_labels:
+                confidence = float(confidence)
+                if yfcc_tag in yfcc100m_oiv_labels_map:
+                    oiv_tag = yfcc100m_oiv_labels_map[yfcc_tag]
+                    new_image_labels[oiv_tag] = confidence
+                    if oiv_tag in classes_parents:
+                        for parent_tag in classes_parents[oiv_tag]:
+                            if parent_tag in new_image_labels and confidence < new_image_labels[parent_tag]:
+                                continue
+                            new_image_labels[parent_tag] = confidence
+            image_labels = new_image_labels.items()
         else:
-            image_auto_tags = autotags_row["PredictedConcepts"]
-            image_auto_tags = ",".join(set(
-                yfcc100m_oiv_labels_map[image_auto_tag] for image_auto_tag in image_auto_tags.split(",") if
-                image_auto_tag in yfcc100m_oiv_labels_map))
-        if classes_to_keep and image_auto_tags:
-            image_auto_tags = ",".join([tag_prob for tag_prob in image_auto_tags.split(",") if
-                                        tag_prob.split(":")[0] in classes_to_keep])
-        line = "{}\t{}\t{}\n".format(image_id, image_user_tags, image_auto_tags)
-        lines.append(line)
-        if len(lines) == 10000000:
-            output_file = open(output_path, "a")
-            output_file.writelines(lines)
+            image_labels = []
+        if classes_to_keep:
+            image_labels = [(tag, confidence) for tag, confidence in image_labels if tag in classes_to_keep]
+        image_labels_str = ",".join("{}:{}".format(tag, confidence) for tag, confidence in image_labels)
+        line = "{}\t{}\t{}\n".format(image_id, image_user_tags, image_labels_str)
+        if image_id in oiv_image_ids["validation"] or image_id in oiv_image_ids["test"]:
+            oiv_lines.append(line)
+            human_image_labels = []
+            for tag, confidence in image_labels:
+                if confidence == 0 or confidence == 1:
+                    human_image_labels.append((tag, confidence))
+            if human_image_labels:
+                human_image_labels_str = ",".join("{}:{}".format(tag, confidence)
+                                                  for tag, confidence in human_image_labels)
+                oiv_human_verified_lines.append(human_image_labels_str)
+        elif image_id in oiv_image_ids["train"]:
+            oiv_lines.append(line)
+            yfcc_lines.append(line)
+        else:
+            yfcc_lines.append(line)
+        if len(yfcc_lines) == 10000000:
+            output_file = open(yfcc_output_path, "a")
+            output_file.writelines(yfcc_lines)
             output_file.close()
-            lines = []
-    if lines:
-        lines[-1] = lines[-1][:-1]
-        output_file = open(output_path, "a")
-        output_file.writelines(lines)
+            yfcc_lines = []
+    if yfcc_lines:
+        yfcc_lines[-1] = yfcc_lines[-1][:-1]
+        output_file = open(yfcc_output_path, "a")
+        output_file.writelines(yfcc_lines)
         output_file.close()
+    output_file = open(oiv_output_path, "a")
+    output_file.writelines(oiv_lines)
+    output_file.close()
+    output_file = open(oiv_human_output_path, "a")
+    output_file.writelines(oiv_human_verified_lines)
+    output_file.close()
 
 
 def _determine_val_test_ids(path, subset_members):

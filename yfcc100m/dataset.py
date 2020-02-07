@@ -6,18 +6,22 @@ import pickle
 from tqdm import tqdm
 import pycld2 as cld2
 import re
+
+
 import cld3
 
 
-def count_user_tags(path, pre_process=None, oiv_folder=None):
-    """ Count the number of times each user tag occurs
+def count_user_tags(path, stem=None, remove_nums=None, oiv_folder=None):
+    """ Count the number of times each user tag occurs in OIV training set
 
     Parameters
     ----------
     path : str
         Path to dataset file
-    pre_process : bool
-        Whether to stem and pre-process as we do when building the dataset. Default of True
+    remove_nums : bool
+        Whether to remove user tags that are only numbers, default True
+    stem : bool
+        Whether to stem user tags based on their detected language, default True
     oiv_folder : str
         Path to OIV folder. If specified then will only count user tags for OIV training subset
 
@@ -27,8 +31,9 @@ def count_user_tags(path, pre_process=None, oiv_folder=None):
         Number of occurrences of each user tag
     """
 
+    stem = stem if stem is not None else True
+    remove_nums = remove_nums if remove_nums is not None else True
     dataset = load_csv_as_dict(path, fieldnames=get_dataset_fields())
-    pre_process = pre_process if pre_process is not None else True
     oiv_train_image_ids = {}
     if oiv_folder:
         print("Getting ids of OIV images")
@@ -40,8 +45,8 @@ def count_user_tags(path, pre_process=None, oiv_folder=None):
             continue
         user_tags = row["UserTags"]
         if user_tags:
-            if pre_process:
-                user_tags = pre_process_user_tags(user_tags)
+            if stem or remove_nums:
+                user_tags = pre_process_user_tags(user_tags, stem=stem, remove_nums=remove_nums)
             if not user_tags:
                 continue
             tags = user_tags.split(",")
