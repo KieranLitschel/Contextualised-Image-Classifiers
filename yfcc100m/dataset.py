@@ -41,7 +41,7 @@ def count_user_tags(path, stem=None, remove_nums=None, oiv_folder=None):
     print("Counting occurrences of user tags")
     tag_counts = {}
     for row in tqdm(dataset):
-        if row["ID"] not in oiv_train_image_ids:
+        if not oiv_train_image_ids.get(row["ID"]):
             continue
         user_tags = row["UserTags"]
         if user_tags:
@@ -118,7 +118,7 @@ def count_detected_languages_cld2(dataset_path, keep_numbers=None):
         language = details[0][0].lower()
         if not is_reliable:
             language = "unknown"
-        if language not in language_counts:
+        if not language_counts.get(language):
             language_counts[language] = 0
         language_counts[language] += 1
     return language_counts
