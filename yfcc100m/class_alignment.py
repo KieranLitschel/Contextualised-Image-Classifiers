@@ -95,7 +95,7 @@ def find_oiv_class_alignments(oiv_classes_path, aligned_autotags_path):
         if oiv_labels != '0':
             for oiv_label in oiv_labels.split("&"):
                 oiv_name = oiv_name_map[oiv_label]
-                if oiv_name not in oiv_yfcc100m_map:
+                if not oiv_yfcc100m_map.get(oiv_name):
                     oiv_yfcc100m_map[oiv_name] = []
                 oiv_yfcc100m_map[oiv_name].append(yfcc100m_name)
     return oiv_yfcc100m_map
@@ -109,7 +109,7 @@ def get_yfcc100m_oiv_labels_map():
     dict of str -> str
         Maps YFCC100M names to the corresponding OIV label that have been assigned to them
     """
-    aligned_autotags_path = os.path.join(pathlib.Path(__file__).parent.absolute(), "yfcc100m", "aligned_autotags.txt")
+    aligned_autotags_path = os.path.join(pathlib.Path(__file__).parent.absolute(), "aligned_autotags.txt")
     yfcc_100m_labels = load_csv_as_dict(aligned_autotags_path, fieldnames=["yfcc100m_name", "oiv_label"], delimiter=",")
     yfcc_100m_name_oiv_label_map = {row["yfcc100m_name"]: row["oiv_label"] for row in yfcc_100m_labels if
                                     row["oiv_label"] != "0"}
@@ -140,7 +140,7 @@ def replace_oiv_name_with_label(oiv_classes_path, aligned_autotags_path):
     for row in yfcc_100m_labels:
         oiv_label = row["oiv_label"]
         if oiv_label != "0":
-            if oiv_label not in oiv_labels:
+            if not oiv_labels.get(oiv_label):
                 row["oiv_label"] = oiv_label_map[row["oiv_label"]]
         new_rows.append(row)
     write_rows_to_csv(new_rows, aligned_autotags_path, fieldnames=["yfcc100m_name", "oiv_label"], delimiter=",")
