@@ -1,4 +1,6 @@
 from common import load_csv_as_dict, write_rows_to_csv
+import os
+import pathlib
 
 
 def align_exact_matches(oiv_classes_path, aligned_autotags_path):
@@ -107,7 +109,7 @@ def get_yfcc100m_oiv_labels_map():
     dict of str -> str
         Maps YFCC100M names to the corresponding OIV label that have been assigned to them
     """
-    aligned_autotags_path = "aligned_autotags.txt"
+    aligned_autotags_path = os.path.join(pathlib.Path(__file__).parent.absolute(), "yfcc100m", "aligned_autotags.txt")
     yfcc_100m_labels = load_csv_as_dict(aligned_autotags_path, fieldnames=["yfcc100m_name", "oiv_label"], delimiter=",")
     yfcc_100m_name_oiv_label_map = {row["yfcc100m_name"]: row["oiv_label"] for row in yfcc_100m_labels if
                                     row["oiv_label"] != "0"}
