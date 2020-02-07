@@ -82,7 +82,7 @@ def get_labels_detected_in_images(oiv_folder, classes_to_keep=None, get_confiden
     -------
     dict of str -> dict of str -> set
         Dict mapping "train", "validation", and "test" to sets, containing dicts that map flickr_id to set of OIV labels
-        that are present in them
+        that are present in them. If get_confidence is True then returns dict of str -> float as described above
     """
 
     get_confidence = get_confidence if get_confidence is not None else False
