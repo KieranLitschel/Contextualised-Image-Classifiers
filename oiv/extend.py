@@ -18,15 +18,15 @@ class Extend:
         if time_since_last < 1:
             time.sleep(time_since_last)
         self.last_call = time.time()
-        raw_tags = self.flickr.tags.getListPhoto(api_key=self.api_key, photo_id=flickr_id, format="json")
-        tags_dict = json.loads(raw_tags.decode('utf-8'))
-        if tags_dict.get("photo"):
-            try:
+        try:
+            raw_tags = self.flickr.tags.getListPhoto(api_key=self.api_key, photo_id=flickr_id, format="json")
+            tags_dict = json.loads(raw_tags.decode('utf-8'))
+            if tags_dict.get("photo"):
                 tags = [tag_dict["raw"] for tag_dict in tags_dict["photo"]["tags"]["tag"]
                         if tag_dict["machine_tag"] == 0]
-            except flickrapi.exceptions.FlickrError:
+            else:
                 tags = None
-        else:
+        except (json.decoder.JSONDecodeError, flickrapi.exceptions.FlickrError):
             tags = None
         return tags
 
