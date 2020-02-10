@@ -26,7 +26,7 @@ class Extend:
                         if tag_dict["machine_tag"] == 0]
             else:
                 tags = None
-        except (json.decoder.JSONDecodeError, flickrapi.exceptions.FlickrError):
+        except Exception:
             tags = None
         return tags
 
