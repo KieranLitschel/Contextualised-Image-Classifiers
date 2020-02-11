@@ -5,6 +5,12 @@ import time
 import os
 from common import load_csv_as_dict, write_rows_to_csv
 from tqdm import tqdm
+import urllib
+
+
+def pre_process_tag(tag):
+    new_user_tag = "+".join(urllib.parse.quote(sub_tag.lower()) for sub_tag in tag.split(" "))
+    return new_user_tag
 
 
 class Extend:
@@ -54,7 +60,7 @@ class Extend:
                     curr_retries -= 1
                 if tags is None:
                     continue
-                tags = ",".join(tags)
+                tags = ",".join([pre_process_tag(tag) for tag in tags])
                 row = {"flickr_id": flickr_id, "user_tags": tags}
                 rows.append(row)
                 if len(rows) == 600:
