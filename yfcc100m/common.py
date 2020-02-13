@@ -97,7 +97,7 @@ def extend_dataset(oiv_dir, validation_extend_path, test_extend_path):
             dataset_row["Video"] = "0"
             dataset_rows.append(dataset_row)
             autotags_rows.append(autotags_row)
-            places_rows.append(places_rows)
+            places_rows.append(places_row)
     dataset_path = os.path.join(oiv_dir, "yfcc100m_dataset")
     if os.path.exists(dataset_path):
         write_rows_to_csv(dataset_rows, dataset_path, fieldnames=get_dataset_fields(), mode="a", delimiter="\t")
