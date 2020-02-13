@@ -66,15 +66,15 @@ def get_places_fields():
     return ["ID", "Places"]
 
 
-def extend_dataset(oiv_dir, validation_extend_path, test_extend_path):
-    """ Extends the OIV dataset using the validation and test expansions produced by oiv.extend. Appends to
+def extend_dataset(yfcc_dir, validation_extend_path, test_extend_path):
+    """ Extends the YFCC dataset using the validation and test expansions produced by oiv.extend. Appends to
         yfcc100m_dataset, but if yfcc100m_places and/or yfcc100m_autotags is present in the folder too, also adds
         empty rows to them so that the lines across all files correspond to the same images
 
     Parameters
     ----------
-    oiv_dir : str
-        Directory to OIV files to extends
+    yfcc_dir : str
+        Directory to YFCC files to extends
     validation_extend_path : str
         Directory to validation user tags extension file produced by oiv.extend
     test_extend_path : str
@@ -98,12 +98,12 @@ def extend_dataset(oiv_dir, validation_extend_path, test_extend_path):
             dataset_rows.append(dataset_row)
             autotags_rows.append(autotags_row)
             places_rows.append(places_row)
-    dataset_path = os.path.join(oiv_dir, "yfcc100m_dataset")
+    dataset_path = os.path.join(yfcc_dir, "yfcc100m_dataset")
     if os.path.exists(dataset_path):
         write_rows_to_csv(dataset_rows, dataset_path, fieldnames=get_dataset_fields(), mode="a", delimiter="\t")
-    autotags_path = os.path.join(oiv_dir, "yfcc100m_autotags")
+    autotags_path = os.path.join(yfcc_dir, "yfcc100m_autotags")
     if os.path.exists(autotags_path):
         write_rows_to_csv(autotags_rows, autotags_path, fieldnames=get_autotag_fields(), mode="a", delimiter="\t")
-    places_path = os.path.join(oiv_dir, "yfcc100m_places")
+    places_path = os.path.join(yfcc_dir, "yfcc100m_places")
     if os.path.exists(places_path):
         write_rows_to_csv(places_rows, places_path, fieldnames=get_places_fields(), mode="a", delimiter="\t")
