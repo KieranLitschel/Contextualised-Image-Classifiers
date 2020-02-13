@@ -43,7 +43,7 @@ class Extend:
         oiv_ids = get_train_val_test_ids(oiv_folder_raw, flickr_ids=True)
         for subset in ["validation", "test"]:
             print("Getting user tags for {}".format(subset))
-            subset_path = os.path.join(output_folder, "{}_user_tags.csv".format(subset))
+            subset_path = os.path.join(output_folder, "{}_user_tags.tsv".format(subset))
             founds_ids = set()
             if os.path.exists(subset_path):
                 found = load_csv_as_dict(subset_path, fieldnames=["flickr_id", "user_tags"], delimiter="\t")
