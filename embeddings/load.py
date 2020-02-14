@@ -54,18 +54,13 @@ def count_user_tags(subset_path, user_tags_limit=None):
     return counts
 
 
-def build_features_encoder(subset_path, tag_threshold=None, user_tags_limit=None):
+def build_features_encoder(subset_path):
     """ Takes a set of classes and builds a token text encoder, to convert the str classes to numbers
 
     Parameters
     ----------
     subset_path : str
         Path to subset to build encoder from
-    tag_threshold : int
-        Threshold over which to keep words as features. Default of None. If None all are kept
-    user_tags_limit : int
-        If an image has more user tags than this value, then the tags beyond this value are ignored. Default of None.
-        If None all are kept
 
     Returns
     -------
@@ -73,17 +68,13 @@ def build_features_encoder(subset_path, tag_threshold=None, user_tags_limit=None
         Encoder for features
     """
 
-    tag_threshold = tag_threshold or 1
-    vocab_count = count_user_tags(subset_path, user_tags_limit=user_tags_limit)
-    vocab_list = []
-    for vocab, count in vocab_count.items():
-        if tag_threshold >= count:
-            vocab_list.append(vocab)
+    vocab_count = count_user_tags(subset_path)
+    vocab_list = vocab_count.keys()
     features_encoder = CommaTokenTextEncoder(vocab_list, decode_token_separator=",")
     return features_encoder
 
 
-def _batch_decode_pad_one_hot(batch, no_classes):
+def _batch_decode_pad_one_hot(batch):
     """ Decodes batches, padding with 0 such that all samples in the batch have the same number of features, and one
         hot encodes the labels
 
@@ -91,8 +82,6 @@ def _batch_decode_pad_one_hot(batch, no_classes):
     ----------
     batch : Serialized tf.Tensor
         Serialized batch from file produced by build_dataset
-    no_classes : int
-        Number of classes
 
     Returns
     -------
@@ -100,18 +89,18 @@ def _batch_decode_pad_one_hot(batch, no_classes):
         First element is features, second element is one hot labels
     """
 
+    """
     parsed_batch = tf.io.parse_example(batch, {
         "flickr_id": tf.io.FixedLenSequenceFeature([], tf.int64, allow_missing=True),
-        "encoded_features": tf.io.FixedLenSequenceFeature([], tf.int64, allow_missing=True, default_value=0),
-        "encoded_labels": tf.io.FixedLenSequenceFeature([], tf.int64, allow_missing=True, default_value=no_classes + 1),
+        "encoded_features": tf.io.FixedLenSequenceFeature([], tf.int64, allow_missing=True),
+        "encoded_labels": tf.io.FixedLenSequenceFeature([], tf.str, allow_missing=True),
     })
     encoded_features = tf.cast(parsed_batch["encoded_features"].numpy(), dtype=tf.int32)
-    encoded_labels = tf.cast(parsed_batch["encoded_labels"].numpy(), dtype=tf.int32)
-    # get rid of first column as encoding 0 reserved for padding in TextEncoder, and last column as encoding no_classes
-    # reserved for unknown tags in TextEncoder, which we have none of for classes
-    one_hot_labels = tf.reduce_sum(tf.one_hot(indices=encoded_labels, depth=no_classes, axis=1),
-                                   reduction_indices=2)[:, 1:-1]
-    return tf.cast(encoded_features, dtype=tf.int32), tf.convert_to_tensor(one_hot_labels, dtype=tf.float32)
+    encoded_labels = tf.stack([tf.sparse_tensor_to_dense(tf.parse_tensor(serial_tensor)) for serial_tensor in
+                               parsed_batch["encoded_labels"].numpy()])
+    return tf.cast(encoded_features, dtype=tf.int32), tf.convert_to_tensor(encoded_labels, dtype=tf.float32)
+    """
+    raise NotImplemented
 
 
 def load_subset_as_tf_data(path, no_classes, batch_size):
@@ -132,12 +121,15 @@ def load_subset_as_tf_data(path, no_classes, batch_size):
         The subset ready for use in TensorFlow
     """
 
+    """
     custom_row_to_tf = partial(_batch_decode_pad_one_hot, no_classes=no_classes)
     dataset = tf.data.TFRecordDataset(path) \
         .shuffle(batch_size * 2) \
         .batch(batch_size) \
         .map(lambda batch: tf.py_function(custom_row_to_tf, [batch], Tout=[tf.int32, tf.float32]))
     return dataset
+    """
+    raise NotImplemented
 
 
 def load_train_val(dataset_folder, no_classes):
@@ -157,6 +149,9 @@ def load_train_val(dataset_folder, no_classes):
         First element is the train data, second is the validation data
     """
 
+    """
     train_dataset = load_subset_as_tf_data(os.path.join(dataset_folder, "train.tfrecords"), no_classes)
     val_dataset = load_subset_as_tf_data(os.path.join(dataset_folder, "validation.tfrecords"), no_classes)
     return train_dataset, val_dataset
+    """
+    raise NotImplemented
