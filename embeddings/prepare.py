@@ -67,7 +67,7 @@ def _write_progress_to_csv(output_folder, yfcc_lines, oiv_lines, oiv_human_verif
         Lines for OIV validation and test sets with only human tags
     """
 
-    for dataset_folder, lines in zip(["yfcc_lines", "oiv_lines", "oiv_human_verified_lines"],
+    for dataset_folder, lines in zip(["yfcc", "oiv", "oiv_human_verified"],
                                      [yfcc_lines, oiv_lines, oiv_human_verified_lines]):
         dataset_folder_path = os.path.join(output_folder, dataset_folder)
         if not os.path.exists(dataset_folder_path):
@@ -75,7 +75,7 @@ def _write_progress_to_csv(output_folder, yfcc_lines, oiv_lines, oiv_human_verif
         for subset in ["train", "validation", "test"]:
             subset_lines = lines.get(subset)
             if subset_lines:
-                csv_path = os.path.join(dataset_folder_path, "{}.csv".format(subset))
+                csv_path = os.path.join(dataset_folder_path, "{}.tsv".format(subset))
                 with open(csv_path, "a") as csv:
                     csv.writelines(subset_lines)
 
@@ -106,7 +106,7 @@ def join_dataset_and_autotags(dataset_path, autotags_path, oiv_folder, output_fo
     classes_to_keep = set(hierarchy_members_list(hierarchy_file_path))
     classes_parents = get_hierarchy_classes_parents(hierarchy_file_path)
     print("Getting Open Images image IDs")
-    oiv_image_ids = get_train_val_test_ids(oiv_folder, flickr_ids=False)
+    oiv_image_ids = get_train_val_test_ids(oiv_folder, flickr_ids=True)
     print("Getting Open Images labels")
     oiv_image_labels = get_labels_detected_in_images(oiv_folder, classes_to_keep=classes_to_keep,
                                                      get_confidence=True)
@@ -119,29 +119,38 @@ def join_dataset_and_autotags(dataset_path, autotags_path, oiv_folder, output_fo
     for dataset_row in tqdm(dataset):
         autotags_row = next(autotags)
         image_id = dataset_row["ID"]
+        subset = "train"
+        if image_id in oiv_image_ids["validation"]:
+            subset = "validation"
+        elif image_id in oiv_image_ids["test"]:
+            subset = "test"
         image_user_tags = dataset_row["UserTags"]
         if dataset_row["Video"] == "1":
             continue
         image_user_tags = pre_process_user_tags(image_user_tags, stem=stem)
         if not image_user_tags:
             continue
-        if image_id in oiv_image_ids["train"] or image_id in oiv_image_ids["validation"] \
-                or image_id in oiv_image_ids["test"]:
-            for label, confidence in oiv_image_labels[image_id].items():
-                confidence = float(confidence)
-                if label in classes_parents:
-                    for parent_label in classes_parents[label]:
-                        if parent_label in oiv_image_labels[image_id] and \
-                                confidence < oiv_image_labels[image_id][parent_label]:
-                            continue
-                        oiv_image_labels[image_id][parent_label] = confidence
-            image_labels = oiv_image_labels[image_id].items()
+        if image_id in oiv_image_ids["train"] or subset == "validation" or subset == "test":
+            if oiv_image_labels[subset].get(image_id):
+                parent_labels = {}
+                for label, confidence in oiv_image_labels[subset][image_id].items():
+                    confidence = float(confidence)
+                    if label in classes_parents:
+                        for parent_label in classes_parents[label]:
+                            if parent_labels.get(parent_label) and confidence < parent_labels[parent_label]:
+                                continue
+                            parent_labels[parent_label] = confidence
+                for parent_label, confidence in parent_labels.items():
+                    oiv_image_labels[subset][image_id][parent_label] = confidence
+                image_labels = oiv_image_labels[subset][image_id].items()
+            else:
+                image_labels = []
         elif autotags_row["PredictedConcepts"]:
             image_labels = [tag_prob.split(":") for tag_prob in autotags_row["PredictedConcepts"].split(",")]
             new_image_labels = {}
             for yfcc_tag, confidence in image_labels:
                 confidence = float(confidence)
-                if yfcc_tag in yfcc100m_oiv_labels_map:
+                if yfcc100m_oiv_labels_map.get(yfcc_tag):
                     oiv_tag = yfcc100m_oiv_labels_map[yfcc_tag]
                     new_image_labels[oiv_tag] = confidence
                     if oiv_tag in classes_parents:
@@ -152,15 +161,9 @@ def join_dataset_and_autotags(dataset_path, autotags_path, oiv_folder, output_fo
             image_labels = new_image_labels.items()
         else:
             image_labels = []
-        if classes_to_keep:
-            image_labels = [(tag, confidence) for tag, confidence in image_labels if tag in classes_to_keep]
+        image_labels = [(tag, confidence) for tag, confidence in image_labels if tag in classes_to_keep]
         image_labels_str = ",".join("{}:{}".format(tag, confidence) for tag, confidence in image_labels)
         line = "{}\t{}\t{}\n".format(image_id, image_user_tags, image_labels_str)
-        subset = "train"
-        if image_id in oiv_image_ids["validation"]:
-            subset = "validation"
-        elif image_id in oiv_image_ids["test"]:
-            subset = "test"
         if subset == "validation":
             oiv_lines[subset].append(line)
             lines_in_memory += 1
@@ -172,7 +175,8 @@ def join_dataset_and_autotags(dataset_path, autotags_path, oiv_folder, output_fo
             if human_image_labels:
                 human_image_labels_str = ",".join("{}:{}".format(tag, confidence)
                                                   for tag, confidence in human_image_labels)
-                oiv_human_verified_lines[subset].append(human_image_labels_str)
+                human_image_labels_line = "{}\t{}\t{}\n".format(image_id, image_user_tags, human_image_labels_str)
+                oiv_human_verified_lines[subset].append(human_image_labels_line)
                 lines_in_memory += 1
         elif image_id in oiv_image_ids["train"]:
             oiv_lines[subset].append(line)
@@ -190,50 +194,53 @@ def join_dataset_and_autotags(dataset_path, autotags_path, oiv_folder, output_fo
     _write_progress_to_csv(output_folder, yfcc_lines, oiv_lines, oiv_human_verified_lines)
 
 
-def build_dataset(dataset_dir, classes_encoder_path, output_folder, tag_threshold, user_tags_limit):
-    """ Takes
+def build_dataset(dataset_dir, classes_encoder_path, features_encoder_path, output_folder):
+    """ Builds the tsv (tab-separated values) dataset into TFRecords
 
     Parameters
     ----------
     dataset_dir : str
-        Path to folder produced by joined_to_subsets
+        Path to dataset produced by joined_to_subsets
     classes_encoder_path : str
         Path to classes encoder produced by build_classes_encoder
+    features_encoder_path : str
+        Path to features encoder produced by build_features_encoder
     output_folder : str
         Folder to output feature encoder and TFRecord folds to
-    tag_threshold : int
-        Threshold over which to keep words as features. Default of None. If None all are kept
-    user_tags_limit : int
-        If an image has more user tags than this value, then the tags beyond this value are ignored. Default of None.
-        If None all are kept
+    """
+
+    # this code is commented out as it is untested, I'll need to revisit this method when implementing pre-training
+    # on YFCC. It isn't necessary for OIV, as the files are so small they fit into memory
     """
     classes_encoder = CommaTokenTextEncoder.load_from_file(classes_encoder_path)
-    features_encoder = build_features_encoder(os.path.join(dataset_dir, "train"),
-                                              tag_threshold=tag_threshold,
-                                              user_tags_limit=user_tags_limit)
+    features_encoder = CommaTokenTextEncoder.load_from_file(features_encoder_path)
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
     for subset in ["train", "validation", "test"]:
-        print("Building TFRecord for {}".format(subset))
         subset_path = os.path.join(dataset_dir, subset)
+        if not os.path.exists(subset_path):
+            continue
+        print("Building TFRecord for {}".format(subset))
         subset_csv = pandas.read_csv(subset_path, sep="\t", na_filter=False).values
         with tf.python_io.TFRecordWriter(os.path.join(output_folder, subset + ".tfrecords")) as writer:
             for row in tqdm(subset_csv):
                 flickr_id, user_tags, labels = row
-                user_tags = ",".join([tag for tag in user_tags.split(",")][:user_tags_limit])
                 labels = ",".join([label_prob.split(":")[0] for label_prob in labels.split(",")])
-                encoded_features = [feature for feature in features_encoder.encode(user_tags) if
-                                    feature != features_encoder.vocab_size - 1]
-                if not encoded_features:
-                    continue
+                confidences = ",".join([label_prob.split(":")[1] for label_prob in labels.split(",")])
+                encoded_features = features_encoder.encode(user_tags)
+                # get rid of the label number in the encoder (0) reserved for padding
                 encoded_labels = [label - 1 for label in classes_encoder.encode(labels)]
+                sparse_labels = tf.SparseTensor(indices=encoded_labels, values=confidences,
+                                                dense_shape=[classes_encoder.vocab_size - 2])
                 example = tf.train.Example(features=tf.train.Features(feature={
                     "flickr_id": tf.train.Feature(int64_list=tf.train.Int64List(value=[flickr_id])),
                     "encoded_features": tf.train.Feature(int64_list=tf.train.Int64List(value=encoded_features)),
-                    "encoded_labels": tf.train.Feature(int64_list=tf.train.Int64List(value=encoded_labels)),
+                    "encoded_labels": tf.train.Feature(bytes_list=
+                                                       tf.train.BytesList(value=tf.serialize_tensor(sparse_labels))),
                 }))
                 writer.write(example.SerializeToString())
-    features_encoder.save_to_file(os.path.join(output_folder, "features_encoder"))
+    """
+    raise NotImplemented
 
 
 def count_frequency_of_number_of_user_tags(train_path):
@@ -242,7 +249,7 @@ def count_frequency_of_number_of_user_tags(train_path):
     Parameters
     ----------
     train_path : str
-        Path to training subset produced by joined_to_subsets
+        Path to training subset produced by join_dataset_and_autotags
 
     Returns
     -------
@@ -259,3 +266,30 @@ def count_frequency_of_number_of_user_tags(train_path):
             len_freqs[no_tags] = 0
         len_freqs[no_tags] += 1
     return len_freqs
+
+
+def count_classes_in_subset(subset_path):
+    """ Counts the frequency of classes in the subset
+
+    Parameters
+    ----------
+    subset_path : str
+        Path to training subset produced by join_dataset_and_autotags
+
+    Returns
+    -------
+    dict of str -> int
+        Maps class label to frequency in subset
+    """
+
+    subset = load_csv_as_dict(subset_path, fieldnames=["ID", "UserTags", "PredictedConcepts"], delimiter="\t")
+    classes = {}
+    for row in subset:
+        if not row["PredictedConcepts"]:
+            continue
+        for label_confidence in row["PredictedConcepts"].split(","):
+            label, _ = label_confidence.split(":")
+            if not classes.get(label):
+                classes[label] = 0
+            classes[label] += 1
+    return classes
