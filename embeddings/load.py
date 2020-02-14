@@ -6,6 +6,8 @@ from tqdm import tqdm
 from functools import partial
 from common import load_csv_as_dict
 from embeddings.encoders import CommaTokenTextEncoder
+import pandas as pd
+import numpy as np
 
 
 def build_classes_encoder(classes_set):
@@ -54,22 +56,29 @@ def count_user_tags(subset_path, user_tags_limit=None):
     return counts
 
 
-def build_features_encoder(subset_path):
+def build_features_encoder(subset_path, tag_threshold=None, user_tags_limit=None):
     """ Takes a set of classes and builds a token text encoder, to convert the str classes to numbers
-
     Parameters
     ----------
     subset_path : str
         Path to subset to build encoder from
-
+    tag_threshold : int
+        Threshold over which to keep words as features. Default of None. If None all are kept
+    user_tags_limit : int
+        If an image has more user tags than this value, then the tags beyond this value are ignored. Default of None.
+        If None all are kept
     Returns
     -------
     CommaTokenTextEncoder
         Encoder for features
     """
 
-    vocab_count = count_user_tags(subset_path)
-    vocab_list = vocab_count.keys()
+    tag_threshold = tag_threshold or 1
+    vocab_count = count_user_tags(subset_path, user_tags_limit=user_tags_limit)
+    vocab_list = []
+    for vocab, count in vocab_count.items():
+        if count >= tag_threshold:
+            vocab_list.append(vocab)
     features_encoder = CommaTokenTextEncoder(vocab_list, decode_token_separator=",")
     return features_encoder
 
@@ -155,3 +164,113 @@ def load_train_val(dataset_folder, no_classes):
     return train_dataset, val_dataset
     """
     raise NotImplemented
+
+
+def pre_process_tsv_row(user_tags, label_confidences, features_encoder, classes_encoder, pad_size):
+    """ Pre-processes a samples user_tags and labels_confidences
+
+    Parameters
+    ----------
+    user_tags : tf.Tensor
+        Tensor containing single encoded string consisting of comma-separated user tags
+    label_confidences : tf.Tensor
+        Tensor containing single encoded string consisting of comma-separated labels, with a confidence value for each
+    features_encoder : embeddings.encoders.CommaTokenTextEncoder
+        Encoder for words
+    classes_encoder : embeddings.encoders.CommaTokenTextEncoder
+        Encoder for classes
+    pad_size : int
+        Amount to pad user_tags to, if there are more user tags than this value, then all after pad_size are ignored
+
+    Returns
+    -------
+    tf.Tensor, tf.Tensor
+        Tensor containing encoded user tags for the sample, and another containing a serialized SparseTensor describing
+        the confidence for each label
+    """
+
+    user_tags = user_tags.numpy()[0].decode()
+    encoded_user_tags = np.array(features_encoder.encode(user_tags), dtype=np.int32)[:pad_size]
+    label_confidences = label_confidences.numpy()[0].decode()
+    if label_confidences:
+        label_confidences = [label_confidence.split(":")
+                             for label_confidence in label_confidences.split(",")]
+        confidence = [float(confidence) for _, confidence in label_confidences]
+        # encoder indexes labels 1 to 501, we subtract 1 so they are indexed 0 to 500
+        encoded_labels = [label - 1 for label in
+                          classes_encoder.encode(",".join([label for label, _ in label_confidences]))]
+        confidences = np.array([confidence for _, confidence in sorted(zip(encoded_labels, confidence))],
+                               dtype=np.float32)
+        encoded_labels = np.array([[0, label] for label in sorted(encoded_labels)], dtype=np.int32)
+    else:
+        # if no labels then make the probability of all labels 0
+        encoded_labels = np.empty((0, 2), dtype=np.int32)
+        confidences = np.array([], dtype=np.float32)
+    sparse_labels = tf.SparseTensor(indices=encoded_labels, values=confidences,
+                                    dense_shape=[1, classes_encoder.vocab_size - 2])
+    return tf.cast(encoded_user_tags, dtype=tf.int32), tf.cast(tf.serialize_sparse(sparse_labels), dtype=tf.string)
+
+
+def sparse_labels_to_dense(encoded_user_tags, sparse_labels):
+    """ Expands the sparse serialized labels to a dense Tensor
+
+    Parameters
+    ----------
+    encoded_user_tags : tf.Tensor
+        Tensor containing encoded and padded user tags for the sample
+    sparse_labels : tf.Tensor
+        Tensor containing a serialized SparseTensor describing the confidence for each label
+
+    Returns
+    -------
+    tf.Tensor, tf.Tensor
+        Unchanged user tags, and sparse_labels deserialized and converted to a dense Tensor
+    """
+
+    dense_labels = tf.sparse.to_dense(tf.deserialize_many_sparse(sparse_labels, dtype=tf.float32))
+    dense_labels = tf.reshape(dense_labels, [dense_labels.shape[0], -1])
+    return encoded_user_tags, dense_labels
+
+
+def load_tsv_dataset(dataset_path, features_encoder, classes_encoder, batch_size, pad_size, no_samples):
+    """ Loads the subset tsv, preparing it for training
+
+    Parameters
+    ----------
+    dataset_path : str
+        Path to subset to be loaded
+    features_encoder : embeddings.encoders.CommaTokenTextEncoder
+        Encoder for words
+    classes_encoder : embeddings.encoders.CommaTokenTextEncoder
+        Encoder for classes
+    batch_size : int
+        Size of batches
+    pad_size : int
+        Amount to pad user_tags to, if there are more user tags than this value, then all after pad_size are ignored
+    no_samples : int
+        Number of samples in the subset
+
+    Returns
+    -------
+    tf.python.data.ops.dataset_ops.DatasetV1Adapter
+        The pre-processed, cached, shuffled, padded, prefetched dataset
+    """
+
+    custom_pre_process_tsv_row = partial(pre_process_tsv_row, features_encoder=features_encoder,
+                                         classes_encoder=classes_encoder, pad_size=pad_size)
+    dataset = tf.data.experimental.make_csv_dataset(dataset_path,
+                                                    column_names=["flickr_id", "user_tags", "labels"],
+                                                    label_name="labels", select_columns=["user_tags", "labels"],
+                                                    field_delim="\t", header=False, shuffle=False, batch_size=1) \
+        .map(lambda features, label_confidences: tf.py_function(custom_pre_process_tsv_row,
+                                                                [features["user_tags"], label_confidences],
+                                                                Tout=[tf.int32, tf.string]),
+             num_parallel_calls=tf.data.experimental.AUTOTUNE) \
+        .cache() \
+        .shuffle(no_samples, reshuffle_each_iteration=True) \
+        .padded_batch(batch_size, padded_shapes=([None], [None])) \
+        .map(lambda encoded_user_tags, sparse_labels: tf.py_function(sparse_labels_to_dense,
+                                                                     [encoded_user_tags, sparse_labels],
+                                                                     Tout=[tf.int32, tf.float32])) \
+        .prefetch(tf.data.experimental.AUTOTUNE)
+    return dataset
