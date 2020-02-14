@@ -198,7 +198,8 @@ def hierarchy_members_list(hierarchy_file, label_names_file=None):
     while hierarchy_dict_queue:
         hierarchy_dict = hierarchy_dict_queue.pop(0)
         for member in hierarchy_dict.keys():
-            members.append(member)
+            if member not in members:
+                members.append(member)
         for child in hierarchy_dict.values():
             if child:
                 hierarchy_dict_queue.append(child)
