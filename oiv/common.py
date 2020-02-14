@@ -238,7 +238,9 @@ def _get_hierarchy_classes_parents(hierarchy_dict, classes_parents, curr_parents
     """
 
     for label, child_hierarchy_dict in hierarchy_dict.items():
-        classes_parents[label] = curr_parents.copy()
+        if not classes_parents.get(label):
+            classes_parents[label] = []
+        classes_parents[label] += curr_parents.copy()
         if child_hierarchy_dict:
             curr_parents.append(label)
             classes_parents = _get_hierarchy_classes_parents(child_hierarchy_dict, classes_parents, curr_parents)
