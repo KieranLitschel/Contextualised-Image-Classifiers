@@ -73,7 +73,7 @@ with tf.Session() as sess:
 
     history = model.fit(
         subset_datasets["train"],
-        epochs=args.epochs, steps_per_epoch=math.ceil(subset_samples["train"] / args.batch_size),
+        epochs=args.epochs, steps_per_epoch=math.ceil((subset_samples["train"] / args.batch_size) / 2),
         validation_data=subset_datasets["validation"],
         validation_steps=math.ceil(subset_samples["validation"] / args.batch_size), callbacks=[checkpoint, tensorboard],
         verbose=True)
