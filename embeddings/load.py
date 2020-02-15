@@ -232,6 +232,37 @@ def sparse_labels_to_dense(encoded_user_tags, sparse_labels):
     return encoded_user_tags, dense_labels
 
 
+def sparse_labels_to_dense_wrapper(encoded_user_tags, sparse_labels, pad_size, batch_size, no_classes):
+    """ Wraps sparse_labels_to_dense, asserting their shape, to fix issue discussed here
+        https://github.com/tensorflow/tensorflow/issues/24520
+
+    Parameters
+    ----------
+    encoded_user_tags : tf.Tensor
+        Tensor containing encoded and padded user tags for the sample
+    sparse_labels : tf.Tensor
+        Tensor containing a serialized SparseTensor describing the confidence for each label
+    pad_size : int
+        Amount to pad user_tags to, if there are more user tags than this value, then all after pad_size are ignored
+    batch_size : int
+        Size of batches
+    no_classes : int
+        Number of classes
+
+    Returns
+    -------
+    tf.Tensor, tf.Tensor
+        Unchanged user tags, and sparse_labels deserialized and converted to a dense Tensor
+    """
+
+    encoded_user_tags, dense_labels = tf.py_function(sparse_labels_to_dense_wrapper,
+                                                     [encoded_user_tags, sparse_labels],
+                                                     Tout=[tf.int32, tf.float32])
+    encoded_user_tags.set_shape((batch_size, pad_size))
+    dense_labels.set_shape((batch_size, no_classes))
+    return encoded_user_tags, dense_labels
+
+
 def load_tsv_dataset(dataset_path, features_encoder, classes_encoder, batch_size, pad_size, no_samples):
     """ Loads the subset tsv, preparing it for training
 
@@ -258,6 +289,8 @@ def load_tsv_dataset(dataset_path, features_encoder, classes_encoder, batch_size
 
     custom_pre_process_tsv_row = partial(pre_process_tsv_row, features_encoder=features_encoder,
                                          classes_encoder=classes_encoder, pad_size=pad_size)
+    custom_sparse_labels_to_dense_wrapper = partial(sparse_labels_to_dense_wrapper, pad_size=pad_size,
+                                                    batch_size=batch_size, no_classes=classes_encoder.vocab_size - 2)
     dataset = tf.data.experimental.make_csv_dataset(dataset_path,
                                                     column_names=["flickr_id", "user_tags", "labels"],
                                                     label_name="labels", select_columns=["user_tags", "labels"],
@@ -269,8 +302,6 @@ def load_tsv_dataset(dataset_path, features_encoder, classes_encoder, batch_size
         .cache() \
         .shuffle(no_samples, reshuffle_each_iteration=True) \
         .padded_batch(batch_size, padded_shapes=([None], [None])) \
-        .map(lambda encoded_user_tags, sparse_labels: tf.py_function(sparse_labels_to_dense,
-                                                                     [encoded_user_tags, sparse_labels],
-                                                                     Tout=[tf.int32, tf.float32])) \
+        .map(custom_sparse_labels_to_dense_wrapper) \
         .prefetch(tf.data.experimental.AUTOTUNE)
     return dataset
