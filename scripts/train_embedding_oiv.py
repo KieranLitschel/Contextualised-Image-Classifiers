@@ -48,7 +48,8 @@ with tf.Session() as sess:
     for subset in ["train", "validation"]:
         subset_path = os.path.join(args.oiv_dataset_dir, "{}.tsv".format(subset))
         subset_samples[subset] = len(open(subset_path, "r").readlines())
-        subset_datasets[subset] = load_tsv_dataset(subset_path, features_encoder, classes_encoder, args.batch_size,
+        subset_datasets[subset] = load_tsv_dataset(subset_path, features_encoder, classes_encoder,
+                                                   args.batch_size if subset == "train" else subset_samples[subset],
                                                    args.pad_size, subset_samples[subset])
 
     pooling_layer = keras.layers.GlobalAveragePooling1D if args.global_average_pooling else keras.layers.GlobalMaxPool1D
@@ -75,5 +76,5 @@ with tf.Session() as sess:
         subset_datasets["train"],
         epochs=args.epochs, steps_per_epoch=math.ceil((subset_samples["train"] / args.batch_size) / 2),
         validation_data=subset_datasets["validation"],
-        validation_steps=math.ceil(subset_samples["validation"] / args.batch_size), callbacks=[checkpoint, tensorboard],
+        validation_steps=1, callbacks=[checkpoint, tensorboard],
         verbose=True)
