@@ -12,6 +12,7 @@ import re
 import tensorflow as tf
 import pycld2 as cld2
 from nltk.stem import SnowballStemmer
+import urllib
 
 
 def pre_process_user_tags(image_user_tags, remove_nums=None, stem=None):
@@ -39,14 +40,15 @@ def pre_process_user_tags(image_user_tags, remove_nums=None, stem=None):
         if not image_user_tags:
             return ""
     if stem:
-        is_reliable, _, details = cld2.detect(image_user_tags)
+        is_reliable, _, details = cld2.detect(urllib.parse.unquote(re.sub(r"[,+]", " ", image_user_tags)))
         language = details[0][0].lower()
         if is_reliable and language != "unknown":
             if language in SnowballStemmer.languages:
                 stemmer = SnowballStemmer(language)
                 stemmed_user_tags = []
                 for user_tag in image_user_tags.split(","):
-                    stemmed_tag = "+".join([stemmer.stem(word) if word != '' else '' for word in user_tag.split("+")])
+                    stemmed_tag = "+".join([urllib.parse.quote(stemmer.stem(urllib.parse.unquote(word)))
+                                            if word != '' else '' for word in user_tag.split("+")])
                     stemmed_user_tags.append(stemmed_tag)
                 image_user_tags = ",".join(stemmed_user_tags)
     return image_user_tags
