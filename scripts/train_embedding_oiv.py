@@ -16,6 +16,8 @@ parser.add_argument("--pad_size", help="Amount to pad feature vector by so they 
 parser.add_argument("--tag_threshold", help="Threshold required for a tag to be a feature, otherwise will be "
                                             "considered unknown", type=int)
 parser.add_argument("--layer_capacity", help="Number of units per layer", type=int)
+parser.add_argument("--global_average_pooling",
+                    help="Whether to use GlobalAveragePooling, if False uses GlobalMaxPooling", type=bool)
 parser.add_argument("--oiv_dataset_dir", help="Location of oiv dataset produced by build_dataset")
 parser.add_argument("--oiv_human_dataset_dir", help="Location of oiv human dataset produced by build_dataset")
 parser.add_argument("--classes_encoder_path", help="Location of saved encoder produced by build_classes_encoder")
@@ -49,9 +51,11 @@ with tf.Session() as sess:
         subset_datasets[subset] = load_tsv_dataset(subset_path, features_encoder, classes_encoder, args.batch_size,
                                                    args.pad_size, subset_samples[subset])
 
+    pooling_layer = keras.layers.GlobalAveragePooling1D if args.global_average_pooling else keras.layers.GlobalMaxPool1D
+
     model = keras.Sequential([
         keras.layers.Embedding(features_encoder.vocab_size, args.layer_capacity),
-        keras.layers.GlobalAveragePooling1D(),
+        pooling_layer(),
         keras.layers.Dense(args.layer_capacity, activation='relu'),
         keras.layers.Dense(classes_encoder.vocab_size - 2, activation='sigmoid')
     ])
