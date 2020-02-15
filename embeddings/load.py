@@ -255,7 +255,7 @@ def sparse_labels_to_dense_wrapper(encoded_user_tags, sparse_labels, pad_size, b
         Unchanged user tags, and sparse_labels deserialized and converted to a dense Tensor
     """
 
-    encoded_user_tags, dense_labels = tf.py_function(sparse_labels_to_dense_wrapper,
+    encoded_user_tags, dense_labels = tf.py_function(sparse_labels_to_dense,
                                                      [encoded_user_tags, sparse_labels],
                                                      Tout=[tf.int32, tf.float32])
     encoded_user_tags.set_shape((batch_size, pad_size))
