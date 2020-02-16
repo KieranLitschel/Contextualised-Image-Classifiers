@@ -59,9 +59,9 @@ with tf.Session() as sess:
     model = keras.Sequential([
         keras.layers.Embedding(features_encoder.vocab_size, args.layer_capacity),
         pooling_layer(),
-        keras.layers.Droput(args.dropout_rate),
+        keras.layers.Dropout(args.dropout_rate),
         keras.layers.Dense(args.layer_capacity, kernel_regularizer=keras.regularizers.l2(), activation='relu'),
-        keras.layers.Droput(args.dropout_rate),
+        keras.layers.Dropout(args.dropout_rate),
         keras.layers.Dense(classes_encoder.vocab_size - 2, activation='sigmoid')
     ])
 
