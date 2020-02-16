@@ -25,6 +25,7 @@ parser.add_argument("--output_dir", help="Location to save results to")
 parser.add_argument("--random_seed", help="Seed for randomness in experiment", type=int)
 parser.add_argument("--batch_size", help="Size for each batch", type=int)
 parser.add_argument("--epochs", help="Number of epochs to train for", type=int)
+parser.add_argument("--dropout_rate", help="Rate of dropout", type=float)
 
 args = parser.parse_args()
 
@@ -50,14 +51,17 @@ with tf.Session() as sess:
         subset_samples[subset] = len(open(subset_path, "r").readlines())
         subset_datasets[subset] = load_tsv_dataset(subset_path, features_encoder, classes_encoder,
                                                    args.batch_size if subset == "train" else subset_samples[subset],
-                                                   args.pad_size, subset_samples[subset])
+                                                   args.pad_size, subset_samples[subset],
+                                                   True if subset == "train" else False)
 
     pooling_layer = keras.layers.GlobalAveragePooling1D if args.global_average_pooling else keras.layers.GlobalMaxPool1D
 
     model = keras.Sequential([
         keras.layers.Embedding(features_encoder.vocab_size, args.layer_capacity),
         pooling_layer(),
-        keras.layers.Dense(args.layer_capacity, activation='relu'),
+        keras.layers.Droput(args.dropout_rate),
+        keras.layers.Dense(args.layer_capacity, kernel_regularizer=keras.regularizers.l2(), activation='relu'),
+        keras.layers.Droput(args.dropout_rate),
         keras.layers.Dense(classes_encoder.vocab_size - 2, activation='sigmoid')
     ])
 

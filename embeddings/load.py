@@ -263,7 +263,7 @@ def sparse_labels_to_dense_wrapper(encoded_user_tags, sparse_labels, pad_size, b
     return encoded_user_tags, dense_labels
 
 
-def load_tsv_dataset(dataset_path, features_encoder, classes_encoder, batch_size, pad_size, no_samples):
+def load_tsv_dataset(dataset_path, features_encoder, classes_encoder, batch_size, pad_size, no_samples, shuffle):
     """ Loads the subset tsv, preparing it for training
 
     Parameters
@@ -280,6 +280,8 @@ def load_tsv_dataset(dataset_path, features_encoder, classes_encoder, batch_size
         Amount to pad user_tags to, if there are more user tags than this value, then all after pad_size are ignored
     no_samples : int
         Number of samples in the subset
+    shuffle : bool
+        Whether to shuffle the dataset each iteration before sampling
 
     Returns
     -------
@@ -299,9 +301,10 @@ def load_tsv_dataset(dataset_path, features_encoder, classes_encoder, batch_size
                                                                 [features["user_tags"], label_confidences],
                                                                 Tout=[tf.int32, tf.string]),
              num_parallel_calls=tf.data.experimental.AUTOTUNE) \
-        .cache() \
-        .shuffle(no_samples, reshuffle_each_iteration=True) \
-        .padded_batch(batch_size, padded_shapes=([None], [None])) \
+        .cache()
+    if shuffle:
+        dataset = dataset.shuffle(no_samples, reshuffle_each_iteration=True)
+    dataset = dataset.padded_batch(batch_size, padded_shapes=([None], [None])) \
         .map(custom_sparse_labels_to_dense_wrapper) \
         .prefetch(tf.data.experimental.AUTOTUNE)
     return dataset
