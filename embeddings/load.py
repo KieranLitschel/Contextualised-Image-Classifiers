@@ -301,6 +301,7 @@ def load_tsv_dataset(dataset_path, features_encoder, classes_encoder, batch_size
                                                                 [features["user_tags"], label_confidences],
                                                                 Tout=[tf.int32, tf.string]),
              num_parallel_calls=tf.data.experimental.AUTOTUNE) \
+        .take(no_samples) \
         .cache()
     if shuffle:
         dataset = dataset.shuffle(no_samples, reshuffle_each_iteration=True)
