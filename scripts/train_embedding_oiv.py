@@ -70,7 +70,7 @@ with tf.Session() as sess:
     model.compile(optimizer='adam',
                   loss='binary_crossentropy')
 
-    checkpoint = ModelCheckpoint(os.path.join(args.output_dir, 'model-{epoch:03d}.h5'), verbose=1, monitor='val_loss',
+    checkpoint = ModelCheckpoint(os.path.join(args.output_dir, 'model.h5'), verbose=1, monitor='val_loss',
                                  save_best_only=True, mode='auto')
 
     log_dir = os.path.join(args.output_dir, "log")
