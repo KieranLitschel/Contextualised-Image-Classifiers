@@ -127,8 +127,7 @@ def get_oiv_labels_to_human(label_names_file):
     Parameters
     ----------
     label_names_file : str
-        Path to file mapping OIV labels to OIV names. Default of None. If passed then OIV labels are replaced with
-        human readable ones
+        Path to file mapping OIV labels to OIV names
 
     Returns
     -------
