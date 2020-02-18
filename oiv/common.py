@@ -67,6 +67,30 @@ def get_train_val_test_ids(oiv_folder, flickr_ids=None):
     return image_ids
 
 
+def get_image_id_flickr_id_map(image_rotations_path):
+    """ Gets dictionary mapping OIV image ids to flickr image ids
+
+    Parameters
+    ----------
+    image_rotations_path : str
+        Path to OIV file like "{subset}-images-with-labels-with-rotation.csv"
+
+    Returns
+    -------
+    dict of str -> str
+        Maps OIV image id to flickr image ID
+    """
+
+    image_id_flickr_id_map = {}
+    image_id_file_csv = load_csv_as_dict(image_rotations_path, delimiter=",")
+    for row in image_id_file_csv:
+        image_id = row["ImageID"]
+        flickr_url = row["OriginalURL"]
+        flickr_id = extract_image_id_from_flickr_static(flickr_url)
+        image_id_flickr_id_map[image_id] = flickr_id
+    return image_id_flickr_id_map
+
+
 def get_labels_detected_in_images(oiv_folder, classes_to_keep=None, get_confidence=None):
     """ Extract the labels that are bounding boxes in each image
 
@@ -95,13 +119,7 @@ def get_labels_detected_in_images(oiv_folder, classes_to_keep=None, get_confiden
 
     image_labels = {}
     for subset, image_id_file_name, bbox_file_name in tqdm(files):
-        image_id_flickr_id_map = {}
-        image_id_file_csv = load_csv_as_dict(os.path.join(oiv_folder, image_id_file_name), delimiter=",")
-        for row in image_id_file_csv:
-            image_id = row["ImageID"]
-            flickr_url = row["OriginalURL"]
-            flickr_id = extract_image_id_from_flickr_static(flickr_url)
-            image_id_flickr_id_map[image_id] = flickr_id
+        image_id_flickr_id_map = get_image_id_flickr_id_map(os.path.join(oiv_folder, image_id_file_name))
         subset_image_labels = {}
         bbox_file_csv = load_csv_as_dict(os.path.join(oiv_folder, bbox_file_name), delimiter=",")
         for row in bbox_file_csv:
