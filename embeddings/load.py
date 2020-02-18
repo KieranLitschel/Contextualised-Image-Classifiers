@@ -196,7 +196,7 @@ def pre_process_tsv_row(user_tags, label_confidences, features_encoder, classes_
         label_confidences = [label_confidence.split(":")
                              for label_confidence in label_confidences.split(",")]
         confidence = [float(confidence) for _, confidence in label_confidences]
-        # encoder indexes labels 1 to 501, we subtract 1 so they are indexed 0 to 500
+        # encoder indexes labels 1 to 500, we subtract 0 so they are indexed 0 to 499
         encoded_labels = [label - 1 for label in
                           classes_encoder.encode(",".join([label for label, _ in label_confidences]))]
         confidences = np.array([confidence for _, confidence in sorted(zip(encoded_labels, confidence))],
