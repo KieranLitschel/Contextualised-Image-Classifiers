@@ -121,6 +121,29 @@ def get_labels_detected_in_images(oiv_folder, classes_to_keep=None, get_confiden
     return image_labels
 
 
+def get_oiv_labels_to_human(label_names_file):
+    """ Builds dictionary mapping OIV labels to human ones
+
+    Parameters
+    ----------
+    label_names_file : str
+        Path to file mapping OIV labels to OIV names. Default of None. If passed then OIV labels are replaced with
+        human readable ones
+
+    Returns
+    -------
+    dict
+        Maps OIV labels to OIV names, if not passed then nodes in hierarchy will be labelled with OIV label, otherwise
+        their OIV name
+    """
+
+    label_names_csv = load_csv_as_dict(label_names_file, delimiter=",", fieldnames=["oiv_label", "oiv_name"])
+    labels_map = {}
+    for row in label_names_csv:
+        labels_map[row["oiv_label"]] = row["oiv_name"]
+    return labels_map
+
+
 def _hierarchy_child_to_dict(hierarchy_dict, labels_map=None):
     """ Recursively constructs child dictionaries for children of hierarchy dict
 
@@ -172,10 +195,7 @@ def hierachy_to_dict(hierarchy_file, label_names_file=None):
     hierachy_json = json.load(f)
     labels_map = None
     if label_names_file:
-        label_names_csv = load_csv_as_dict(label_names_file, delimiter=",", fieldnames=["oiv_label", "oiv_name"])
-        labels_map = {}
-        for row in label_names_csv:
-            labels_map[row["oiv_label"]] = row["oiv_name"]
+        labels_map = get_oiv_labels_to_human(label_names_file)
     return _hierarchy_child_to_dict(hierachy_json, labels_map)
 
 
