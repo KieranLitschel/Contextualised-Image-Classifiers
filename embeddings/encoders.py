@@ -20,7 +20,7 @@ class CommaTokenTextEncoder(tfds.features.text.TokenTextEncoder):
     def __init__(self, vocab_list, oov_buckets=1, oov_token="UNK", lowercase=False, tokenizer=None, strip_vocab=True,
                  decode_token_separator=" "):
         super().__init__(vocab_list, oov_buckets, oov_token, lowercase, tokenizer, strip_vocab, decode_token_separator)
-        # Do not need to pass reserved tokens as not only used in Tokenizer, which we no longer use
+        # Do not need to pass reserved tokens as only used in Tokenizer, which we no longer use
         self._tokenizer = (tokenizer or CommaTokenizer(reserved_tokens=[]))
 
     @classmethod
