@@ -1,13 +1,13 @@
 from __future__ import absolute_import, division, print_function, unicode_literals
 
-import os
+from functools import partial
+
+import numpy as np
 import tensorflow as tf
 from tqdm import tqdm
-from functools import partial
+
 from common import load_csv_as_dict
 from embeddings.encoders import CommaTokenTextEncoder
-import pandas as pd
-import numpy as np
 
 
 def build_classes_encoder(classes_set):

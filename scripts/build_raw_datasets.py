@@ -1,5 +1,6 @@
-from embeddings.prepare import join_dataset_and_autotags
 import os
+
+from embeddings.prepare import join_dataset_and_autotags
 
 yfcc_dataset_path = "C:\\Honors Project\\YFCC100M\\yfcc100m_dataset"
 yfcc_autotags_path = "C:\\Honors Project\\YFCC100M\\yfcc100m_autotags"

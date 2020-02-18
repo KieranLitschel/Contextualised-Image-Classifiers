@@ -1,6 +1,7 @@
-from embeddings.load import count_user_tags
-from matplotlib import pyplot as plt
 import numpy as np
+from matplotlib import pyplot as plt
+
+from embeddings.load import count_user_tags
 
 training_subset = "C:\\Honors Project\\YFCC100M\\dataset\\oiv\\train.tsv"
 

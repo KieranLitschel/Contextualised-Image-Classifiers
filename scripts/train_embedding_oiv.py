@@ -1,12 +1,13 @@
 import argparse
-import os
 import math
+import os
 
 from tensorflow import keras
 from tensorflow_core.python.keras.callbacks import ModelCheckpoint, TensorBoard
-from embeddings.load import build_features_encoder, load_tsv_dataset
-from embeddings.encoders import CommaTokenTextEncoder
 import tensorflow as tf
+
+from embeddings.encoders import CommaTokenTextEncoder
+from embeddings.load import build_features_encoder, load_tsv_dataset
 
 parser = argparse.ArgumentParser()
 

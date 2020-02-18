@@ -1,14 +1,14 @@
-from common import load_csv_as_dict
-from yfcc100m.common import get_dataset_fields
-from oiv.common import get_train_val_test_ids
-from embeddings.prepare import pre_process_user_tags
 import pickle
-from tqdm import tqdm
-import pycld2 as cld2
 import re
 
-
 import cld3
+import pycld2 as cld2
+from tqdm import tqdm
+
+from common import load_csv_as_dict
+from embeddings.prepare import pre_process_user_tags
+from oiv.common import get_train_val_test_ids
+from yfcc100m.common import get_dataset_fields
 
 
 def count_user_tags(path, stem=None, remove_nums=None, oiv_folder=None):

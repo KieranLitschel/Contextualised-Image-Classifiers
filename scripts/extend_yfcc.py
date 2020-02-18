@@ -1,6 +1,7 @@
+import os
+
 from oiv.extend import Extend
 from yfcc100m.common import extend_dataset
-import os
 
 api_key = "YOUR API KEY"
 api_secret = "YOUR API SECRET"

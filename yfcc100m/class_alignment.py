@@ -1,6 +1,7 @@
-from common import load_csv_as_dict, write_rows_to_csv
 import os
 import pathlib
+
+from common import load_csv_as_dict, write_rows_to_csv
 
 
 def align_exact_matches(oiv_classes_path, aligned_autotags_path):

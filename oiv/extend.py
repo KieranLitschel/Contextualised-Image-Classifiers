@@ -1,11 +1,13 @@
-from oiv.common import get_train_val_test_ids
-import flickrapi
 import json
-import time
 import os
-from common import load_csv_as_dict, write_rows_to_csv
-from tqdm import tqdm
+import time
 import urllib
+
+import flickrapi
+from tqdm import tqdm
+
+from common import load_csv_as_dict, write_rows_to_csv
+from oiv.common import get_train_val_test_ids
 
 
 def pre_process_tag(tag):

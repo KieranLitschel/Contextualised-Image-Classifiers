@@ -1,5 +1,6 @@
-import re
 import os
+import re
+
 from common import load_csv_as_dict, write_rows_to_csv
 
 

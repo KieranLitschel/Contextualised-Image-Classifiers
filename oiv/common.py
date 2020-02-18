@@ -1,9 +1,11 @@
-import re
-import os
-from common import load_csv_as_dict, write_rows_to_csv
-from tqdm import tqdm
 import json
+import os
 import pathlib
+import re
+
+from tqdm import tqdm
+
+from common import load_csv_as_dict, write_rows_to_csv
 
 
 def extract_image_id_from_flickr_static(static_url):

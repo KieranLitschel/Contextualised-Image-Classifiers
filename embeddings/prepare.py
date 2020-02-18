@@ -1,18 +1,16 @@
-from common import load_csv_as_dict, write_rows_to_csv
-from oiv.common import get_train_val_test_ids, get_labels_detected_in_images
-from yfcc100m.common import get_dataset_fields, get_autotag_fields
-from oiv.common import get_hierarchy_json_path, hierarchy_members_list, get_hierarchy_classes_parents
-from yfcc100m.class_alignment import get_yfcc100m_oiv_labels_map
-from embeddings.load import build_features_encoder
-from embeddings.encoders import CommaTokenTextEncoder
 import os
-from tqdm import tqdm
-import pandas
 import re
-import tensorflow as tf
+import urllib
+
 import pycld2 as cld2
 from nltk.stem import SnowballStemmer
-import urllib
+from tqdm import tqdm
+
+from common import load_csv_as_dict
+from oiv.common import get_hierarchy_json_path, hierarchy_members_list, get_hierarchy_classes_parents
+from oiv.common import get_train_val_test_ids, get_labels_detected_in_images
+from yfcc100m.class_alignment import get_yfcc100m_oiv_labels_map
+from yfcc100m.common import get_dataset_fields, get_autotag_fields
 
 
 def pre_process_user_tags(image_user_tags, remove_nums=None, stem=None):

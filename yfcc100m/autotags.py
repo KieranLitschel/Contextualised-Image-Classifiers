@@ -1,6 +1,7 @@
-from yfcc100m.common import get_autotag_fields
-from common import load_csv_as_dict
 from tqdm import tqdm
+
+from common import load_csv_as_dict
+from yfcc100m.common import get_autotag_fields
 
 
 def unique_tags(path):
