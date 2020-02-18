@@ -87,7 +87,8 @@ def get_labels_detected_in_images(oiv_folder, classes_to_keep=None, get_confiden
 
     get_confidence = get_confidence if get_confidence is not None else False
     files = [["train", "train-images-with-labels-with-rotation.csv", "train-annotations-human-machine-imagelabels.csv"],
-             ["validation", "validation-images-with-rotation.csv", "validation-annotations-human-machine-imagelabels.csv"],
+             ["validation", "validation-images-with-rotation.csv",
+              "validation-annotations-human-machine-imagelabels.csv"],
              ["test", "test-images-with-rotation.csv", "test-annotations-human-imagelabels.csv"]]
 
     image_labels = {}
