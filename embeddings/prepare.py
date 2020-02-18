@@ -164,15 +164,15 @@ def join_dataset_and_autotags(dataset_path, autotags_path, oiv_folder, output_fo
         image_labels = [(tag, confidence) for tag, confidence in image_labels if tag in classes_to_keep]
         image_labels_str = ",".join("{}:{}".format(tag, confidence) for tag, confidence in image_labels)
         line = "{}\t{}\t{}\n".format(image_id, image_user_tags, image_labels_str)
-        if subset == "validation":
-            oiv_lines[subset].append(line)
-            lines_in_memory += 1
         if subset == "validation" or subset == "test":
             human_image_labels = []
             for tag, confidence in image_labels:
                 if confidence == 0 or confidence == 1:
                     human_image_labels.append((tag, confidence))
             if human_image_labels:
+                if subset == "validation":
+                    oiv_lines[subset].append(line)
+                    lines_in_memory += 1
                 human_image_labels_str = ",".join("{}:{}".format(tag, confidence)
                                                   for tag, confidence in human_image_labels)
                 human_image_labels_line = "{}\t{}\t{}\n".format(image_id, image_user_tags, human_image_labels_str)
