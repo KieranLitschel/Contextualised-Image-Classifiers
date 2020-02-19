@@ -258,6 +258,18 @@ def get_hierarchy_json_path():
     return os.path.join(pathlib.Path(__file__).parent.absolute(), "challenge-2019-label500-hierarchy.json")
 
 
+def get_class_descriptions_path():
+    """ Get the path to the class descriptions csv
+
+    Returns
+    -------
+    str
+        Path to class descriptions csv
+    """
+
+    return os.path.join(pathlib.Path(__file__).parent.absolute(), "class-descriptions-boxable.json")
+
+
 def _get_hierarchy_classes_parents(hierarchy_dict, classes_parents, curr_parents):
     """ Gets a dict that contains the ascendant in the hierarchy of each label. If a label has no ascendants its list is
         empty
