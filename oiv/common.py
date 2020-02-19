@@ -267,7 +267,7 @@ def get_class_descriptions_path():
         Path to class descriptions csv
     """
 
-    return os.path.join(pathlib.Path(__file__).parent.absolute(), "class-descriptions-boxable.json")
+    return os.path.join(pathlib.Path(__file__).parent.absolute(), "class-descriptions-boxable.csv")
 
 
 def _get_hierarchy_classes_parents(hierarchy_dict, classes_parents, curr_parents):
