@@ -8,6 +8,8 @@ import tensorflow as tf
 
 from embeddings.encoders import CommaTokenTextEncoder
 from embeddings.load import build_features_encoder, load_tsv_dataset
+from oiv.evaluate import build_oid_challenge_image_level_map_func
+from oiv.common import get_class_descriptions_path
 
 parser = argparse.ArgumentParser()
 
@@ -55,6 +57,12 @@ with tf.Session() as sess:
                                                    args.pad_size, subset_samples[subset],
                                                    True if subset == "train" else False)
 
+    human_validation_path = os.path.join(args.oiv_human_dataset_dir, "validation.tsv")
+    label_names_file = get_class_descriptions_path()
+
+    oid_challenge_image_level_map = build_oid_challenge_image_level_map_func(human_validation_path, label_names_file,
+                                                                             classes_encoder)
+
     pooling_layer = keras.layers.GlobalAveragePooling1D if args.global_average_pooling else keras.layers.GlobalMaxPool1D
 
     model = keras.Sequential([
@@ -69,9 +77,10 @@ with tf.Session() as sess:
     model.summary()
 
     model.compile(optimizer='adam',
-                  loss='binary_crossentropy')
+                  loss='binary_crossentropy', metrics=[oid_challenge_image_level_map])
 
-    checkpoint = ModelCheckpoint(os.path.join(args.output_dir, 'model.h5'), verbose=1, monitor='val_loss',
+    checkpoint = ModelCheckpoint(os.path.join(args.output_dir, 'model.h5'), verbose=1,
+                                 monitor='val_oid_challenge_image_level_map',
                                  save_best_only=True, mode='auto')
 
     log_dir = os.path.join(args.output_dir, "log")
