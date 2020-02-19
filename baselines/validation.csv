@@ -1,0 +1,502 @@
+,Metric,Score
+0,OpenImagesDetectionChallenge_Precision/mAP@0.5IOU,0.879348752
+1,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Coin,0.984359138
+2,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Flag,0.897812783
+3,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Light bulb,0.989010989
+4,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Toy,0.763064653
+5,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Home appliance,0.822129754
+6,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Plumbing fixture,0.752043181
+7,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Office supplies,0.674185115
+8,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Paper towel,1
+9,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Pillow,0.779576808
+10,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Spatula,
+11,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Cutting board,1
+12,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Drinking straw,0.958333333
+13,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Measuring cup,
+14,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Tableware,0.797148407
+15,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Frying pan,0.542857143
+16,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Wok,0.915169407
+17,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Kitchen appliance,0.808998934
+18,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Fireplace,0.915481185
+19,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Countertop,0.838975573
+20,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Book,0.874153088
+21,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Furniture,0.784359263
+22,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Dog bed,0.866666667
+23,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Lantern,0.838383838
+24,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Clock,0.83737328
+25,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Vase,0.920661321
+26,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Window blind,0.904761905
+27,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Curtain,0.896445553
+28,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Mirror,0.863812384
+29,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Sculpture,0.880746152
+30,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Picture frame,0.65984176
+31,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Candle,0.998412698
+32,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Lamp,0.924312012
+33,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Flowerpot,0.837353797
+34,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Towel,0.833333333
+35,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Beehive,1
+36,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Tent,0.752419811
+37,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Traffic light,0.969055998
+38,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Billboard,0.92760741
+39,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Traffic sign,0.652078636
+40,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Fire hydrant,1
+41,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Fountain,0.886969697
+42,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Street light,0.512331488
+43,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Building,0.646300363
+44,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Swimming pool,0.917544174
+45,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Person,0.898842192
+46,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Hot dog,0.682386364
+47,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/French fries,0.953634452
+48,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Waffle,0.98974359
+49,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Pancake,0.913509249
+50,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Burrito,0.838625972
+51,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Pretzel,0.914423077
+52,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Popcorn,0.995238095
+53,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Dessert,0.850343936
+54,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Guacamole,0.985576923
+55,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Fruit,0.76436044
+56,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Egg (Food),0.941939739
+57,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Bagel,0.862540517
+58,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Bread,0.911422001
+59,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Doughnut,0.978702551
+60,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Croissant,0.93870835
+61,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Tart,0.93989624
+62,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Mushroom,0.972698295
+63,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Pasta,0.989275807
+64,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Pizza,0.984047465
+65,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Seafood,0.877257867
+66,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Taco,0.936867055
+67,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Vegetable,0.748660158
+68,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Honeycomb,0.865234765
+69,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Sandwich,0.852612227
+70,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Sushi,0.959988149
+71,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Houseplant,0.859517914
+72,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Tree,0.710432651
+73,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Flower,0.860569341
+74,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Vehicle,0.990987377
+75,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Shorts,0.787900265
+76,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Dress,0.901610016
+77,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Swimwear,0.911612928
+78,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Brassiere,0.871131734
+79,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Tiara,0.947971781
+80,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Shirt,0.574098397
+81,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Coat,0.96893617
+82,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Suit,0.919735954
+83,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Hat,0.759247262
+84,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Scarf,0.800555556
+85,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Skirt,0.698101237
+86,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Jacket,0.793202211
+87,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Glove,0.795607006
+88,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Belt,0.175
+89,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Necklace,0.853388689
+90,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Sock,0.902857143
+91,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Earrings,0.780284043
+92,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Tie,0.858947397
+93,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Watch,0.917143246
+94,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Umbrella,0.673363236
+95,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Crown,0.838555326
+96,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Swim cap,0.941311612
+97,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Trousers,0.680445386
+98,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Footwear,0.77784642
+99,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Sports uniform,0.880751482
+100,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Luggage and bags,0.809613005
+101,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Helmet,0.806142744
+102,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Animal,0.86737426
+103,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Personal care,0.540798191
+104,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Stretcher,1
+105,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Musical instrument,0.922067615
+106,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Paddle,0.95734025
+107,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Ball,0.795720091
+108,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Surfboard,0.919412504
+109,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Baseball bat,0.920999916
+110,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Punching bag,0.5
+111,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Golf ball,0.95
+112,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Personal flotation device,0.574512702
+113,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Scoreboard,0.884405458
+114,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Snowboard,0.768981481
+115,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Skateboard,0.945742718
+116,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Ski,0.885586011
+117,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Dumbbell,0.833333333
+118,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Stationary bicycle,1
+119,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Treadmill,0.910714286
+120,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Training bench,0.071428571
+121,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Parachute,0.964355846
+122,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Racket,0.962422041
+123,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Billiard table,1
+124,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Tin can,0.938447239
+125,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Barrel,0.989089184
+126,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Picnic basket,1
+127,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Waste container,0.941287879
+128,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Beaker,
+129,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Ladder,0.718620482
+130,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Screwdriver,0.833333333
+131,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Wrench,
+132,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Flashlight,1
+133,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Snowplow,0.968923933
+134,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Nail (Construction),0.75
+135,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Tripod,0.978240741
+136,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Torch,1
+137,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Camera,0.959504832
+138,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Ruler,0.951515152
+139,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Binoculars,0.5925
+140,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Weapon,0.92008537
+141,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Headphones,0.883240147
+142,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Laptop,0.832920971
+143,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Computer keyboard,0.928419655
+144,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Printer,0.964285714
+145,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Computer mouse,0.983333333
+146,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Computer monitor,0.848732231
+147,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Power plugs and sockets,1
+148,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Light switch,1
+149,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Television,0.60604472
+150,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Telephone,0.749717384
+151,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Tablet computer,0.83610675
+152,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Microphone,0.754650009
+153,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Drink,0.875940485
+154,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Bicycle wheel,0.929844849
+155,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Door handle,0.736276866
+156,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Door,0.58050372
+157,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Window,0.591563816
+158,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Stairs,0.7917874
+159,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Porch,0.726501343
+160,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Human eye,0.643384617
+161,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Skull,0.934456596
+162,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Human head,0.695666733
+163,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Human face,0.743417351
+164,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Human mouth,0.575589909
+165,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Human ear,0.648470965
+166,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Human nose,0.497552348
+167,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Human hair,0.721838973
+168,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Human hand,0.693990196
+169,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Human foot,0.84578669
+170,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Human arm,0.836829164
+171,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Human leg,0.794502639
+172,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Human beard,0.81718716
+173,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Vehicle registration plate,0.871485022
+174,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Wheel,0.864782915
+175,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Seat belt,0.866666667
+176,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Tire,0.89201265
+177,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Coconut,1
+178,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Doll,0.953541047
+179,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Balloon,0.917745331
+180,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Dice,1
+181,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Kite,0.914529915
+182,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Teddy bear,0.881166056
+183,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Washing machine,0.995859213
+184,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Toaster,
+185,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Oven,0.863446508
+186,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Blender,1
+187,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Gas stove,0.899504132
+188,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Mechanical fan,0.962352941
+189,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Kettle,0.902248573
+190,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Refrigerator,0.854587542
+191,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Wood-burning stove,0.963522086
+192,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Mixer,0.847649573
+193,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Coffeemaker,0.954593515
+194,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Microwave oven,0.916605617
+195,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Sewing machine,0.981176471
+196,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Ceiling fan,0.982142857
+197,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Sink,0.843041422
+198,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Bidet,0.657338566
+199,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Shower,1
+200,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Tap,0.741772571
+201,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Bathtub,0.86979687
+202,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Toilet,0.873141351
+203,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Scissors,
+204,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Poster,0.87366902
+205,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Box,0.948147836
+206,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Whiteboard,0.843903877
+207,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Adhesive tape,1
+208,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Ring binder,
+209,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Plastic bag,1
+210,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Toilet paper,0.854166667
+211,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Envelope,0.533333333
+212,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Pen,0.938492355
+213,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Chopsticks,0.568038278
+214,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Teapot,0.943797377
+215,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Mug,0.789333483
+216,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Coffee cup,0.938235405
+217,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Salt and pepper shakers,1
+218,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Saucer,0.918915195
+219,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Bottle,0.91660061
+220,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Bowl,0.760164856
+221,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Plate,0.822570461
+222,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Pitcher (Container),0.952784525
+223,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Kitchen knife,0.739318182
+224,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Jug,0.878125
+225,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Platter,0.792809396
+226,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Wine glass,0.934651124
+227,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Spoon,0.87757505
+228,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Fork,0.879916245
+229,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Serving tray,0.966666667
+230,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Cake stand,0.5
+231,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Slow cooker,1
+232,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Food processor,0.883333333
+233,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Pressure cooker,1
+234,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Chair,0.755469547
+235,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Cabinetry,0.890474584
+236,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Desk,0.604736169
+237,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Couch,0.799198294
+238,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Nightstand,0.902369179
+239,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Bookcase,0.949890163
+240,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Bed,0.695618114
+241,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Filing cabinet,0.864326414
+242,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Table,0.715871245
+243,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Chest of drawers,0.871037891
+244,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Cupboard,0.880096832
+245,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Bench,0.260504202
+246,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Drawer,0.870443599
+247,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Stool,0.791666667
+248,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Shelf,0.872982182
+249,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Wall clock,0.930833872
+250,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Bathroom cabinet,0.819041582
+251,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Alarm clock,0.820728291
+252,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Digital clock,0.958333333
+253,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Snowman,1
+254,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Bust,0.837607035
+255,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Bronze sculpture,0.973446008
+256,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Stop sign,0.97979798
+257,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Lighthouse,0.797619048
+258,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Skyscraper,0.884177277
+259,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Castle,0.943428286
+260,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Tower,0.853076263
+261,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/House,0.738748031
+262,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Office building,0.897103395
+263,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Convenience store,0.974832427
+264,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Man,0.774564498
+265,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Woman,0.806935135
+266,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Boy,0.519255097
+267,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Girl,0.820557305
+268,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Muffin,0.865955857
+269,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Cookie,0.94375768
+270,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Ice cream,0.938745613
+271,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Cake,0.948119037
+272,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Candy,0.956364619
+273,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Apple,0.890672949
+274,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Grape,0.907201296
+275,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Common fig,0.915966387
+276,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Pear,0.955555556
+277,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Strawberry,0.810809167
+278,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Tomato,0.864996062
+279,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Lemon,0.867538675
+280,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Banana,0.917748918
+281,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Orange,0.756714226
+282,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Peach,0.934985994
+283,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Mango,0.666666667
+284,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Pineapple,0.981481481
+285,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Grapefruit,0.890215444
+286,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Pomegranate,1
+287,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Watermelon,0.928103201
+288,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Shellfish,0.904066621
+289,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Cucumber,0.940167176
+290,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Radish,0.978571429
+291,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Artichoke,0.895424837
+292,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Potato,0.955788177
+293,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Garden Asparagus,1
+294,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Squash (Plant),0.809301692
+295,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Cabbage,0.827799651
+296,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Carrot,0.956456456
+297,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Salad,0.944620834
+298,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Broccoli,0.834884259
+299,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Bell pepper,0.946109952
+300,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Winter melon,0.872294372
+301,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Hamburger,0.983137418
+302,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Submarine sandwich,0.785565565
+303,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Christmas tree,0.702784213
+304,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Palm tree,0.917549443
+305,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Maple,0.738251955
+306,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Willow,0.761111111
+307,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Lavender (Plant),0.911545384
+308,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Rose,0.801875144
+309,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Common sunflower,0.910806786
+310,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Lily,0.861585268
+311,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Land vehicle,0.970419184
+312,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Watercraft,0.880262513
+313,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Aircraft,0.990601711
+314,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Cowboy hat,0.897056097
+315,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Fedora,0.918486958
+316,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Sombrero,0.950549451
+317,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Sun hat,0.934409422
+318,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Miniskirt,0.893408899
+319,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Baseball glove,0.944677922
+320,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Jeans,0.793009269
+321,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Roller skates,0.988395169
+322,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Boot,0.898016563
+323,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/High heels,0.885145152
+324,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Sandal,0.936549807
+325,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Backpack,0.900793651
+326,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Suitcase,0.946402116
+327,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Briefcase,0.892857143
+328,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Handbag,0.883636388
+329,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Bicycle helmet,0.965569472
+330,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Football helmet,0.924810822
+331,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Bird,0.909505039
+332,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Invertebrate,0.892666305
+333,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Bat (Animal),1
+334,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Carnivore,0.986167881
+335,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Camel,0.977339901
+336,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Cattle,0.830133881
+337,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Giraffe,1
+338,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Rhinoceros,0.945864662
+339,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Goat,0.931622706
+340,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Horse,0.99226511
+341,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Hamster,0.940607143
+342,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Kangaroo,0.988795518
+343,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Mouse,0.955700826
+344,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Pig,0.977366071
+345,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Rabbit,0.987172901
+346,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Squirrel,0.970800139
+347,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Sheep,0.974457272
+348,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Zebra,0.989028213
+349,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Monkey,0.748970454
+350,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Deer,0.964358523
+351,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Elephant,0.982323232
+352,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Porcupine,0.949899146
+353,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Bull,0.928199151
+354,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Antelope,0.968121229
+355,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Mule,0.970733216
+356,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Marine mammal,0.941346826
+357,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Alpaca,0.992236025
+358,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Reptile,0.957566848
+359,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Fish,0.911543843
+360,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Sunglasses,0.77732883
+361,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Goggles,0.714212119
+362,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Crutch,1
+363,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Glasses,0.717911283
+364,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Wheelchair,0.962461232
+365,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Organ (Musical Instrument),0.473535816
+366,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Cello,0.889222613
+367,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Drum,0.881382386
+368,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/French horn,0.950667077
+369,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Guitar,0.873114651
+370,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Harp,1
+371,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Harpsichord,0.946937312
+372,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Musical keyboard,0.55534988
+373,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Oboe,1
+374,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Piano,0.988726739
+375,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Saxophone,0.977207977
+376,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Trombone,0.899891775
+377,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Trumpet,0.870857339
+378,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Violin,0.997619048
+379,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Flute,0.910416667
+380,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Accordion,1
+381,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Football,0.843759277
+382,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Cricket ball,0.866666667
+383,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Volleyball (Ball),0.887857744
+384,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Tennis ball,0.815584416
+385,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Rugby ball,0.858843537
+386,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Tennis racket,0.977430556
+387,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Table tennis racket,0.98789272
+388,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Bow and arrow,0.966666667
+389,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Cannon,0.730354261
+390,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Dagger,0.940703836
+391,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Knife,0.976802365
+392,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Rifle,0.962359357
+393,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Shotgun,0.868392424
+394,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Tank,0.980457003
+395,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Handgun,0.818942169
+396,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Sword,0.966808331
+397,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Missile,0.897916667
+398,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Mobile phone,0.949297958
+399,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Corded phone,0.808333333
+400,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Beer,0.888757801
+401,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Cocktail,0.905333904
+402,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Coffee,0.94526449
+403,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Juice,0.953017697
+404,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Tea,0.842398922
+405,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Wine,0.91192553
+406,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Sofa bed,0.939799687
+407,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Loveseat,0.665092218
+408,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Infant bed,0.896235917
+409,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Studio couch,0.701774544
+410,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Coffee table,0.727704611
+411,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Kitchen & dining room table,0.827636788
+412,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Oyster,0.987250384
+413,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Lobster,0.965776451
+414,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Shrimp,0.919248187
+415,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Crab,0.967267465
+416,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Pumpkin,1
+417,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Zucchini,0.908678663
+418,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Ambulance,0.83983396
+419,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Cart,0.959697085
+420,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Bicycle,0.955377265
+421,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Bus,0.941302855
+422,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Snowmobile,1
+423,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Golf cart,0.85
+424,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Motorcycle,0.95137295
+425,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Segway,0.783333333
+426,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Train,0.951909888
+427,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Truck,0.932770968
+428,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Car,0.978598451
+429,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Taxi,0.83969457
+430,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Boat,0.909547467
+431,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Jet ski,1
+432,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Helicopter,0.993920603
+433,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Airplane,0.997146465
+434,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Rocket,0.933478261
+435,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Woodpecker,0.924493327
+436,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Blue jay,0.988413849
+437,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Ostrich,0.997368421
+438,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Penguin,0.992250666
+439,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Raven,0.976154999
+440,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Chicken,0.993798277
+441,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Eagle,0.944310168
+442,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Owl,0.969047619
+443,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Duck,0.969761438
+444,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Canary,0.904239146
+445,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Goose,0.879691669
+446,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Swan,0.929563749
+447,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Falcon,0.975344612
+448,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Parrot,0.985705895
+449,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Sparrow,0.785018312
+450,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Turkey,0.919444444
+451,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Tick,0.5
+452,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Centipede,1
+453,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Marine invertebrates,0.791257773
+454,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Insect,0.892901613
+455,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Spider,0.991108779
+456,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Snail,0.962627476
+457,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Bear,0.838112266
+458,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Cat,0.992000065
+459,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Fox,0.98151227
+460,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Jaguar (Animal),0.974724028
+461,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Lynx,0.858540074
+462,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Tiger,0.934166667
+463,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Lion,0.995714767
+464,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Dog,0.999282948
+465,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Leopard,1
+466,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Cheetah,0.967684796
+467,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Otter,0.938434048
+468,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Raccoon,0.950288992
+469,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Dolphin,0.967693075
+470,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Whale,0.946379802
+471,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Sea lion,0.941788524
+472,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Harbor seal,0.96443499
+473,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Dinosaur,0.981693364
+474,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Lizard,0.978814535
+475,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Snake,0.988196988
+476,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Turtle,0.991551459
+477,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Crocodile,0.980606061
+478,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Frog,0.952393308
+479,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Goldfish,0.818680798
+480,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Shark,0.973227842
+481,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Seahorse,0.986013986
+482,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Limousine,0.920627596
+483,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Van,0.936292466
+484,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Barge,0.485714286
+485,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Gondola,0.939218165
+486,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Canoe,0.910491848
+487,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Starfish,0.969309463
+488,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Jellyfish,1
+489,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Bee,0.907932076
+490,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Beetle,0.963075017
+491,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Ant,0.855555556
+492,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Moths and butterflies,0.903585916
+493,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Dragonfly,1
+494,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Brown bear,0.883407943
+495,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Polar bear,1
+496,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Tortoise,0.998991935
+497,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Sea turtle,0.973666589
+498,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Ladybug,0.958213275
+499,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Caterpillar,0.966448802
+500,OpenImagesDetectionChallenge_PerformanceByCategory/AP@0.5IOU/Butterfly,0.984972384
