@@ -6,6 +6,7 @@ from research.object_detection.utils.object_detection_evaluation import OpenImag
 
 from common import load_csv_as_dict
 from oiv.common import get_oiv_labels_to_human, get_image_id_flickr_id_map
+import tensorflow as tf
 
 
 def build_categories(label_names_file, classes_encoder):
@@ -161,10 +162,16 @@ def build_oid_challenge_image_level_map_func(human_verified_subset_path, label_n
 
     categories = build_categories(label_names_file, classes_encoder)
     y_true_human = build_y_true(human_verified_subset_path, classes_encoder)
-    oid_challenge_image_level_map = lambda y_pred, _: \
-        oid_challenge_evaluator_image_level(y_pred.numpy().as_type(np.float32),
-                                            y_true_human, categories)["OpenImagesDetectionChallenge_"
-                                                                      "Precision/mAP@0.5IOU"]
+
+    def oid_challenge_image_level_map(y_pred, _):
+        partial_func = lambda y_pred_other: tf.convert_to_tensor(
+            oid_challenge_evaluator_image_level(y_pred_other.numpy().astype(np.float32),
+                                                y_true_human, categories)["OpenImagesDetectionChallenge_"
+                                                                          "Precision/mAP@0.5IOU"],
+            dtype=tf.float32)
+        mean_ap = tf.py_function(partial_func, [y_pred], Tout=tf.float32)
+        return mean_ap
+
     return oid_challenge_image_level_map
 
 
