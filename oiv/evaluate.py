@@ -144,8 +144,7 @@ def oid_challenge_evaluator_image_level(y_pred, y_true, categories):
     return metrics
 
 
-def build_oid_challenge_image_level_mean_average_precision_func(human_verified_subset_path, label_names_file,
-                                                                classes_encoder):
+def build_oid_challenge_image_level_map_func(human_verified_subset_path, label_names_file, classes_encoder):
     """ Creates a function that takes y_pred and y_true (human and machine generated labels), and finds the mean average
         precision for y_pred using y_true_human (only human generated machine labels)
 
@@ -162,11 +161,11 @@ def build_oid_challenge_image_level_mean_average_precision_func(human_verified_s
 
     categories = build_categories(label_names_file, classes_encoder)
     y_true_human = build_y_true(human_verified_subset_path, classes_encoder)
-    oid_challenge_image_level_mean_average_precision = lambda y_pred, _: \
+    oid_challenge_image_level_map = lambda y_pred, _: \
         oid_challenge_evaluator_image_level(y_pred.numpy().as_type(np.float32),
                                             y_true_human, categories)["OpenImagesDetectionChallenge_"
                                                                       "Precision/mAP@0.5IOU"]
-    return oid_challenge_image_level_mean_average_precision
+    return oid_challenge_image_level_map
 
 
 def machine_labels_baseline(subset, oiv_folder, oiv_human_verified_folder, label_names_file, classes_encoder):
