@@ -7,7 +7,7 @@ from research.object_detection.utils.object_detection_evaluation import OpenImag
 from common import load_csv_as_dict
 from oiv.common import get_oiv_labels_to_human, get_image_id_flickr_id_map
 import tensorflow as tf
-
+import warnings
 
 def build_categories(label_names_file, classes_encoder):
     """ Builds the categories dictionary for OpenImagesDetectionChallengeEvaluator
@@ -171,9 +171,14 @@ def build_oid_challenge_image_level_map_func(human_verified_subset_path, label_n
             # otherwise we can just say the result is 0
             result = 0
             if y_pred_other.shape[0] == len(y_true_human):
-                result = oid_challenge_evaluator_image_level(y_pred_other, y_true_human,
-                                                             categories)["OpenImagesDetectionChallenge_"
-                                                                         "Precision/mAP@0.5IOU"]
+                with warnings.catch_warnings():
+                    # the challenge evaluator will throw warnings about classes being missing, and the
+                    # groundtruth group_of flag being missing, but we don't care about them and they clutter
+                    # the command line, so we ignore them
+                    warnings.simplefilter("ignore")
+                    result = oid_challenge_evaluator_image_level(y_pred_other, y_true_human,
+                                                                 categories)["OpenImagesDetectionChallenge_"
+                                                                             "Precision/mAP@0.5IOU"]
             return tf.convert_to_tensor(result, dtype=tf.float32)
 
         mean_ap = tf.py_function(setup_and_evaluate, [y_pred], Tout=tf.float32)
