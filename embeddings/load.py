@@ -305,7 +305,8 @@ def load_tsv_dataset(dataset_path, features_encoder, classes_encoder, batch_size
         .cache()
     if shuffle:
         dataset = dataset.shuffle(no_samples, reshuffle_each_iteration=True)
-    dataset = dataset.padded_batch(batch_size, padded_shapes=([None], [None])) \
+    dataset = dataset.repeat() \
+        .padded_batch(batch_size, padded_shapes=([None], [None])) \
         .map(custom_sparse_labels_to_dense_wrapper) \
         .prefetch(tf.data.experimental.AUTOTUNE)
     return dataset
