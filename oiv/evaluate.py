@@ -164,12 +164,19 @@ def build_oid_challenge_image_level_map_func(human_verified_subset_path, label_n
     y_true_human = build_y_true(human_verified_subset_path, classes_encoder)
 
     def oid_challenge_image_level_map(y_pred, _):
-        partial_func = lambda y_pred_other: tf.convert_to_tensor(
-            oid_challenge_evaluator_image_level(y_pred_other.numpy().astype(np.float32),
-                                                y_true_human, categories)["OpenImagesDetectionChallenge_"
-                                                                          "Precision/mAP@0.5IOU"],
-            dtype=tf.float32)
-        mean_ap = tf.py_function(partial_func, [y_pred], Tout=tf.float32)
+        def setup_and_evaluate(y_pred_):
+            y_pred_other = y_pred_.numpy().astype(np.float32)
+            # Keras will call this function for the training set, but we don't want to evaluate it for it
+            # so we can check the length of y_pred_, and if it's our validation set, we can evaluate it,
+            # otherwise we can just say the result is 0
+            result = 0
+            if y_pred_other.shape[0] == len(y_true_human):
+                result = oid_challenge_evaluator_image_level(y_pred_other, y_true_human,
+                                                             categories)["OpenImagesDetectionChallenge_"
+                                                                         "Precision/mAP@0.5IOU"]
+            return tf.convert_to_tensor(result, dtype=tf.float32)
+
+        mean_ap = tf.py_function(setup_and_evaluate, [y_pred], Tout=tf.float32)
         return mean_ap
 
     return oid_challenge_image_level_map
