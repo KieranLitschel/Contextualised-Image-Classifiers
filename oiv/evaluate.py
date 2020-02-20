@@ -190,7 +190,7 @@ def build_oid_challenge_image_level_map_func(human_verified_subset_path, label_n
 
 
 def machine_labels_baseline(subset, oiv_folder, oiv_human_verified_folder, label_names_file, classes_encoder):
-    """ FOO BAR
+    """ For a given machine-generated subset, evaluates its performance using oid_challenge_evaluator_image_level
 
     Parameters
     ----------
