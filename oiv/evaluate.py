@@ -164,7 +164,7 @@ def build_oid_challenge_image_level_map_func(human_verified_subset_path, label_n
     categories = build_categories(label_names_file, classes_encoder)
     y_true_human = build_y_true(human_verified_subset_path, classes_encoder)
 
-    def oid_challenge_image_level_map(y_pred, _):
+    def oid_challenge_image_level_map(_, y_pred):
         def setup_and_evaluate(y_pred_):
             y_pred_other = y_pred_.numpy().astype(np.float32)
             # Keras will call this function for the training set, but we don't want to evaluate it for it
