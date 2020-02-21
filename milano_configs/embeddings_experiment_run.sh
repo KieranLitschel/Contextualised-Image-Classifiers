@@ -48,8 +48,8 @@ echo "Finished copying data, starting training"
 
 source /home/${STUDENT_ID}/miniconda3/bin/activate hp
 
-cd ${DATASET_DIR}/models/research
-export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
+cd ${DATASET_DIR}/models
+export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/research:`pwd`/research/slim
 
 cd ${DATASET_DIR}
 
