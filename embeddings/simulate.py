@@ -12,9 +12,10 @@ from oiv.common import get_oiv_labels_to_human, get_class_descriptions_path
 parser = argparse.ArgumentParser()
 
 parser.add_argument("--pad_size", help="Maximum number of words per image", type=int)
-parser.add_argument("--classes_encoder_path", help="Location of saved encoder produced by build_classes_encoder")
-parser.add_argument("--input_dir", help="Location of model and feature encoder")
-parser.add_argument("--top_n", help="Top n predictions to return")
+parser.add_argument("--classes_encoder_path", help="Location of saved encoder produced by build_classes_encoder",
+                    type=str)
+parser.add_argument("--input_dir", help="Location of model and feature encoder", type=str)
+parser.add_argument("--top_n", help="Top n predictions to return", type=int)
 
 args = parser.parse_args()
 
