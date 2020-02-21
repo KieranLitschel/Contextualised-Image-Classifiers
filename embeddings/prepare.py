@@ -28,7 +28,7 @@ def pre_process_user_tags(image_user_tags, remove_nums=None, stem=None):
     Returns
     -------
     str
-        Tuple separated pre processed user tags
+        Comma separated pre processed user tags
     """
 
     remove_nums = remove_nums if remove_nums is not None else True
