@@ -48,10 +48,10 @@ echo "Finished copying data, starting training"
 
 source /home/${STUDENT_ID}/miniconda3/bin/activate hp
 
-cd ${DATASET_DIR}/dataset/models/research
+cd ${DATASET_DIR}/models/research
 export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
 
-cd ${DATASET_DIR}/dataset
+cd ${DATASET_DIR}
 
 # Start experiment
 
@@ -62,6 +62,7 @@ python -m scripts.train_embedding_oiv \
 --classes_encoder_path ${DATASET_DIR}/dataset/classes_encoder \
 --random_seed 0 \
 --max_train_time 7.5 \
+--logtostderr \
 "$@"
 
 date
