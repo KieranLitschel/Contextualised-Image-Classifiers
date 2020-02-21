@@ -29,10 +29,10 @@ params_to_tune = {
         "type": "values", "values": [0.1, 0.01, 0.001]
     },
     "--dropout_rate": {
-        "type": "values", "values": [0.2, 0.3, 0.4]
+        "type": "values", "values": [0, 0.1, 0.2, 0.3, 0.4]
     },
     "--l2_reg_factor": {
-        "type": "values", "values": [0.01, 0.001, 0.0001]
+        "type": "values", "values": [0, 0.1, 0.01, 0.001, 0.0001]
     },
 }
 
