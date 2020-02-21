@@ -36,7 +36,7 @@ with tf.Session():
         encoded_words = np.array([encoded_words])
         predictions = best_model.predict(encoded_words)
         top_n_pred = [(index + 1, score) for index, score in
-                      sorted(enumerate(list(predictions)), reverse=True, key=lambda x: x[1])[:args.top_n]]
+                      sorted(enumerate(list(predictions[0])), reverse=True, key=lambda x: x[1])[:args.top_n]]
         top_n_classes = [oiv_labels_to_human[label] for label in
                          classes_encoder.decode([class_num for class_num, score in top_n_pred]).split(",")]
         for i in range(args.top_n):
