@@ -38,7 +38,7 @@ with tf.Session():
         top_n_pred = [(index + 1, score) for index, score in
                       sorted(enumerate(list(predictions)), reverse=True, key=lambda x: x[1])[:args.top_n]]
         top_n_classes = [oiv_labels_to_human[label] for label in
-                         classes_encoder.decode([class_num for class_num, score in top_n_pred])]
+                         classes_encoder.decode([class_num for class_num, score in top_n_pred]).split(",")]
         for i in range(args.top_n):
             print("{} with score {}".format(top_n_classes[i], top_n_pred[i][1]))
         print("-----------------------------------------")
