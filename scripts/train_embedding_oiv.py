@@ -132,7 +132,7 @@ if __name__ == "__main__":
 
         y_pred = best_model.predict(validation_dataset, steps=1)
         y_true = build_y_true(os.path.join(script_args.oiv_human_dataset_dir, "validation.tsv"), eval_classes_encoder)
-        categories = build_categories(get_class_descriptions_path(), eval_features_encoder)
+        categories = build_categories(get_class_descriptions_path(), eval_classes_encoder)
 
         # the challenge evaluator will throw warnings about classes being missing, and the
         # groundtruth group_of flag being missing, but we don't care about them and they clutter
