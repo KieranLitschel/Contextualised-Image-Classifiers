@@ -62,7 +62,7 @@ python -m scripts.train_embedding_oiv \
 --classes_encoder_path \${DATASET_DIR}/dataset/classes_encoder \
 --random_seed 0 \
 --max_train_time 7.5 \
-\"\$@\"
+"$@"
 
 date
 echo \"Finished\"
