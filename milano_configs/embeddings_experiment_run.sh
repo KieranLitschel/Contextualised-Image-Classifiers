@@ -70,7 +70,7 @@ python -m scripts.train_embedding_oiv \
 "$@"
 
 echo \"Copying results to main node\"
-rsync -uap --progress \${TEMP_OUTPUT_DIR} \${OUTPUT_DIR}
+rsync -uap --progress \${TEMP_OUTPUT_DIR}/ \${OUTPUT_DIR}
 
 date
 echo \"Finished\"
