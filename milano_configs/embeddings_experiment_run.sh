@@ -31,6 +31,9 @@ export TMP=/disk/scratch/\${STUDENT_ID}
 mkdir -p \${TMP}/datasets
 export DATASET_DIR=\${TMP}/datasets
 
+export TEMP_OUTPUT_DIR=\${TMP}/\${SLURM_JOB_NAME}
+mkdir -p \${TEMP_OUTPUT_DIR}
+
 export OUTPUT_DIR=/home/\${STUDENT_ID}/HonorsProject/Embeddings/experiment_1/\${SLURM_JOB_NAME}
 mkdir -p \${OUTPUT_DIR}
 
@@ -58,11 +61,14 @@ cd \${DATASET_DIR}
 python -m scripts.train_embedding_oiv \
 --oiv_dataset_dir \${DATASET_DIR}/dataset/oiv \
 --oiv_human_dataset_dir \${DATASET_DIR}/dataset/oiv_human_verified \
---output_dir \${OUTPUT_DIR} \
+--output_dir \${TEMP_OUTPUT_DIR} \
 --classes_encoder_path \${DATASET_DIR}/dataset/classes_encoder \
 --random_seed 0 \
 --max_train_time 7.5 \
 "$@"
+
+echo \"Copying results to main node\"
+rsync -uap --progress \${TEMP_OUTPUT_DIR} \${OUTPUT_DIR}
 
 date
 echo \"Finished\"
