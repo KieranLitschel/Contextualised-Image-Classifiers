@@ -31,10 +31,12 @@ export TMP=/disk/scratch/\${STUDENT_ID}
 mkdir -p \${TMP}/datasets
 export DATASET_DIR=\${TMP}/datasets
 
-export TEMP_OUTPUT_DIR=\${TMP}/\${SLURM_JOB_NAME}
+export JOB_ID=\${SLURM_JOB_NAME%???}
+
+export TEMP_OUTPUT_DIR=\${TMP}/\${JOB_ID}
 mkdir -p \${TEMP_OUTPUT_DIR}
 
-export OUTPUT_DIR=/home/\${STUDENT_ID}/HonorsProject/Embeddings/experiment_1/\${SLURM_JOB_NAME}
+export OUTPUT_DIR=/home/\${STUDENT_ID}/HonorsProject/Embeddings/experiment_1/\${JOB_ID}
 mkdir -p \${OUTPUT_DIR}
 
 date
