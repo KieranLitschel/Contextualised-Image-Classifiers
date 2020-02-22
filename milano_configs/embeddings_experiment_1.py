@@ -43,12 +43,13 @@ result_pattern = "Validation MAP is: "
 objective = "maximize"
 
 num_evals = 500
+num_workers = min(200, num_evals)
 
 # BACKEND parameters. We will use SLURMBackend to run on DB Cluster
 backend = SLURMBackend
 backend_params = {
     "workers_config": {
-        "num_workers": num_evals,  # NUMBER OF SLURM *NODES* to run at a time.
+        "num_workers": num_workers,  # NUMBER OF SLURM *NODES* to run at a time.
         "partition": "Teach-Standard",  # PARTITION
         "username": "s1614973",  # CHANGE THIS
         "key_path": None,  # CHANGE THIS
