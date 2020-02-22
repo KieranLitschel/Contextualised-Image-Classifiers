@@ -38,7 +38,7 @@ date
 echo \"Copying data..\"
 
 rsync -uap /home/\${STUDENT_ID}/HonorsProject/models \${DATASET_DIR}
-rsync -uap /home/\${STUDENT_ID}/HonorsProject/CCNN/ \${DATASET_DIR}
+rsync -uap /home/\${STUDENT_ID}/HonorsProject/Embeddings/CCNN/ \${DATASET_DIR}
 rsync -uap --progress /home/\${STUDENT_ID}/HonorsProject/Embeddings/dataset \${DATASET_DIR}
 
 date
