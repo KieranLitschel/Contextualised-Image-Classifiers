@@ -11,7 +11,7 @@ script_to_run = os.path.join(pathlib.Path(__file__).parent.absolute(), "embeddin
 # specify the tunable parameters as cmd arguments and their possible ranges
 params_to_tune = {
     "--pad_size": {
-        "type": "values", "values": [2, 4, 7, 10]
+        "type": "values", "values": [2, 5, 10, 20, 40, 80, 160]
     },
     "--tag_threshold": {
         "type": "values", "values": [2, 5, 10, 20, 40, 80]
