@@ -11,7 +11,8 @@ parser.add_argument("--experiment_name",
                     help="Name of experiment that was being run", type=str)
 parser.add_argument("--new_experiment_name", help="Name of experiment to move results to")
 parser.add_argument("--clean_up", help="Set this flag if this script has already been run, and just need to gather"
-                                       "results for jobs that were incomplete when first run", type=bool)
+                                       "results for jobs that were incomplete when first run", dest="clean_up",
+                    action="store_true")
 
 script_args = parser.parse_args()
 
