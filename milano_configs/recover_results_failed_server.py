@@ -49,7 +49,7 @@ for job_name, job_id in script_files:
                        "\n".join(open(job_script_path, "r").readlines()))[0]
         result = {"JobID": job_id, "JobName": job_name, "HyperParams": hyper_params, "mAP": mean_average_precision}
         write_rows_to_csv([result], results_csv, mode="a", delimiter=",",
-                          fieldnames=["JobId", "JobName", "HyperParams", "mAP"])
+                          fieldnames=["JobID", "JobName", "HyperParams", "mAP"])
         os.system("mv {} {}".format(job_output_folder, new_experiment))
         new_job_output_folder = os.path.join(new_experiment, job_name)
         os.system("mv {} {}".format(job_script_path, new_job_output_folder))
