@@ -42,8 +42,8 @@ result_pattern = "Validation MAP is: "
 # maximize or minimize
 objective = "maximize"
 
-num_evals = 500
-num_workers = min(200, num_evals)
+num_evals = 400
+num_workers = min(40, num_evals)
 
 # BACKEND parameters. We will use SLURMBackend to run on DB Cluster
 backend = SLURMBackend
