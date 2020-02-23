@@ -38,7 +38,9 @@ def pre_process_user_tags(image_user_tags, remove_nums=None, stem=None):
         if not image_user_tags:
             return ""
     if stem:
-        is_reliable, _, details = cld2.detect(urllib.parse.unquote(re.sub(r"[,+]", " ", image_user_tags)))
+        image_user_tags = ''.join(
+            x for x in urllib.parse.unquote(re.sub(r"[,+]", " ", image_user_tags)) if x.isprintable())
+        is_reliable, _, details = cld2.detect(image_user_tags)
         language = details[0][0].lower()
         if is_reliable and language != "unknown":
             if language in SnowballStemmer.languages:

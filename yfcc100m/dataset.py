@@ -109,9 +109,9 @@ def count_detected_languages_cld2(yfcc_train, keep_numbers=None):
     language_counts = {}
     for dataset_row in tqdm(dataset):
         image_user_tags = dataset_row["UserTags"]
-        pre_processed_image_user_tags = pre_process_user_tags(image_user_tags, remove_nums=not keep_numbers)
-        decoded_pre_processed_image_user_tags = urllib.parse.unquote(
-            re.sub(r"[,+]", " ", pre_processed_image_user_tags))
+        pre_processed_image_user_tags = pre_process_user_tags(image_user_tags, remove_nums=not keep_numbers, stem=False)
+        decoded_pre_processed_image_user_tags = ''.join(
+            x for x in urllib.parse.unquote(re.sub(r"[,+]", " ", pre_processed_image_user_tags)) if x.isprintable())
         if not image_user_tags:
             continue
         is_reliable, _, details = cld2.detect(decoded_pre_processed_image_user_tags)
@@ -145,9 +145,9 @@ def count_detected_languages_cld3(yfcc_train, keep_numbers=None):
     language_counts = {}
     for dataset_row in tqdm(dataset):
         image_user_tags = dataset_row["UserTags"]
-        pre_processed_image_user_tags = pre_process_user_tags(image_user_tags, remove_nums=not keep_numbers)
-        decoded_pre_processed_image_user_tags = urllib.parse.unquote(
-            re.sub(r"[,+]", " ", pre_processed_image_user_tags))
+        pre_processed_image_user_tags = pre_process_user_tags(image_user_tags, remove_nums=not keep_numbers, stem=False)
+        decoded_pre_processed_image_user_tags = ''.join(
+            x for x in urllib.parse.unquote(re.sub(r"[,+]", " ", pre_processed_image_user_tags)) if x.isprintable())
         if not image_user_tags:
             continue
         image_user_tags = re.sub(r"\b(?:https?://|www\.)[a-z0-9-]+(\.[a-z0-9-]+)+(?:[/?].*)?", "",
