@@ -111,11 +111,11 @@ def count_detected_languages_cld2(dataset_path, keep_numbers=None):
         image_user_tags = dataset_row["UserTags"]
         if dataset_row["Video"] == "1":
             continue
-        if not image_user_tags:
-            continue
         pre_processed_image_user_tags = pre_process_user_tags(image_user_tags, remove_nums=not keep_numbers)
         decoded_pre_processed_image_user_tags = urllib.parse.unquote(
             re.sub(r"[,+]", " ", pre_processed_image_user_tags))
+        if not image_user_tags:
+            continue
         is_reliable, _, details = cld2.detect(decoded_pre_processed_image_user_tags)
         language = details[0][0].lower()
         if not is_reliable:
@@ -149,12 +149,13 @@ def count_detected_languages_cld3(dataset_path, keep_numbers=None):
         image_user_tags = dataset_row["UserTags"]
         if dataset_row["Video"] == "1":
             continue
-        if not keep_numbers:
-            image_user_tags = ",".join([tag for tag in image_user_tags.split(",") if not re.match(r"^[0-9]+$", tag)])
+        pre_processed_image_user_tags = pre_process_user_tags(image_user_tags, remove_nums=not keep_numbers)
+        decoded_pre_processed_image_user_tags = urllib.parse.unquote(
+            re.sub(r"[,+]", " ", pre_processed_image_user_tags))
         if not image_user_tags:
             continue
-        image_user_tags = re.sub(r",+", " ", image_user_tags)
-        image_user_tags = re.sub(r"\b(?:https?://|www\.)[a-z0-9-]+(\.[a-z0-9-]+)+(?:[/?].*)?", "", image_user_tags)
+        image_user_tags = re.sub(r"\b(?:https?://|www\.)[a-z0-9-]+(\.[a-z0-9-]+)+(?:[/?].*)?", "",
+                                 decoded_pre_processed_image_user_tags)
         lp = cld3.get_language(image_user_tags)
         if lp:
             lang_code = lp.language
