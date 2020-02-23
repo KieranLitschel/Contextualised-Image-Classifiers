@@ -88,13 +88,13 @@ def images_highest_count_user_tag(path, tag_counts_path=None):
     return highest_counts
 
 
-def count_detected_languages_cld2(dataset_path, keep_numbers=None):
+def count_detected_languages_cld2(yfcc_train, keep_numbers=None):
     """ Counts detected languages across YFCC100M using cld2
 
     Parameters
     ----------
-    dataset_path : str
-        Path to dataset file
+    yfcc_train : str
+        Path to YFCC train file produced by join_dataset_and_autotags
     keep_numbers : bool
         Whether to keep numbers, default False
 
@@ -105,12 +105,10 @@ def count_detected_languages_cld2(dataset_path, keep_numbers=None):
     """
 
     keep_numbers = keep_numbers if keep_numbers is not None else False
-    dataset = load_csv_as_dict(dataset_path, fieldnames=get_dataset_fields())
+    dataset = load_csv_as_dict(yfcc_train, fieldnames=["ImageID", "UserTags", "Classes"])
     language_counts = {}
     for dataset_row in tqdm(dataset):
         image_user_tags = dataset_row["UserTags"]
-        if dataset_row["Video"] == "1":
-            continue
         pre_processed_image_user_tags = pre_process_user_tags(image_user_tags, remove_nums=not keep_numbers)
         decoded_pre_processed_image_user_tags = urllib.parse.unquote(
             re.sub(r"[,+]", " ", pre_processed_image_user_tags))
@@ -126,13 +124,13 @@ def count_detected_languages_cld2(dataset_path, keep_numbers=None):
     return language_counts
 
 
-def count_detected_languages_cld3(dataset_path, keep_numbers=None):
+def count_detected_languages_cld3(yfcc_train, keep_numbers=None):
     """ Counts detected languages across YFCC100M using cld3
 
     Parameters
     ----------
-    dataset_path : str
-        Path to dataset file
+    yfcc_train : str
+        Path to YFCC train file produced by join_dataset_and_autotags
     keep_numbers : bool
         Whether to keep numbers, default False
 
@@ -143,12 +141,10 @@ def count_detected_languages_cld3(dataset_path, keep_numbers=None):
     """
 
     keep_numbers = keep_numbers if keep_numbers is not None else False
-    dataset = load_csv_as_dict(dataset_path, fieldnames=get_dataset_fields())
+    dataset = load_csv_as_dict(yfcc_train, fieldnames=["ImageID", "UserTags", "Classes"])
     language_counts = {}
     for dataset_row in tqdm(dataset):
         image_user_tags = dataset_row["UserTags"]
-        if dataset_row["Video"] == "1":
-            continue
         pre_processed_image_user_tags = pre_process_user_tags(image_user_tags, remove_nums=not keep_numbers)
         decoded_pre_processed_image_user_tags = urllib.parse.unquote(
             re.sub(r"[,+]", " ", pre_processed_image_user_tags))
