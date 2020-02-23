@@ -1,5 +1,6 @@
 import pickle
 import re
+import urllib
 
 import cld3
 import pycld2 as cld2
@@ -110,11 +111,12 @@ def count_detected_languages_cld2(dataset_path, keep_numbers=None):
         image_user_tags = dataset_row["UserTags"]
         if dataset_row["Video"] == "1":
             continue
-        if not keep_numbers:
-            image_user_tags = ",".join([tag for tag in image_user_tags.split(",") if not re.match(r"^[0-9]+$", tag)])
         if not image_user_tags:
             continue
-        is_reliable, _, details = cld2.detect(image_user_tags)
+        pre_processed_image_user_tags = pre_process_user_tags(image_user_tags, remove_nums=not keep_numbers)
+        decoded_pre_processed_image_user_tags = urllib.parse.unquote(
+            re.sub(r"[,+]", " ", pre_processed_image_user_tags))
+        is_reliable, _, details = cld2.detect(decoded_pre_processed_image_user_tags)
         language = details[0][0].lower()
         if not is_reliable:
             language = "unknown"
