@@ -4,7 +4,7 @@ import argparse
 
 import tensorflow as tf
 
-from embeddings.prepare import pre_process_user_tags
+from yfcc100m.dataset import pre_process_user_tags
 from embeddings.encoders import CommaTokenTextEncoder
 import numpy as np
 from oiv.common import get_oiv_labels_to_human, get_class_descriptions_path

@@ -2,14 +2,53 @@ import pickle
 import re
 import urllib
 
-import cld3
 import pycld2 as cld2
+from nltk.stem import SnowballStemmer
+import cld3
 from tqdm import tqdm
 
 from common import load_csv_as_dict
-from embeddings.prepare import pre_process_user_tags
 from oiv.common import get_train_val_test_ids
 from yfcc100m.common import get_dataset_fields
+
+
+def pre_process_user_tags(image_user_tags, remove_nums=None, stem=None):
+    """ Pre processes user tags, stemming and removing numbers (unless specified)
+
+    Parameters
+    ----------
+    image_user_tags : str
+        Tuple separated user tags
+    remove_nums : bool
+        Whether to remove user tags that are only numbers, default True
+    stem : bool
+        Whether to stem user tags based on their detected language, default True
+
+    Returns
+    -------
+    str
+        Comma separated pre processed user tags
+    """
+
+    remove_nums = remove_nums if remove_nums is not None else True
+    stem = stem if stem is not None else True
+    if remove_nums:
+        image_user_tags = ",".join([tag for tag in image_user_tags.split(",") if not re.match(r"^[0-9]+$", tag)])
+        if not image_user_tags:
+            return ""
+    if stem:
+        is_reliable, language = detect_language_cld2(image_user_tags)
+        image_user_tags = decode_image_user_tags(image_user_tags)
+        if is_reliable and language != "unknown":
+            if language in SnowballStemmer.languages:
+                stemmer = SnowballStemmer(language)
+                stemmed_user_tags = []
+                for user_tag in image_user_tags.split(","):
+                    stemmed_tag = "+".join([urllib.parse.quote(stemmer.stem(urllib.parse.unquote(word)))
+                                            if word != '' else '' for word in user_tag.split("+")])
+                    stemmed_user_tags.append(stemmed_tag)
+                image_user_tags = ",".join(stemmed_user_tags)
+    return image_user_tags
 
 
 def count_user_tags(path, stem=None, remove_nums=None, oiv_folder=None):
