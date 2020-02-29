@@ -88,6 +88,45 @@ def images_highest_count_user_tag(path, tag_counts_path=None):
     return highest_counts
 
 
+def decode_image_user_tags(image_user_tags):
+    """ Detects the language of the image user tags and whether the detection is reliable
+
+    Parameters
+    ----------
+    image_user_tags : str
+        Percent encoded image user tags, with spaces replaced by "+", and user tags comma separated
+
+    Returns
+    -------
+    str
+        User tags with commas and plus replaced by space and then percent decoded
+    """
+
+    return ''.join(
+        x for x in urllib.parse.unquote(re.sub(r"[,+]", " ", image_user_tags)) if x.isprintable())
+
+
+def detect_language_cld2(image_user_tags):
+    """ Detects the language of the image user tags and whether the detection is reliable
+
+    Parameters
+    ----------
+    image_user_tags : str
+        Percent encoded image user tags, with spaces replaced by "+", and user tags comma separated
+
+    Returns
+    -------
+    (bool, str)
+        First element in tuple says whether the language detection is reliable, second element says the detected
+        language
+    """
+
+    decoded_pre_processed_image_user_tags = decode_image_user_tags(image_user_tags)
+    is_reliable, _, details = cld2.detect(decoded_pre_processed_image_user_tags)
+    language = details[0][0].lower()
+    return is_reliable, language
+
+
 def count_detected_languages_cld2(yfcc_train, keep_numbers=None):
     """ Counts detected languages across YFCC100M using cld2
 
@@ -110,10 +149,7 @@ def count_detected_languages_cld2(yfcc_train, keep_numbers=None):
     for dataset_row in tqdm(dataset):
         image_user_tags = dataset_row["UserTags"]
         pre_processed_image_user_tags = pre_process_user_tags(image_user_tags, remove_nums=not keep_numbers, stem=False)
-        decoded_pre_processed_image_user_tags = ''.join(
-            x for x in urllib.parse.unquote(re.sub(r"[,+]", " ", pre_processed_image_user_tags)) if x.isprintable())
-        is_reliable, _, details = cld2.detect(decoded_pre_processed_image_user_tags)
-        language = details[0][0].lower()
+        is_reliable, language = detect_language_cld2(pre_processed_image_user_tags)
         if not is_reliable:
             language = "unknown"
         if not language_counts.get(language):
@@ -144,8 +180,7 @@ def count_detected_languages_cld3(yfcc_train, keep_numbers=None):
     for dataset_row in tqdm(dataset):
         image_user_tags = dataset_row["UserTags"]
         pre_processed_image_user_tags = pre_process_user_tags(image_user_tags, remove_nums=not keep_numbers, stem=False)
-        decoded_pre_processed_image_user_tags = ''.join(
-            x for x in urllib.parse.unquote(re.sub(r"[,+]", " ", pre_processed_image_user_tags)) if x.isprintable())
+        decoded_pre_processed_image_user_tags = decode_image_user_tags(pre_processed_image_user_tags)
         image_user_tags = re.sub(r"\b(?:https?://|www\.)[a-z0-9-]+(\.[a-z0-9-]+)+(?:[/?].*)?", "",
                                  decoded_pre_processed_image_user_tags)
         lp = cld3.get_language(image_user_tags)

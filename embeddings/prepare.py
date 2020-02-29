@@ -11,6 +11,7 @@ from oiv.common import get_hierarchy_json_path, hierarchy_members_list, get_hier
 from oiv.common import get_train_val_test_ids, get_labels_detected_in_images
 from yfcc100m.class_alignment import get_yfcc100m_oiv_labels_map
 from yfcc100m.common import get_dataset_fields, get_autotag_fields
+from yfcc100m.dataset import detect_language_cld2, decode_image_user_tags
 
 
 def pre_process_user_tags(image_user_tags, remove_nums=None, stem=None):
@@ -38,10 +39,8 @@ def pre_process_user_tags(image_user_tags, remove_nums=None, stem=None):
         if not image_user_tags:
             return ""
     if stem:
-        image_user_tags = ''.join(
-            x for x in urllib.parse.unquote(re.sub(r"[,+]", " ", image_user_tags)) if x.isprintable())
-        is_reliable, _, details = cld2.detect(image_user_tags)
-        language = details[0][0].lower()
+        is_reliable, language = detect_language_cld2(image_user_tags)
+        image_user_tags = decode_image_user_tags(image_user_tags)
         if is_reliable and language != "unknown":
             if language in SnowballStemmer.languages:
                 stemmer = SnowballStemmer(language)
