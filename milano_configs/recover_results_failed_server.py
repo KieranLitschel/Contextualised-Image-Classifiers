@@ -4,12 +4,16 @@ import argparse
 import os
 import re
 from common import write_rows_to_csv
+from tqdm import tqdm
+from scripts.train_embedding_oiv import evaluate_model
 
 parser = argparse.ArgumentParser()
 
 parser.add_argument("--experiment_name",
                     help="Name of experiment that was being run", type=str)
 parser.add_argument("--new_experiment_name", help="Name of experiment to move results to")
+parser.add_argument("--dataset_path", help="Path to datasets produced build_raw_datasets, only required if clean_up",
+                    default=None)
 parser.add_argument("--clean_up", help="Set this flag if this script has already been run, and just need to gather"
                                        "results for jobs that were incomplete when first run", dest="clean_up",
                     action="store_true")
@@ -33,13 +37,26 @@ else:
     files = "\n".join(os.listdir(new_experiment))
     script_files = re.findall(r"(script-[0-9]+\.[0-9]+-([0-9]+))\.sh", files)
 
-for job_name, job_id in script_files:
+for job_name, job_id in tqdm(script_files):
     job_script_path = os.path.join(root if not script_args.clean_up else new_experiment, "{}.sh".format(job_name))
     job_output_folder = os.path.join(old_experiment, job_name)
     job_results_file = os.path.join(job_output_folder, "best_model_validation_metrics.csv")
     if not os.path.exists(job_results_file):
-        os.system("mv {} {}".format(job_script_path, new_experiment))
-    else:
+        if script_args.clean_up:
+            if os.path.exists(os.path.join(job_output_folder, "best_model.h5")):
+                print("Evaluating {}".format(job_id))
+                classes_encoder_path = os.path.join(script_args.dataset_path, "classes_encoder")
+                pad_size = \
+                    int(re.findall(r"--pad_size=([0-9]+)", open(job_script_path, "r").read())[0])
+                oiv_dataset_dir = os.path.join(script_args.dataset_dir, "oiv")
+                oiv_human_verified_dataset_dir = os.path.join(script_args.dataset_dir, "oiv_human_verified")
+                evaluate_model(job_output_folder, classes_encoder_path, oiv_dataset_dir, oiv_human_verified_dataset_dir,
+                               pad_size)
+            else:
+                print("No best_model.h5 for {}".format(job_id))
+        else:
+            os.system("mv {} {}".format(job_script_path, new_experiment))
+    if os.path.exists(job_results_file):
         mean_average_precision = \
             re.findall(r"mAP@0\.5IOU,([0-9]+\.[0-9]+)", open(job_results_file, "r").readlines()[1])[0]
         hyper_params = \
