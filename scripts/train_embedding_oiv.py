@@ -75,6 +75,38 @@ def train(args):
             verbose=True)
 
 
+def evaluate_model(output_dir, classes_encoder_path, oiv_dataset_dir, oiv_human_dataset_dir, pad_size):
+    with tf.Session():
+        best_model = tf.keras.models.load_model(os.path.join(output_dir, 'best_model.h5'))
+        best_model.summary()
+
+        eval_classes_encoder = CommaTokenTextEncoder.load_from_file(classes_encoder_path)
+        eval_features_encoder = CommaTokenTextEncoder.load_from_file(
+            os.path.join(output_dir, "features_encoder"))
+
+        validation_path = os.path.join(oiv_dataset_dir, "validation.tsv")
+        validation_samples = len(open(validation_path, "r").readlines())
+        validation_dataset = load_tsv_dataset(validation_path, eval_features_encoder, eval_classes_encoder,
+                                              validation_samples, pad_size, validation_samples, False)
+
+        y_pred = best_model.predict(validation_dataset, steps=1)
+        y_true = build_y_true(os.path.join(oiv_human_dataset_dir, "validation.tsv"), eval_classes_encoder)
+        categories = build_categories(get_class_descriptions_path(), eval_classes_encoder)
+
+        # the challenge evaluator will throw warnings about classes being missing, and the
+        # groundtruth group_of flag being missing, but we don't care about them and they clutter
+        # the command line, so we ignore them
+        logger = logging.getLogger()
+        logger.disabled = True
+        metrics = oid_challenge_evaluator_image_level(y_pred, y_true, categories)
+        logger.disabled = False
+
+        df_metrics = pd.DataFrame(list(metrics.items()))
+        df_metrics.to_csv(os.path.join(output_dir, "best_model_validation_metrics.csv"))
+
+        print("Validation MAP is: {}".format(metrics["OpenImagesDetectionChallenge_Precision/mAP@0.5IOU"]))
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
@@ -119,32 +151,5 @@ if __name__ == "__main__":
 
     print("Finished training, evaluating best model")
 
-    with tf.Session():
-        best_model = tf.keras.models.load_model(os.path.join(script_args.output_dir, 'best_model.h5'))
-        best_model.summary()
-
-        eval_classes_encoder = CommaTokenTextEncoder.load_from_file(script_args.classes_encoder_path)
-        eval_features_encoder = CommaTokenTextEncoder.load_from_file(
-            os.path.join(script_args.output_dir, "features_encoder"))
-
-        validation_path = os.path.join(script_args.oiv_dataset_dir, "validation.tsv")
-        validation_samples = len(open(validation_path, "r").readlines())
-        validation_dataset = load_tsv_dataset(validation_path, eval_features_encoder, eval_classes_encoder,
-                                              validation_samples, script_args.pad_size, validation_samples, False)
-
-        y_pred = best_model.predict(validation_dataset, steps=1)
-        y_true = build_y_true(os.path.join(script_args.oiv_human_dataset_dir, "validation.tsv"), eval_classes_encoder)
-        categories = build_categories(get_class_descriptions_path(), eval_classes_encoder)
-
-        # the challenge evaluator will throw warnings about classes being missing, and the
-        # groundtruth group_of flag being missing, but we don't care about them and they clutter
-        # the command line, so we ignore them
-        logger = logging.getLogger()
-        logger.disabled = True
-        metrics = oid_challenge_evaluator_image_level(y_pred, y_true, categories)
-        logger.disabled = False
-
-        df_metrics = pd.DataFrame(list(metrics.items()))
-        df_metrics.to_csv(os.path.join(script_args.output_dir, "best_model_validation_metrics.csv"))
-
-        print("Validation MAP is: {}".format(metrics["OpenImagesDetectionChallenge_Precision/mAP@0.5IOU"]))
+    evaluate_model(script_args.output_dir, script_args.classes_encoder_path, script_args.oiv_dataset_dir,
+                   script_args.oiv_human_dataset_dir, script_args.pad_size)
