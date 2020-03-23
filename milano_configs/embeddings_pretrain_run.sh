@@ -33,9 +33,6 @@ export DATASET_DIR=${TMP}/datasets
 
 export JOB_ID="pre_train_embedding_yfcc"
 
-export TEMP_OUTPUT_DIR=${TMP}/${JOB_ID}
-mkdir -p ${TEMP_OUTPUT_DIR}
-
 export OUTPUT_DIR=/home/${STUDENT_ID}/HonorsProject/Embeddings/${JOB_ID}
 mkdir -p ${OUTPUT_DIR}
 
@@ -63,13 +60,10 @@ cd ${DATASET_DIR}
 python -m scripts.pre_train_embedding_yfcc \
 --oiv_dataset_dir ${DATASET_DIR}/dataset/oiv \
 --oiv_human_dataset_dir ${DATASET_DIR}/dataset/oiv_human_verified \
---output_dir ${TEMP_OUTPUT_DIR} \
+--output_dir ${OUTPUT_DIR} \
 --classes_encoder_path ${DATASET_DIR}/dataset/classes_encoder \
 --random_seed 0 \
 --max_train_time 71.5
-
-echo "Copying results to main node"
-rsync -uap --progress ${TEMP_OUTPUT_DIR}/ ${OUTPUT_DIR}
 
 date
 echo "Finished"
