@@ -218,6 +218,7 @@ def machine_labels_baseline(subset, oiv_folder, oiv_human_verified_folder, label
            mAP@<matching_iou_threshold>IOU/category'.
 
     """
+
     machine_labels_path = os.path.join(oiv_folder, "{}-annotations-machine-imagelabels.csv".format(subset))
     human_verified_subset_path = os.path.join(oiv_human_verified_folder, "{}.tsv".format(subset))
     rotations_path = os.path.join(oiv_folder, "{}-images-with-rotation.csv".format(subset))
@@ -258,6 +259,88 @@ def machine_labels_baseline(subset, oiv_folder, oiv_human_verified_folder, label
         y_pred.append(image_preds)
     y_pred = np.array(y_pred)
     y_true = build_y_true(human_verified_subset_path, classes_encoder)
+    categories = build_categories(label_names_file, classes_encoder)
+    metrics = oid_challenge_evaluator_image_level(y_pred, y_true, categories)
+    return metrics
+
+
+def get_most_freq_classes(oiv_folder, label_names_file):
+    """ Counts the number of negative and positive detections for objects in the training set, and returns the most
+        frequent detection for each object
+
+    Parameters
+    ----------
+    oiv_folder : str
+        Path to folder containing open images csv's
+    label_names_file : str
+        Path to file mapping OIV labels to OIV names
+
+    Returns
+    -------
+    dict of str -> int
+        Dictionary mapping OIV labels to most frequent detection, with 1 indicating it is most frequently positive, and
+        0 indicating it is most frequently negative
+
+    """
+
+    human_labels_path = os.path.join(oiv_folder, "train-annotations-human-imagelabels.csv")
+    human_labels_csv = load_csv_as_dict(human_labels_path, delimiter=",")
+    oiv_label_human_map = get_oiv_labels_to_human(label_names_file)
+    pos_counts = {label_name: 0 for label_name in oiv_label_human_map.keys()}
+    neg_counts = {label_name: 0 for label_name in oiv_label_human_map.keys()}
+    for row in human_labels_csv:
+        if not oiv_label_human_map.get(row["LabelName"]):
+            continue
+        label_name = row["LabelName"]
+        if float(row["Confidence"]) == 1:
+            pos_counts[label_name] += 1
+        else:
+            neg_counts[label_name] += 1
+    most_freq_class = {label_name: 1 if pos_counts[label_name] > neg_counts[label_name] else 0 for label_name in
+                       oiv_label_human_map.keys()}
+    return most_freq_class
+
+
+def predict_most_freq_class_baseline(subset, oiv_human_verified_folder, oiv_folder, label_names_file, classes_encoder):
+    """ For each class, predicts that it is the most frequent detection in the training set, and computes the resulting
+        metrics
+
+    Parameters
+    ----------
+    subset : str
+        Subset to evaluate the machine labels for. Should be one of "train", "validation", or "test"
+    oiv_folder : str
+        Path to folder containing open images csv's
+    oiv_human_verified_folder : str
+        Path to oiv_human_verified folder built by join_dataset_and_autotags
+    label_names_file : str
+        Path to file mapping OIV labels to OIV names
+    classes_encoder : embeddings.encoders.CommaTokenTextEncoder
+        Encoder for classes
+
+    Returns
+    -------
+    dict of str -> float
+        A dictionary of metrics with the following fields -
+
+        1. summary_metrics:
+           '<prefix if not empty>_Precision/mAP@<matching_iou_threshold>IOU': mean
+           average precision at the specified IOU threshold.
+        2. per_category_ap: category specific results with keys of the form
+           <prefix if not empty>_PerformanceByCategory/
+           mAP@<matching_iou_threshold>IOU/category'.
+
+    """
+
+    human_verified_subset_path = os.path.join(oiv_human_verified_folder, "{}.tsv".format(subset))
+    y_true = build_y_true(human_verified_subset_path, classes_encoder)
+    y_pred = np.zeros((len(y_true), len(classes_encoder.tokens)), dtype=np.float32)
+    for label_name, most_freq_class in get_most_freq_classes(oiv_folder, label_names_file).items():
+        label_id = classes_encoder.encode(label_name)[0]
+        if label_id == 501:
+            continue
+        if most_freq_class == 1:
+            y_pred[:, label_id - 1] = 1
     categories = build_categories(label_names_file, classes_encoder)
     metrics = oid_challenge_evaluator_image_level(y_pred, y_true, categories)
     return metrics
