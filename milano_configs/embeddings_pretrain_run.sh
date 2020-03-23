@@ -5,7 +5,7 @@
 #SBATCH --gres=gpu:1 # GPUs requested
 #SBATCH --cpus-per-task=1 # CPUs requested
 #SBATCH --mem=12000  # memory in Mb
-#SBATCH --time=0-08:00:00
+#SBATCH --time=3-00:00:00
 
 export CUDA_HOME=/opt/cuda-10.0.130
 
@@ -66,7 +66,7 @@ python -m scripts.pre_train_embedding_yfcc \
 --output_dir ${TEMP_OUTPUT_DIR} \
 --classes_encoder_path ${DATASET_DIR}/dataset/classes_encoder \
 --random_seed 0 \
---max_train_time 72
+--max_train_time 71.5
 
 echo "Copying results to main node"
 rsync -uap --progress ${TEMP_OUTPUT_DIR}/ ${OUTPUT_DIR}
