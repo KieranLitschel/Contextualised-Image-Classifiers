@@ -33,7 +33,7 @@ def train(args, config):
         subset_datasets = {}
         subset_samples = {}
         for subset in ["train", "validation"]:
-            subset_path = os.path.join(args.yfcc_dataset_dir if "train" else args.oiv_dataset_dir,
+            subset_path = os.path.join(args.yfcc_dataset_dir if subset == "train" else args.oiv_dataset_dir,
                                        "{}.tsv".format(subset))
             subset_samples[subset] = len(open(subset_path, "r").readlines())
             subset_datasets[subset] = load_tsv_dataset(subset_path, features_encoder, classes_encoder,
