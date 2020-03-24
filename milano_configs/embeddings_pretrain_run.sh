@@ -59,6 +59,7 @@ cd ${DATASET_DIR}
 
 python -m scripts.pre_train_embedding_yfcc \
 --oiv_dataset_dir ${DATASET_DIR}/dataset/oiv \
+--yfcc_dataset_dir ${DATASET_DIR}/dataset/yfcc \
 --oiv_human_dataset_dir ${DATASET_DIR}/dataset/oiv_human_verified \
 --output_dir ${OUTPUT_DIR} \
 --classes_encoder_path ${DATASET_DIR}/dataset/classes_encoder \
