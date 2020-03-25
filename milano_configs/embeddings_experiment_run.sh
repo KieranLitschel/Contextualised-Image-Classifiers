@@ -51,7 +51,7 @@ echo \"Finished copying data, starting training\"
 
 # Activate the relevant virtual environment:
 
-source /home/\${STUDENT_ID}/miniconda3/bin/activate hp_new
+source /home/\${STUDENT_ID}/miniconda3/bin/activate hp
 
 cd \${DATASET_DIR}/models
 export PYTHONPATH=\$PYTHONPATH:\`pwd\`:\`pwd\`/research:\`pwd\`/research/slim
