@@ -15,6 +15,7 @@ from embeddings.encoders import CommaTokenTextEncoder
 from embeddings.load import build_features_encoder, load_tsv_dataset
 from oiv.common import get_class_descriptions_path
 from oiv.evaluate import build_y_true, build_categories, oid_challenge_evaluator_image_level
+import pickle
 
 
 def train(args):
@@ -131,6 +132,9 @@ if __name__ == "__main__":
     parser.add_argument("--max_train_time", help="Maximum time to train for (in hours)", type=float)
 
     script_args = parser.parse_args()
+
+    with open(os.path.join(script_args.output_dir, "script_args.pickle"), 'wb') as handle:
+        pickle.dump(script_args, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
     custom_run = partial(train, args=script_args)
 
