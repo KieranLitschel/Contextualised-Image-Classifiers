@@ -372,3 +372,36 @@ def build_human_machine_labels(oiv_folder):
                 new_rows = []
         if len(new_rows) != 0:
             write_rows_to_csv(new_rows, os.path.join(oiv_folder, human_machine_labels_file), mode="a", delimiter=",")
+
+
+def get_label_stats(oiv_folder):
+    """ Counts the number of positive and negative image level labels for each subset in OIV
+
+    Parameters
+    ----------
+    oiv_folder : str
+        Path to folder containing open images csv's
+    """
+
+    print("Getting image ids")
+    image_ids = get_train_val_test_ids(oiv_folder, flickr_ids=False)
+    print("Counting labels")
+    raw_label_file = "{}-annotations-{}-imagelabels.csv"
+    label_counts = {}
+    for subset in ["train", "validation", "test"]:
+        print("Counting for {}".format(subset))
+        subset_image_ids = image_ids[subset]
+        label_counts[subset] = {}
+        for label_type in ["human", "machine"]:
+            print("Counting {}".format(label_type))
+            label_counts[subset][label_type] = {"Pos": 0, "Neg": 0}
+            label_file = os.path.join(oiv_folder, raw_label_file.format(subset, label_type))
+            label_csv = load_csv_as_dict(label_file, delimiter=",")
+            for row in tqdm(label_csv):
+                if not row["ImageID"] in subset_image_ids:
+                    continue
+                if float(row["Confidence"]) == 1:
+                    label_counts[subset][label_type]["Pos"] += 1
+                else:
+                    label_counts[subset][label_type]["Neg"] += 1
+    return label_counts
