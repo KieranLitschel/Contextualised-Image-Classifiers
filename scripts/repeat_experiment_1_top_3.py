@@ -46,10 +46,10 @@ for pad_size in pad_sizes:
         job_no = 0
         for config, _ in top_three:
             for seed in range(1, 3):
+                job_name = "repeat_{}_{}_{}_{}".format(pad_size, tag_thresh, job_no, seed)
                 new_script = job_script.replace("--random_seed 0", "--random_seed {}".format(seed)) \
-                    .replace('"$@"', config).replace("${SLURM_JOB_NAME%???}",
-                                                     "repeat_{}_{}_{}_{}".format(pad_size, tag_thresh, job_no, seed))
-                with open("run.sh", "w") as f:
+                    .replace('"$@"', config).replace("${SLURM_JOB_NAME%???}", job_name)
+                with open("{}.sh".format(job_name), "w") as f:
                     f.write(new_script)
-                os.system("sbatch run.sh")
+                os.system("sbatch {}.sh".format(job_name))
             job_no += 1
