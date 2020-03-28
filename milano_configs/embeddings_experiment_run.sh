@@ -66,7 +66,7 @@ python -m scripts.train_embedding_oiv \
 --output_dir \${TEMP_OUTPUT_DIR} \
 --classes_encoder_path \${DATASET_DIR}/dataset/classes_encoder \
 --random_seed 0 \
---max_train_time 7.5 \
+--max_train_time 7 \
 "$@"
 
 echo \"Copying results to main node\"
