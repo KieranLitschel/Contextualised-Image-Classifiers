@@ -91,6 +91,9 @@ def count_user_tags(path, stem=None, remove_nums=None, oiv_folder=None):
                 continue
             tags = user_tags.split(",")
             for tag in tags:
+                tag = ''.join(x for x in urllib.parse.unquote(re.sub(r"\+", " ", tag)) if x.isprintable())
+                if not tag:
+                    continue
                 if not tag_counts.get(tag):
                     tag_counts[tag] = 0
                 tag_counts[tag] += 1
@@ -128,7 +131,7 @@ def images_highest_count_user_tag(path, tag_counts_path=None):
 
 
 def decode_image_user_tags(image_user_tags):
-    """ Detects the language of the image user tags and whether the detection is reliable
+    """ Percent decodes comma seperated user tags
 
     Parameters
     ----------
