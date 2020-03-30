@@ -18,6 +18,8 @@ for result in results:
 pad_sizes = set()
 tag_threshs = set()
 
+output_folder = "/home/s1614973/HonorsProject/Embeddings/experiment_1"
+
 results_by_lang_hyperparams = {}
 for config, mAP in unique_results.items():
     pad_size = int(re.findall(r"--pad_size=([0-9]+)", config)[0])
@@ -47,6 +49,12 @@ for pad_size in pad_sizes:
         for config, _ in top_three:
             for seed in range(1, 3):
                 job_name = "repeat_{}_{}_{}_{}".format(pad_size, tag_thresh, job_no, seed)
+                job_output_folder = os.path.join(output_folder, job_name)
+                if os.path.exists(job_output_folder):
+                    if os.path.exists(os.path.join(job_output_folder, "best_model_validation_metrics.csv")):
+                        continue
+                    else:
+                        os.system("rm -rf {}".format(job_output_folder))
                 new_script = job_script.replace("--random_seed 0", "--random_seed {}".format(seed)) \
                     .replace('"$@"', config).replace("${SLURM_JOB_NAME%???}", job_name)
                 with open("{}.sh".format(job_name), "w") as f:
