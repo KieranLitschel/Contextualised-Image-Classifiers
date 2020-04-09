@@ -64,9 +64,9 @@ python -m scripts.train_embedding_oiv \
 --classes_encoder_path ${DATASET_DIR}/dataset/classes_encoder \
 --random_seed 0 \
 --max_train_time 7.5 \
---pad_size=40 \
+--pad_size=20 \
 --tag_threshold=10 \
---layer_capacity=128 \
+--layer_capacity=64 \
 --pooling_layer=GlobalMaxPool \
 --batch_size=128 \
 --learning_rate=0.01 \
