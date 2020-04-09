@@ -90,12 +90,12 @@ if __name__ == "__main__":
     # use best hyperparams found in experiment 1, except we increase the learning rate by a factor of 10 for
     # pre-training
     model_config = {
-        "pad_size": 40,
+        "pad_size": 20,
         "tag_threshold": 10,
-        "layer_capacity": 128,
+        "layer_capacity": 64,
         "pooling_layer": "GlobalMaxPool",
         "batch_size": 128,
-        "learning_rate": 0.1,
+        "learning_rate": 0.01,
         "dropout_rate": 0.1
     }
 
