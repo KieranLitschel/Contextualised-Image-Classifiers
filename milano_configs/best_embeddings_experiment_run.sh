@@ -34,7 +34,7 @@ export DATASET_DIR=${TMP}/datasets
 export JOB_ID="best_experiment_1"
 export RANDOM_SEED="0"
 
-export OUTPUT_DIR=/home/${STUDENT_ID}/HonorsProject/Embeddings/${JOB_ID}/${RANDOM_SEED}
+export OUTPUT_DIR=/home/${STUDENT_ID}/HonorsProject/Embeddings/${JOB_ID}
 mkdir -p ${OUTPUT_DIR}
 
 date
