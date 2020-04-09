@@ -32,8 +32,9 @@ mkdir -p ${TMP}/datasets
 export DATASET_DIR=${TMP}/datasets
 
 export JOB_ID="pre_train_embedding_yfcc"
+export RANDOM_SEED="0"
 
-export OUTPUT_DIR=/home/${STUDENT_ID}/HonorsProject/Embeddings/${JOB_ID}
+export OUTPUT_DIR=/home/${STUDENT_ID}/HonorsProject/Embeddings/${JOB_ID}/${RANDOM_SEED}
 mkdir -p ${OUTPUT_DIR}
 
 date
