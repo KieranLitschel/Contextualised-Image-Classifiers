@@ -32,8 +32,9 @@ mkdir -p ${TMP}/datasets
 export DATASET_DIR=${TMP}/datasets
 
 export JOB_ID="best_experiment_1"
+export RANDOM_SEED="0"
 
-export OUTPUT_DIR=/home/${STUDENT_ID}/HonorsProject/Embeddings/${JOB_ID}
+export OUTPUT_DIR=/home/${STUDENT_ID}/HonorsProject/Embeddings/${JOB_ID}/${RANDOM_SEED}
 mkdir -p ${OUTPUT_DIR}
 
 date
@@ -62,7 +63,7 @@ python -m scripts.train_embedding_oiv \
 --oiv_human_dataset_dir ${DATASET_DIR}/dataset/oiv_human_verified \
 --output_dir ${OUTPUT_DIR} \
 --classes_encoder_path ${DATASET_DIR}/dataset/classes_encoder \
---random_seed 0 \
+--random_seed ${RANDOM_SEED} \
 --max_train_time 7.5 \
 --pad_size=20 \
 --tag_threshold=10 \
