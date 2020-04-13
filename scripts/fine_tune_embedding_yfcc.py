@@ -37,7 +37,7 @@ def train(args, config):
                                                        config["pad_size"], subset_samples[subset],
                                                        True if subset == "train" else False)
 
-        pre_trained_model = keras.models.load_model(os.path.join(args.pre_trained_model_dir), "best_model.h5")
+        pre_trained_model = keras.models.load_model(os.path.join(args.pre_trained_model_dir, "best_model.h5"))
 
         pre_trained_model.layers[0].trainable = False  # freeze the embeddings layer
 
