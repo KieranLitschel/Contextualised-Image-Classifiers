@@ -59,7 +59,7 @@ cd ${DATASET_DIR}
 
 # Start experiment
 
-python -m scripts.pre_train_embedding_yfcc \
+python -m scripts.fine_tune_embedding_yfcc \
 --oiv_dataset_dir ${DATASET_DIR}/dataset/oiv \
 --oiv_human_dataset_dir ${DATASET_DIR}/dataset/oiv_human_verified \
 --output_dir ${OUTPUT_DIR} \
