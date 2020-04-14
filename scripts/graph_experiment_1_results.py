@@ -50,16 +50,16 @@ data = [[pad_size, tag_thresh, mean_std_mAP[0], mean_std_mAP[1]]
         for pad_size, pad_size_dict in results_by_lang_hyperparams.items()
         for tag_thresh, mean_std_mAP in pad_size_dict.items()]
 
-df = pd.DataFrame(data, columns=["Pad Size", "Tag Threshold", "Mean mAP", "Standard Deviation mAP"])
-results = df.pivot("Pad Size", "Tag Threshold", "Mean mAP")
+df = pd.DataFrame(data, columns=["Tag Limit", "Tag Threshold", "Mean mAP", "Standard Deviation mAP"])
+results = df.pivot("Tag Limit", "Tag Threshold", "Mean mAP")
 sns.heatmap(results, annot=True, fmt=".3g")
-plt.savefig("Experiment 1 mean heatmap - Pad Size vs Tag Threshold.pdf")
+plt.savefig("Experiment 1 mean heatmap - Tag Limit vs Tag Threshold.pdf")
 
 plt.clf()
 
-results = df.pivot("Pad Size", "Tag Threshold", "Standard Deviation mAP")
+results = df.pivot("Tag Limit", "Tag Threshold", "Standard Deviation mAP")
 sns.heatmap(results, annot=True, fmt=".2g")
-plt.savefig("Experiment 1 std heatmap - Pad Size vs Tag Threshold.pdf")
+plt.savefig("Experiment 1 std heatmap - Tag Limit vs Tag Threshold.pdf")
 
 plt.clf()
 plt.margins(x=0.4)
