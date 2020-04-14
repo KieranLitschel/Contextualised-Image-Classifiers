@@ -22,7 +22,7 @@ def train(args, config):
         tf.set_random_seed(args.random_seed)
 
         features_encoder = CommaTokenTextEncoder.load_from_file(
-            os.path.join(args.pre_trained_model_dir, "features_encoder"))
+            os.path.join(args.output_dir, "features_encoder"))
         classes_encoder = CommaTokenTextEncoder.load_from_file(args.classes_encoder_path)
 
         subset_datasets = {}

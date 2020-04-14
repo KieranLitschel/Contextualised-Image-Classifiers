@@ -44,6 +44,7 @@ echo "Copying data.."
 rsync -uap /home/${STUDENT_ID}/HonorsProject/models ${DATASET_DIR}
 rsync -uap /home/${STUDENT_ID}/HonorsProject/Embeddings/CCNN/ ${DATASET_DIR}
 rsync -uap --progress /home/${STUDENT_ID}/HonorsProject/Embeddings/dataset ${DATASET_DIR}
+rsync -uap ${PRE_TRAINED_MODEL_DIR}/features_encoder.tokens ${OUTPUT_DIR}
 
 date
 echo "Finished copying data, starting training"
