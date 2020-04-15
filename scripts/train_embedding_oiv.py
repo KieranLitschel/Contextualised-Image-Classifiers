@@ -96,7 +96,7 @@ def evaluate_model(output_dir, classes_encoder_path, oiv_human_dataset_dir, pad_
             # machine-generated labels are not given for predictions less than 0.5, so this allows models to be
             # more fairly compared against them
             y_pred[y_pred < 0.5] = 0
-        y_true = build_y_true(os.path.join(oiv_human_dataset_dir, "validation.tsv"), eval_classes_encoder)
+        y_true = build_y_true(os.path.join(oiv_human_dataset_dir, "{}.tsv".format(subset)), eval_classes_encoder)
         categories = build_categories(get_class_descriptions_path(), eval_classes_encoder)
 
         # the challenge evaluator will throw warnings about classes being missing, and the
