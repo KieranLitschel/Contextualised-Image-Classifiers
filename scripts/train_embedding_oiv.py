@@ -76,7 +76,8 @@ def train(args):
             verbose=True)
 
 
-def evaluate_model(output_dir, classes_encoder_path, oiv_dataset_dir, oiv_human_dataset_dir, pad_size, floor_false_preds=False):
+def evaluate_model(output_dir, classes_encoder_path, oiv_human_dataset_dir, pad_size, floor_false_preds=False,
+                   output_file_name="best_model_validation_metrics.csv", subset="validation"):
     with tf.Session():
         best_model = tf.keras.models.load_model(os.path.join(output_dir, 'best_model.h5'))
         best_model.summary()
@@ -85,12 +86,12 @@ def evaluate_model(output_dir, classes_encoder_path, oiv_dataset_dir, oiv_human_
         eval_features_encoder = CommaTokenTextEncoder.load_from_file(
             os.path.join(output_dir, "features_encoder"))
 
-        validation_path = os.path.join(oiv_dataset_dir, "validation.tsv")
-        validation_samples = len(open(validation_path, "r").readlines())
-        validation_dataset = load_tsv_dataset(validation_path, eval_features_encoder, eval_classes_encoder,
-                                              validation_samples, pad_size, validation_samples, False)
+        subset_path = os.path.join(oiv_human_dataset_dir, "{}.tsv".format(subset))
+        subset_samples = len(open(subset_path, "r").readlines())
+        subset_dataset = load_tsv_dataset(subset_path, eval_features_encoder, eval_classes_encoder,
+                                          subset_samples, pad_size, subset_samples, False)
 
-        y_pred = best_model.predict(validation_dataset, steps=1)
+        y_pred = best_model.predict(subset_dataset, steps=1)
         if floor_false_preds:
             # machine-generated labels are not given for predictions less than 0.5, so this allows models to be
             # more fairly compared against them
@@ -107,7 +108,7 @@ def evaluate_model(output_dir, classes_encoder_path, oiv_dataset_dir, oiv_human_
         logger.disabled = False
 
         df_metrics = pd.DataFrame(list(metrics.items()))
-        df_metrics.to_csv(os.path.join(output_dir, "best_model_validation_metrics.csv"))
+        df_metrics.to_csv(os.path.join(output_dir, output_file_name))
 
         print("Validation MAP is: {}".format(metrics["OpenImagesDetectionChallenge_Precision/mAP@0.5IOU"]))
 
@@ -159,5 +160,5 @@ if __name__ == "__main__":
 
     print("Finished training, evaluating best model")
 
-    evaluate_model(script_args.output_dir, script_args.classes_encoder_path, script_args.oiv_dataset_dir,
-                   script_args.oiv_human_dataset_dir, script_args.pad_size)
+    evaluate_model(script_args.output_dir, script_args.classes_encoder_path, script_args.oiv_human_dataset_dir,
+                   script_args.pad_size)

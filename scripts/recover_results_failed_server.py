@@ -50,8 +50,7 @@ for job_name, job_id in tqdm(script_files):
                     int(re.findall(r"--pad_size=([0-9]+)", open(job_script_path, "r").read())[0])
                 oiv_dataset_dir = os.path.join(script_args.dataset_path, "oiv")
                 oiv_human_verified_dataset_dir = os.path.join(script_args.dataset_path, "oiv_human_verified")
-                evaluate_model(job_output_folder, classes_encoder_path, oiv_dataset_dir, oiv_human_verified_dataset_dir,
-                               pad_size)
+                evaluate_model(job_output_folder, classes_encoder_path, oiv_human_verified_dataset_dir, pad_size)
             else:
                 print("No best_model.h5 for {}".format(job_id))
         else:

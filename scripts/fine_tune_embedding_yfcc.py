@@ -104,5 +104,4 @@ if __name__ == "__main__":
 
     print("Finished training, evaluating best model")
 
-    evaluate_model(script_args.output_dir, script_args.classes_encoder_path, script_args.oiv_dataset_dir,
-                   script_args.oiv_human_dataset_dir, model_config["pad_size"])
+    evaluate_model(script_args.output_dir, script_args.classes_encoder_path, script_args.oiv_human_dataset_dir, model_config["pad_size"])
