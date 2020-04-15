@@ -18,14 +18,14 @@ if not os.path.exists(output_dir):
 for subset in ["validation", "test"]:
     subset_path = os.path.join(oiv_human_verified_dir, "{}.tsv".format(subset))
     subset_csv = load_csv_as_dict(subset_path, fieldnames=["photo_id", "user_tags", "labels"], delimiter="\t")
-    language_rows = {}
+    language_rows = {"english": [], "other": []}
     for row in subset_csv:
         image_user_tags = row["user_tags"]
         is_relibable, language = detect_language_cld2(image_user_tags)
-        if not is_relibable:
-            language = "unknown"
-        if not language_rows.get(language):
-            language_rows[language] = []
+        if not is_relibable or language == "unknown":
+            continue
+        if language != "english":
+            language = "other"
         language_rows[language].append(row)
     for language in language_rows.keys():
         language_subset_path = os.path.join(oiv_human_verified_by_language_dir, "{}-{}.tsv".format(subset, language))
