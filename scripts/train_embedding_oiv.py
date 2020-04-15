@@ -76,7 +76,7 @@ def train(args):
             verbose=True)
 
 
-def evaluate_model(output_dir, classes_encoder_path, oiv_dataset_dir, oiv_human_dataset_dir, pad_size):
+def evaluate_model(output_dir, classes_encoder_path, oiv_dataset_dir, oiv_human_dataset_dir, pad_size, floor_false_preds=False):
     with tf.Session():
         best_model = tf.keras.models.load_model(os.path.join(output_dir, 'best_model.h5'))
         best_model.summary()
@@ -91,6 +91,10 @@ def evaluate_model(output_dir, classes_encoder_path, oiv_dataset_dir, oiv_human_
                                               validation_samples, pad_size, validation_samples, False)
 
         y_pred = best_model.predict(validation_dataset, steps=1)
+        if floor_false_preds:
+            # machine-generated labels are not given for predictions less than 0.5, so this allows models to be
+            # more fairly compared against them
+            y_pred[y_pred < 0.5] = 0
         y_true = build_y_true(os.path.join(oiv_human_dataset_dir, "validation.tsv"), eval_classes_encoder)
         categories = build_categories(get_class_descriptions_path(), eval_classes_encoder)
 
