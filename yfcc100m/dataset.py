@@ -99,7 +99,6 @@ def count_user_tags(path, stem=None, remove_nums=None, oiv_folder=None):
                 tag_counts[tag] += 1
     return tag_counts
 
-
 def images_highest_count_user_tag(path, tag_counts_path=None):
     """ For each image, return the frequency (across the whole dataset) of its tag that occurs
         most often across the dataset
