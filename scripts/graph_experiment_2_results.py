@@ -2,7 +2,7 @@ from matplotlib import pyplot as plt
 import numpy as np
 import pandas as pd
 
-experiment_maps = {"Basic": [0.7481407242026616, 0.748721526, 0.749476923],
+experiment_maps = {"Original": [0.7481407242026616, 0.748721526, 0.749476923],
                    "Pre-Trained": [0.716062727546937, 0.713773825744106, 0.712525594821692],
                    "Fine-Tuned": [0.733641353296024, 0.730644964750732, 0.729181126395337]}
 
