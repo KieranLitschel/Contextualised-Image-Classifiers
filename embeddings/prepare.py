@@ -152,55 +152,6 @@ def join_dataset_and_autotags(dataset_path, autotags_path, oiv_folder, output_fo
     _write_progress_to_csv(output_folder, yfcc_lines, oiv_lines, oiv_human_verified_lines)
 
 
-def build_dataset(dataset_dir, classes_encoder_path, features_encoder_path, output_folder):
-    """ Builds the tsv (tab-separated values) dataset into TFRecords
-
-    Parameters
-    ----------
-    dataset_dir : str
-        Path to dataset produced by joined_to_subsets
-    classes_encoder_path : str
-        Path to classes encoder produced by build_classes_encoder
-    features_encoder_path : str
-        Path to features encoder produced by build_features_encoder
-    output_folder : str
-        Folder to output feature encoder and TFRecord folds to
-    """
-
-    # this code is commented out as it is untested, I'll need to revisit this method when implementing pre-training
-    # on YFCC. It isn't necessary for OIV, as the files are so small they fit into memory
-    """
-    classes_encoder = CommaTokenTextEncoder.load_from_file(classes_encoder_path)
-    features_encoder = CommaTokenTextEncoder.load_from_file(features_encoder_path)
-    if not os.path.exists(output_folder):
-        os.makedirs(output_folder)
-    for subset in ["train", "validation", "test"]:
-        subset_path = os.path.join(dataset_dir, subset)
-        if not os.path.exists(subset_path):
-            continue
-        print("Building TFRecord for {}".format(subset))
-        subset_csv = pandas.read_csv(subset_path, sep="\t", na_filter=False).values
-        with tf.python_io.TFRecordWriter(os.path.join(output_folder, subset + ".tfrecords")) as writer:
-            for row in tqdm(subset_csv):
-                flickr_id, user_tags, labels = row
-                labels = ",".join([label_prob.split(":")[0] for label_prob in labels.split(",")])
-                confidences = ",".join([label_prob.split(":")[1] for label_prob in labels.split(",")])
-                encoded_features = features_encoder.encode(user_tags)
-                # get rid of the label number in the encoder (0) reserved for padding
-                encoded_labels = [label - 1 for label in classes_encoder.encode(labels)]
-                sparse_labels = tf.SparseTensor(indices=encoded_labels, values=confidences,
-                                                dense_shape=[classes_encoder.vocab_size - 2])
-                example = tf.train.Example(features=tf.train.Features(feature={
-                    "flickr_id": tf.train.Feature(int64_list=tf.train.Int64List(value=[flickr_id])),
-                    "encoded_features": tf.train.Feature(int64_list=tf.train.Int64List(value=encoded_features)),
-                    "encoded_labels": tf.train.Feature(bytes_list=
-                                                       tf.train.BytesList(value=tf.serialize_tensor(sparse_labels))),
-                }))
-                writer.write(example.SerializeToString())
-    """
-    raise NotImplemented
-
-
 def count_frequency_of_number_of_user_tags(train_path):
     """ Counts the frequency that each possible number of tags occurs
 
