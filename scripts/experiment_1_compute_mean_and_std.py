@@ -8,8 +8,8 @@ from common import load_csv_as_dict, write_rows_to_csv
 
 proj_root = pathlib.Path(__file__).parent.parent.absolute()
 
-experiment_1_merged_path = os.path.join(proj_root, "results/experiment_1_repeat_merged_summary.csv")
-experiment_1_mean_and_std = os.path.join(proj_root, "results/experiment_1_with_mean_and_std.csv")
+experiment_1_merged_path = os.path.join(proj_root, "job_results/experiment_1_repeat_merged_summary.csv")
+experiment_1_mean_and_std = os.path.join(proj_root, "job_results/experiment_1_with_mean_and_std.csv")
 
 job_name = None
 hyper_params = None

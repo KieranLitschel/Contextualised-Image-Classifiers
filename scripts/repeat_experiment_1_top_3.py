@@ -8,7 +8,7 @@ import os
 
 proj_root = pathlib.Path(__file__).parent.parent.absolute()
 
-results = list(load_csv_as_dict(os.path.join(proj_root, "results/experiment_1_summary.csv"), delimiter=",",
+results = list(load_csv_as_dict(os.path.join(proj_root, "job_results/experiment_1_summary.csv"), delimiter=",",
                                 fieldnames=["experiment_no", "experiment_name", "config", "map"]))
 unique_results = {}
 for result in results:

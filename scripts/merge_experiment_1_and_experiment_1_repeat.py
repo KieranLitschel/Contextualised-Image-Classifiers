@@ -7,9 +7,9 @@ from common import load_csv_as_dict, write_rows_to_csv
 
 proj_root = pathlib.Path(__file__).parent.parent.absolute()
 
-experiment_1_path = os.path.join(proj_root, "results/experiment_1_summary.csv")
-experiment_1_repeat_path = os.path.join(proj_root, "results/experiment_1_repeat_summary.csv")
-experiment_1_repeat_merged_path = os.path.join(proj_root, "results/experiment_1_repeat_merged_summary.csv")
+experiment_1_path = os.path.join(proj_root, "job_results/experiment_1_summary.csv")
+experiment_1_repeat_path = os.path.join(proj_root, "job_results/experiment_1_repeat_summary.csv")
+experiment_1_repeat_merged_path = os.path.join(proj_root, "job_results/experiment_1_repeat_merged_summary.csv")
 
 experiment_1_repeat_results = sorted([row for row in load_csv_as_dict(experiment_1_repeat_path,
                                                                       fieldnames=["JobName", "HyperParams", "mAP"],

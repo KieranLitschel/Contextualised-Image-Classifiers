@@ -12,7 +12,7 @@ from common import load_csv_as_dict
 
 proj_root = pathlib.Path(__file__).parent.parent.absolute()
 
-experiment_1_merged_path = os.path.join(proj_root, "results/experiment_1_with_mean_and_std.csv")
+experiment_1_merged_path = os.path.join(proj_root, "job_results/experiment_1_with_mean_and_std.csv")
 
 # y_min is performance of naive baseline, y_max is performance of baseline model on validation set
 y_min = 0.66352
