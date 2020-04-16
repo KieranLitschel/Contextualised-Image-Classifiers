@@ -1,0 +1,1 @@
+Always predict label as present if more positive detections than negative detections, otherwise always predict it as not present
