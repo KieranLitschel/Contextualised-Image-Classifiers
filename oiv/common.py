@@ -324,6 +324,37 @@ def get_hierarchy_classes_parents(hierarchy_file, label_names_file=None):
     return classes_parents
 
 
+def get_hierarchy_by_level(hierarchy_file, label_names_file=None):
+    """ Create a dict that contains the labels in the hierarchy by their level in the tree
+
+    Parameters
+    ----------
+    hierarchy_file : str
+        Path to hierarchy file json
+    label_names_file : str
+        Path to file mapping OIV labels to OIV names. Default of None. If passed then OIV labels are replaced with
+        human readable ones
+
+    Returns
+    -------
+    dict of int -> list of str
+        Maps the level number to the labels at that level
+    """
+
+    hierarchy_dict = hierachy_to_dict(hierarchy_file, label_names_file=label_names_file)
+    level_dict = {}
+    queue = [(0, hierarchy_dict)]
+    while queue:
+        level, sub_dict = queue.pop(0)
+        if not level_dict.get(level):
+            level_dict[level] = []
+        for label, labels_dict in sub_dict.items():
+            level_dict[level].append(label)
+            if labels_dict:
+                queue.append((level + 1, labels_dict))
+    return level_dict
+
+
 def build_human_machine_labels(oiv_folder):
     """ Reads the image level image id and human label files of OIV joined with YFCC100M by OpenImagesV5Tools (so that
         they only contain OIV images that overlap with YFCC100M) for train and validation, and  makes a new file
