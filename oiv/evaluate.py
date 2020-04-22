@@ -84,7 +84,7 @@ def build_y_true(subset_path, classes_encoder):
     return y_trues
 
 
-def oid_challenge_evaluator_image_level(y_pred, y_true, categories):
+def oid_challenge_evaluator_image_level(y_pred, y_true, categories, y_pred_benchmark=None):
     """ Evaluate the image level predictions using OpenImagesDetectionChallengeEvaluator, by saying the ground truths
         correspond to a box the size of the entire image, and predictions correspond to the same whole image sized box
 
@@ -101,6 +101,9 @@ def oid_challenge_evaluator_image_level(y_pred, y_true, categories):
     categories : list of dict
         A list of dicts, each of which has the following keys - 'id': (required) an integer id uniquely identifying this
         category. 'name': (required) string representing category name e.g., 'cat', 'dog'.
+    y_pred_benchmark : np.array
+        Same as y_pred, but produced by different model / baseline that this one is being compared to. Where they both
+        agree on a prediction, positive and negative ground truths are ignored in calculating metrics
 
     Returns
     -------
@@ -118,6 +121,11 @@ def oid_challenge_evaluator_image_level(y_pred, y_true, categories):
 
     evaluator = OpenImagesDetectionChallengeEvaluator(categories)
     for image_id, image_details in enumerate(y_true):
+        if y_pred_benchmark is not None:
+            image_details["Pos"] = [pos for pos in image_details["Pos"] if
+                                    round(y_pred[image_id][pos]) != round(y_pred_benchmark[image_id][pos])]
+            image_details["Pres"] = [pres for pres in image_details["Pres"] if
+                                     round(y_pred[image_id][pres]) != round(y_pred_benchmark[image_id][pres])]
         pres = np.array(image_details["Pres"])
         if image_details["Pos"]:
             pos = np.array(image_details["Pos"])
