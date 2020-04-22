@@ -76,26 +76,33 @@ def train(args):
             verbose=True)
 
 
-def evaluate_model(output_dir, classes_encoder_path, oiv_human_dataset_dir, pad_size, floor_false_preds=False,
-                   output_file_name="best_model_validation_metrics.csv", subset="validation"):
-    with tf.Session():
-        best_model = tf.keras.models.load_model(os.path.join(output_dir, 'best_model.h5'))
-        best_model.summary()
+def model_preds(output_dir, oiv_human_dataset_dir, pad_size, eval_features_encoder, eval_classes_encoder,
+                floor_false_preds=False, subset="validation"):
+    best_model = tf.keras.models.load_model(os.path.join(output_dir, 'best_model.h5'))
+    best_model.summary()
 
+    subset_path = os.path.join(oiv_human_dataset_dir, "{}.tsv".format(subset))
+    subset_samples = len(open(subset_path, "r").readlines())
+    subset_dataset = load_tsv_dataset(subset_path, eval_features_encoder, eval_classes_encoder,
+                                      subset_samples, pad_size, subset_samples, False)
+
+    y_pred = best_model.predict(subset_dataset, steps=1)
+    if floor_false_preds:
+        # machine-generated labels are not given for predictions less than 0.5, so this allows models to be
+        # more fairly compared against them
+        y_pred[y_pred < 0.5] = 0
+    return y_pred
+
+
+def evaluate_model(output_dir, classes_encoder_path, oiv_human_dataset_dir, pad_size, floor_false_preds=False,
+                   output_file_name="best_model_validation_metrics.csv", subset="validation", y_pred_benchmark=None):
+    with tf.Session():
         eval_classes_encoder = CommaTokenTextEncoder.load_from_file(classes_encoder_path)
         eval_features_encoder = CommaTokenTextEncoder.load_from_file(
             os.path.join(output_dir, "features_encoder"))
 
-        subset_path = os.path.join(oiv_human_dataset_dir, "{}.tsv".format(subset))
-        subset_samples = len(open(subset_path, "r").readlines())
-        subset_dataset = load_tsv_dataset(subset_path, eval_features_encoder, eval_classes_encoder,
-                                          subset_samples, pad_size, subset_samples, False)
-
-        y_pred = best_model.predict(subset_dataset, steps=1)
-        if floor_false_preds:
-            # machine-generated labels are not given for predictions less than 0.5, so this allows models to be
-            # more fairly compared against them
-            y_pred[y_pred < 0.5] = 0
+        y_pred = model_preds(output_dir, oiv_human_dataset_dir, pad_size, eval_features_encoder, eval_classes_encoder,
+                             floor_false_preds, subset)
         y_true = build_y_true(os.path.join(oiv_human_dataset_dir, "{}.tsv".format(subset)), eval_classes_encoder)
         categories = build_categories(get_class_descriptions_path(), eval_classes_encoder)
 
@@ -104,7 +111,7 @@ def evaluate_model(output_dir, classes_encoder_path, oiv_human_dataset_dir, pad_
         # the command line, so we ignore them
         logger = logging.getLogger()
         logger.disabled = True
-        metrics = oid_challenge_evaluator_image_level(y_pred, y_true, categories)
+        metrics = oid_challenge_evaluator_image_level(y_pred, y_true, categories, y_pred_benchmark=y_pred_benchmark)
         logger.disabled = False
 
         df_metrics = pd.DataFrame(list(metrics.items()))

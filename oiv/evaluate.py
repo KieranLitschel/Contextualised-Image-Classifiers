@@ -259,7 +259,8 @@ def build_y_pred_machine_labels(subset, oiv_folder, oiv_human_verified_folder, c
     return y_pred
 
 
-def machine_labels_baseline(subset, oiv_folder, oiv_human_verified_folder, label_names_file, classes_encoder):
+def machine_labels_baseline(subset, oiv_folder, oiv_human_verified_folder, label_names_file, classes_encoder,
+                            y_pred_benchmark=None):
     """ For a given machine-generated subset, evaluates its performance using oid_challenge_evaluator_image_level
 
     Parameters
@@ -274,6 +275,10 @@ def machine_labels_baseline(subset, oiv_folder, oiv_human_verified_folder, label
         Path to file mapping OIV labels to OIV names
     classes_encoder : embeddings.encoders.CommaTokenTextEncoder
         Encoder for classes
+    y_pred_benchmark : np.array
+        Numpy array of shape (no. of images, no. of classes), describing the predicted probability that each class
+        belongs to each image. Produced by different model / baseline than machine labels. Where they both
+        agree on a prediction, positive and negative ground truths are ignored in calculating metrics
 
     Returns
     -------
@@ -293,7 +298,7 @@ def machine_labels_baseline(subset, oiv_folder, oiv_human_verified_folder, label
     y_pred = build_y_pred_machine_labels(subset, oiv_folder, oiv_human_verified_folder, classes_encoder)
     y_true = build_y_true(human_verified_subset_path, classes_encoder)
     categories = build_categories(label_names_file, classes_encoder)
-    metrics = oid_challenge_evaluator_image_level(y_pred, y_true, categories)
+    metrics = oid_challenge_evaluator_image_level(y_pred, y_true, categories, y_pred_benchmark=y_pred_benchmark)
     return metrics
 
 
