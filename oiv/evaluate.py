@@ -123,9 +123,9 @@ def oid_challenge_evaluator_image_level(y_pred, y_true, categories, y_pred_bench
     for image_id, image_details in enumerate(y_true):
         if y_pred_benchmark is not None:
             image_details["Pos"] = [pos for pos in image_details["Pos"] if
-                                    round(y_pred[image_id][pos]) != round(y_pred_benchmark[image_id][pos])]
+                                    round(y_pred[image_id][pos - 1]) != round(y_pred_benchmark[image_id][pos - 1])]
             image_details["Pres"] = [pres for pres in image_details["Pres"] if
-                                     round(y_pred[image_id][pres]) != round(y_pred_benchmark[image_id][pres])]
+                                     round(y_pred[image_id][pres - 1]) != round(y_pred_benchmark[image_id][pres - 1])]
         pres = np.array(image_details["Pres"])
         if image_details["Pos"]:
             pos = np.array(image_details["Pos"])
