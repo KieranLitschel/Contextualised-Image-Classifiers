@@ -4,7 +4,7 @@ import urllib
 
 import pycld2 as cld2
 from nltk.stem import SnowballStemmer
-import cld3
+# import cld3
 from tqdm import tqdm
 
 from common import load_csv_as_dict
@@ -224,7 +224,9 @@ def count_detected_languages_cld3(yfcc_train, keep_numbers=None):
         decoded_pre_processed_image_user_tags = decode_image_user_tags(pre_processed_image_user_tags)
         image_user_tags = re.sub(r"\b(?:https?://|www\.)[a-z0-9-]+(\.[a-z0-9-]+)+(?:[/?].*)?", "",
                                  decoded_pre_processed_image_user_tags)
-        lp = cld3.get_language(image_user_tags)
+        # lp = cld3.get_language(image_user_tags)
+        raise Warning("CLD3 commented out")
+        lp = None
         if lp:
             lang_code = lp.language
             is_reliable = lp.is_reliable
