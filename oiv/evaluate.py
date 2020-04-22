@@ -189,8 +189,8 @@ def build_oid_challenge_image_level_map_func(human_verified_subset_path, label_n
     return oid_challenge_image_level_map
 
 
-def machine_labels_baseline(subset, oiv_folder, oiv_human_verified_folder, label_names_file, classes_encoder):
-    """ For a given machine-generated subset, evaluates its performance using oid_challenge_evaluator_image_level
+def build_y_pred_machine_labels(subset, oiv_folder, oiv_human_verified_folder, classes_encoder):
+    """ For a given machine-generated subset, builds numpy array of predictions for each image
 
     Parameters
     ----------
@@ -200,27 +200,17 @@ def machine_labels_baseline(subset, oiv_folder, oiv_human_verified_folder, label
         Path to folder containing open images csv's
     oiv_human_verified_folder : str
         Path to oiv_human_verified folder built by join_dataset_and_autotags
-    label_names_file : str
-        Path to file mapping OIV labels to OIV names
     classes_encoder : embeddings.encoders.CommaTokenTextEncoder
         Encoder for classes
 
     Returns
     -------
-    dict of str -> float
-        A dictionary of metrics with the following fields -
-
-        1. summary_metrics:
-           '<prefix if not empty>_Precision/mAP@<matching_iou_threshold>IOU': mean
-           average precision at the specified IOU threshold.
-        2. per_category_ap: category specific results with keys of the form
-           <prefix if not empty>_PerformanceByCategory/
-           mAP@<matching_iou_threshold>IOU/category'.
+    np.array of float
+        2D numpy array containing predictions for each image by class
 
     """
 
     machine_labels_path = os.path.join(oiv_folder, "{}-annotations-machine-imagelabels.csv".format(subset))
-    human_verified_subset_path = os.path.join(oiv_human_verified_folder, "{}.tsv".format(subset))
     rotations_path = os.path.join(oiv_folder, "{}-images-with-rotation.csv".format(subset))
     human_verified_path = os.path.join(oiv_human_verified_folder, "{}.tsv".format(subset))
     subset_flickr_ids = [row["flickr_id"] for row in
@@ -258,6 +248,41 @@ def machine_labels_baseline(subset, oiv_folder, oiv_human_verified_folder, label
                 image_preds[label_id] = confidence
         y_pred.append(image_preds)
     y_pred = np.array(y_pred)
+    return y_pred
+
+
+def machine_labels_baseline(subset, oiv_folder, oiv_human_verified_folder, label_names_file, classes_encoder):
+    """ For a given machine-generated subset, evaluates its performance using oid_challenge_evaluator_image_level
+
+    Parameters
+    ----------
+    subset : str
+        Subset to evaluate the machine labels for. Should be one of "train", "validation", or "test"
+    oiv_folder : str
+        Path to folder containing open images csv's
+    oiv_human_verified_folder : str
+        Path to oiv_human_verified folder built by join_dataset_and_autotags
+    label_names_file : str
+        Path to file mapping OIV labels to OIV names
+    classes_encoder : embeddings.encoders.CommaTokenTextEncoder
+        Encoder for classes
+
+    Returns
+    -------
+    dict of str -> float
+        A dictionary of metrics with the following fields -
+
+        1. summary_metrics:
+           '<prefix if not empty>_Precision/mAP@<matching_iou_threshold>IOU': mean
+           average precision at the specified IOU threshold.
+        2. per_category_ap: category specific results with keys of the form
+           <prefix if not empty>_PerformanceByCategory/
+           mAP@<matching_iou_threshold>IOU/category'.
+
+    """
+
+    human_verified_subset_path = os.path.join(oiv_human_verified_folder, "{}.tsv".format(subset))
+    y_pred = build_y_pred_machine_labels(subset, oiv_folder, oiv_human_verified_folder, classes_encoder)
     y_true = build_y_true(human_verified_subset_path, classes_encoder)
     categories = build_categories(label_names_file, classes_encoder)
     metrics = oid_challenge_evaluator_image_level(y_pred, y_true, categories)
