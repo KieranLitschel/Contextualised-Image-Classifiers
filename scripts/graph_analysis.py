@@ -16,13 +16,13 @@ experiment_maps = {"Original": [0.7481407242026616, 0.748721526, 0.749476923],
                    "Most Likely Class": [0.635850179],
                    "Original Floored": [0.647748983982311, 0.645886573764493, 0.646263863153314],
                    "Machine-Generated Labels": [0.878656405867957],
-                   "English Original": [0.746953834, 0.743078918, 0.745654112],
+                   "English Best Model": [0.746953834, 0.743078918, 0.745654112],
                    "English Fine-Tuned": [0.728503208, 0.729714927, 0.72694073],
-                   "Other Original": [0.77260902, 0.771070024, 0.773496219],
-                   "Other Fine-Tuned": [0.763937961, 0.760464632, 0.764313694]}
+                   "Non-English Best Model": [0.77260902, 0.771070024, 0.773496219],
+                   "Non-English Fine-Tuned": [0.763937961, 0.760464632, 0.764313694]}
 
 graphs = [("Original", "Most Likely Class"), ("Original Floored", "Machine-Generated Labels"),
-          ("English Original", "English Fine-Tuned"), ("Other Original", "Other Fine-Tuned")]
+          ("English Best Model", "English Fine-Tuned"), ("Non-English Best Model", "Non-English Fine-Tuned")]
 
 for pair in graphs:
     results = [[name, np.mean(maps), np.std(maps)] for name, maps in
