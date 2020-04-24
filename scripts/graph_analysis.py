@@ -11,17 +11,17 @@ from oiv.common import get_hierarchy_json_path, get_class_descriptions_path, get
 
 proj_root = pathlib.Path(__file__).parent.parent.absolute()
 
-experiment_maps = {"Original": [0.7481407242026616, 0.748721526, 0.749476923],
+experiment_maps = {"Best Model": [0.7481407242026616, 0.748721526, 0.749476923],
                    "Fine-Tuned": [0.733641353296024, 0.730644964750732, 0.729181126395337],
                    "Most Likely Class": [0.635850179],
-                   "Original Floored": [0.647748983982311, 0.645886573764493, 0.646263863153314],
+                   "Best Model Floored": [0.647748983982311, 0.645886573764493, 0.646263863153314],
                    "Machine-Generated Labels": [0.878656405867957],
                    "English Best Model": [0.746953834, 0.743078918, 0.745654112],
                    "English Fine-Tuned": [0.728503208, 0.729714927, 0.72694073],
                    "Non-English Best Model": [0.77260902, 0.771070024, 0.773496219],
                    "Non-English Fine-Tuned": [0.763937961, 0.760464632, 0.764313694]}
 
-graphs = [("Original", "Most Likely Class"), ("Original Floored", "Machine-Generated Labels"),
+graphs = [("Best Model", "Most Likely Class"), ("Best Model Floored", "Machine-Generated Labels"),
           ("English Best Model", "English Fine-Tuned"), ("Non-English Best Model", "Non-English Fine-Tuned")]
 
 for pair in graphs:
