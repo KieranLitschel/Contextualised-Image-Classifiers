@@ -6,7 +6,7 @@ I was awarded a grade of First Class for the dissertation, which you can read [h
 
 ## Abstract
 
-Mahajan et al. and Yalniz et al. demonstrate the beneﬁt of pre-training on large unsupervised image datasets using user tags as labels for weak-supervision. We take this approach further, considering whether the use of user tags in large supervised image datasets is beneﬁcial.
+Mahajan et al. and Yalniz et al. demonstrate the beneﬁt of pre-training on large unlabeled image datasets using user tags as labels for weak-supervision. We take this approach further, considering whether the use of user tags in large labeled image datasets is beneﬁcial.
 
 We propose modifying the teacher in the semi-weakly supervised approach proposed by Yalniz et al. to include user tags as features. To enable this we constructed a new dataset with user tags and human-veriﬁed labels, by combining the Open Images dataset and Yahoo Flickr Creative Commons 100 Million dataset.
 
