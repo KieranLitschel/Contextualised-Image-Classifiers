@@ -14,7 +14,7 @@ We were unable to combine user tags with image classiﬁers due to engineering c
 
 ## Reflections on the project a few months on
 
-This project turned out much better than my [first machine learning project](https://github.com/KieranLitschel/PredictingClosingPriceTomorrow), but I still could have approached the project better. I recently completed Andrew Ng’s Deep Learning Specialization, and the Structuring Machine Learning Projects course has helped me identify some of the mistakes I made.
+This project turned out much better than my [first machine learning project](https://github.com/KieranLitschel/PredictingClosingPriceTomorrow), but I still could have approached the project better. I recently completed Andrew Ng’s Deep Learning Specialization, and the [Structuring Machine Learning Projects](https://www.coursera.org/learn/machine-learning-projects/) course has helped me identify some of the mistakes I made.
 
 The biggest mistake I made in this project was not approaching it iteratively. After deciding on the topic of the dissertation and my approach to solving it, I should have trained the most basic model I proposed (the image classifier with the user tag feature encoder). I then should have randomly sampled some images misclassified by the model and performed error analysis on them to look for patterns in the mistakes. This would have helped me identify the edge cases the model struggled to classify and prioritise which were most important to solve.
 
